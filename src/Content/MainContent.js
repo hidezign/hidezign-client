@@ -20,8 +20,8 @@ export const MainContent = {
 }
 
 export const backendConfig = {
-  // base: "http://localhost:8080/api",
-  // origin: "http://localhost:8080",
+  // base: "http://localhost:3000/api/v1/",
+  // origin: "http://localhost:3000/",
   // base: "https://hidezign-server.onrender.com/api",
   // origin: "https://hidezign-server.onrender.com",
   base: "https://api.hidezign.com/api/v1",

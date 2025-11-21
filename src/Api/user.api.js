@@ -29,3 +29,14 @@ export async function userProfile() {
     return error?.response?.data || error;
   }
 }
+
+
+export async function submitContactForm(payload) {
+  try {
+    const response = await Axios.post(`${userApi}/submit-contact`, payload);
+    return response?.data;
+  } catch (error) {
+    console.error("Contact form submission error:", error);
+    return error?.response?.data || error;
+  }
+}

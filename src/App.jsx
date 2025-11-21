@@ -1,6 +1,7 @@
 import React from 'react'
 import RouterPage from './Routes/RouterPage'
 import { ReactLenis, useLenis } from 'lenis/react'
+import { Toaster } from 'sonner'
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
       <div className='font-gilroy bg-[#F0F0F0]'>
         <RouterPage />
       </div>
+      <Toaster />
     </>
   )
 }

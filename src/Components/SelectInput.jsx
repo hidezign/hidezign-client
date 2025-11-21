@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SelectInput = ({ label, name, value, options, onChange, className = "", disabled }) => {
+const SelectInput = ({ label, name, value, options, onChange, className = "", disabled, error }) => {
     return (
         <div className="flex flex-col">
             <label className="block text-sp-bg1 text-base ">{label}</label>
@@ -10,6 +10,7 @@ const SelectInput = ({ label, name, value, options, onChange, className = "", di
                     <option className='text-sp-bg1' key={index} value={option.value}>{option.label}</option>
                 ))}
             </select>
+            {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
         </div>
     );
 };
