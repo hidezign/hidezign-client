@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import brandsPrev from '../../assets/brandsPrev.png'
-import Video from '../../assets/VK.mp4'
 import { InView } from "react-intersection-observer";
 import ScrollDown from '../../Components/ScrollDown';
 import HiDezign from '../../assets/HiDezign.svg'
@@ -58,7 +57,8 @@ const HeroSection = () => {
                     >
                         <video
                             ref={videoRef}
-                            src={Video}
+                            // src={Video}
+                            src={'https://res.cloudinary.com/ds8buve4c/video/upload/v1763748147/YT_INTRO_axlp9a.mp4'}
                             className="w-full h-full object-cover"
                             loop
                             playsInline
