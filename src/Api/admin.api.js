@@ -19,3 +19,13 @@ export async function adminProfile() {
     return error?.response.data;
   }
 }
+
+
+export async function getProjects() {
+  try {
+    const response = await Axios.get(`${adminApi}/projects`);
+    return response?.data;
+  } catch (error) {
+    return error?.response.data;
+  }
+}
