@@ -102,10 +102,13 @@ const Projects = () => {
                                 : "md:justify-start md:-mt-36"
                                 } `}
                         >
-                            <div
+                            <a
+                                href={project?.file?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className={`w-full md:w-2/5 aspect-square relative transition-transform`}
                             >
-                                <div className="w-full aspect-square overflow-hidden">
+                                <div className="w-full aspect-square overflow-hidden corner-squircle rounded-2xl">
                                     <img
                                         src={project?.image.url}
                                         alt={project?.title}
@@ -121,7 +124,7 @@ const Projects = () => {
 
                                         <div className="flex-1 border-t border-sp-bg1 mx-4" />
 
-                                        <p className="ml-4 text-sm text-sp-primary-s1 underline underline-offset-2">
+                                        <p className="text-sm">
                                             Case Study
                                         </p>
                                         {/* {project?.file && (
@@ -148,7 +151,7 @@ const Projects = () => {
                                         {project?.description}
                                     </p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     );
                 })}
