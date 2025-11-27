@@ -20,12 +20,12 @@ export const MainContent = {
 }
 
 export const backendConfig = {
-  // base: "http://localhost:3000/api/v1/",
-  // origin: "http://localhost:3000/",
+  base: "http://localhost:3000/api/v1/",
+  origin: "http://localhost:3000/",
   // base: "https://hidezign-server.onrender.com/api",
   // origin: "https://hidezign-server.onrender.com",
-  base: "https://api.hidezign.com/api/v1",
-  origin: "https://api.hidezign.com",
+  // base: "https://api.hidezign.com/api/v1",
+  // origin: "https://api.hidezign.com",
 };
 
 export const Axios = axios.create({

@@ -36,25 +36,33 @@ const Projects = () => {
         try {
             setLoading(true);
             const response = await getProjects();
+
             if (response?.success) {
                 const projects = response.projects || [];
-                setFullProjects(projects);
 
-                // For homepage we only show those flagged isShowHome === true initially
+                // Always filter only active projects first
+                const activeProjects = projects.filter(
+                    (p) => p.isActive === true
+                );
+
+                let finalProjects = [];
+
                 if (path.pathname === "/") {
-                    const homeProjects = projects.filter(
+                    // For home: active + showHome projects
+                    finalProjects = activeProjects.filter(
                         (p) => p.isShowHome === true
                     );
-                    setFullProjects(homeProjects); // consider fullProjects = homeProjects on home
-                    setVisibleCount(
-                        Math.min(homeProjects.length, initialCount)
-                    );
-                    setDisplayProjects(homeProjects.slice(0, initialCount));
                 } else {
-                    // projects page (or other) - show slice of all projects
-                    setVisibleCount(Math.min(projects.length, initialCount));
-                    setDisplayProjects(projects.slice(0, initialCount));
+                    // For other pages: only active projects
+                    finalProjects = activeProjects;
                 }
+
+                setFullProjects(finalProjects);
+
+                const initial = Math.min(finalProjects.length, initialCount);
+                setVisibleCount(initial);
+                setDisplayProjects(finalProjects.slice(0, initial));
+
             } else {
                 toast.error(response?.message || "Failed to fetch projects", {
                     duration: 4000,
@@ -69,6 +77,7 @@ const Projects = () => {
             setLoading(false);
         }
     };
+
 
     const handleLoadMore = () => {
         // Increase visible count by step but not beyond total
