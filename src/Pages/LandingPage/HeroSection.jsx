@@ -25,7 +25,7 @@ const HeroSection = () => {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     return (
-        <div className='min-h-screen border-b border-sp-bg1'>
+        <div className='min-h-screen border-b border-sp-bg1 pb-10 md:pb-14 lg:pb-20'>
 
             <div className='relative w-full py-10'>
                 {/* <div className='absolute'> */}
@@ -80,10 +80,10 @@ const HeroSection = () => {
                 )}
             </InView>
 
-            <div className='flex flex-col items-center justify-center gap-10 py-10 md:py-20'>
+            {/* <div className='flex flex-col items-center justify-center gap-10 py-10 md:py-20'>
                 <h1 className='text-3xl text-sp-bg1'>Solved problems for</h1>
                 <img src={brandsPrev} alt="Brands Preview" className='md:w-1/3' />
-            </div>
+            </div> */}
 
         </div>
     )
