@@ -121,7 +121,10 @@ const Projects = () => {
 
                                         <div className="flex-1 border-t border-sp-bg1 mx-4" />
 
-                                        {project?.file && (
+                                        <p className="ml-4 text-sm text-sp-primary-s1 underline underline-offset-2">
+                                            Case Study
+                                        </p>
+                                        {/* {project?.file && (
                                             <Link
                                                 to={project?.file?.url}
                                                 target="_blank"
@@ -138,7 +141,7 @@ const Projects = () => {
                                             >
                                                 Live Demo
                                             </Link>
-                                        )}
+                                        )} */}
                                     </div>
 
                                     <p className="text-base text-sp-bg1">
