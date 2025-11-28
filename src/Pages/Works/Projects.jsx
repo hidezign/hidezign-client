@@ -6,6 +6,7 @@ import React from "react";
 import { getProjects } from "../../Api/admin.api";
 import { toast } from "sonner";
 import Loader from "../../Components/Loader";
+import { openPdfForce } from "../../utils/openPdfForce";
 
 const Projects = () => {
     const path = useLocation();
@@ -88,6 +89,29 @@ const Projects = () => {
 
     const hasMore = displayProjects.length < fullProjects.length;
 
+    const [showPreview, setShowPreview] = React.useState(false);
+
+    // const openPdfInNewTab = async (url) => {
+    //     try {
+    //         const res = await fetch(url, { mode: "cors" });
+    //         if (!res.ok) throw new Error("Failed to fetch file");
+
+    //         const blob = await res.blob();
+
+    //         // Create a blob URL and open in new tab — browser will treat it like an inline resource
+    //         const blobUrl = URL.createObjectURL(blob);
+    //         window.open(blobUrl, "_blank", "noopener,noreferrer");
+
+    //         // Revoke after a while to free memory
+    //         setTimeout(() => URL.revokeObjectURL(blobUrl), 60 * 1000);
+    //     } catch (err) {
+    //         console.error("openPdfInNewTab error:", err);
+    //         // Fallback: open original URL (may download)
+    //         window.open(url, "_blank", "noopener,noreferrer");
+    //     }
+    // }
+
+
     return (
         <>
             {loading && <Loader />}
@@ -102,10 +126,12 @@ const Projects = () => {
                                 : "md:justify-start md:-mt-36"
                                 } `}
                         >
-                            <a
-                                href={project?.file?.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <div
+                                onClick={() => {
+                                    // setLoading(true)
+                                    openPdfForce(project?.file?.url)
+                                    // setLoading(false)
+                                }}
                                 className={`w-full md:w-2/5 aspect-square relative transition-transform`}
                             >
                                 <div className="w-full aspect-square overflow-hidden corner-squircle rounded-2xl">
@@ -151,7 +177,20 @@ const Projects = () => {
                                         {project?.description}
                                     </p>
                                 </div>
-                            </a>
+                            </div>
+
+                            {/* {showPreview && (
+                                <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
+                                    <div className="w-[90%] h-[90%] bg-white rounded-md overflow-hidden">
+                                        <iframe
+                                            src={project?.file?.url}
+                                            title="PDF Preview"
+                                            className="w-full h-full"
+                                        />
+                                        <button onClick={() => setShowPreview(false)}>Close</button>
+                                    </div>
+                                </div>
+                            )} */}
                         </div>
                     );
                 })}

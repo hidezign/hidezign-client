@@ -13,8 +13,8 @@ const Footer = () => {
     const LinksSet1 = [
         { name: "Home", link: "/" },
         { name: "Work", link: "/work" },
-        { name: "Case Studies", link: "/case-studies" },
-        { name: "Blogs", link: "/blogs" },
+        // { name: "Case Studies", link: "/case-studies" },
+        // { name: "Blogs", link: "/blogs" },
     ];
     const LinksSet2 = [
         { name: "About us", link: "/about-us" },

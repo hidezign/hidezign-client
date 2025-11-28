@@ -27,9 +27,9 @@ const Services = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-10 mt-10'>
                 {services.map((service, index) => (
-                    <div key={index} className='flex flex-col items-center md:items-start justify-center gap-4'>
-                        <img src={service.image} alt={service.title} className='aspect-square object-cover rounded-xl' />
-                        <h3 className='text-2xl md:text-2xl font-medium text-center md:text-left text-sp-bg1'>{service.title}</h3>
+                    <div key={index} className='flex flex-col items-center  justify-center gap-4'>
+                        <img src={service.image} alt={service.title} className='aspect-square corner-squircle object-cover rounded-[50px]' />
+                        <h3 className='text-2xl md:text-2xl font-medium text-center text-sp-bg1'>{service.title}</h3>
                     </div>
                 ))}
             </div>
