@@ -11,11 +11,11 @@ import React from "react";
  */
 
 const DEFAULT_IMAGES = [
-    "https://images.unsplash.com/photo-1762496991966-584520e6ff1a?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=987",
-    "https://images.unsplash.com/photo-1761872936081-344b9b67cedc?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1761839257661-c2392c65ea72?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1762498322297-10a7035e9334?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=987",
-    "https://plus.unsplash.com/premium_photo-1761295138950-9399ff74650f?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=2070",
+    "https://res.cloudinary.com/ds8buve4c/image/upload/v1764712379/Rectangle_14about_kvu3oc.png",
+    "https://res.cloudinary.com/ds8buve4c/image/upload/v1764712379/Rectangle_15about_tb17zi.png",
+    "https://res.cloudinary.com/ds8buve4c/image/upload/v1764712379/Rectangle_16about_vptfxa.png",
+    "https://res.cloudinary.com/ds8buve4c/image/upload/v1764712379/Rectangle_17about_b3k6gp.png",
+    "https://res.cloudinary.com/ds8buve4c/image/upload/v1764712379/Rectangle_18about_qkgdfk.png"
 ];
 
 export default function StaticTiltedStack({ images = DEFAULT_IMAGES, rotations = [-12, -6, 0, 6, 12] }) {

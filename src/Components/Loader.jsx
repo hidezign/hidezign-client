@@ -17,13 +17,13 @@
 import styled from 'styled-components';
 
 const Loader = () => {
-    return (
-        <StyledWrapper>
-            <div className='w-full h-screen flex justify-center items-center fixed top-0 left-0 bg-sp-bg1/70 z-50'>
-                <div className="loader" />
-            </div>
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper>
+      <div className='w-full h-screen flex justify-center items-center fixed top-0 left-0 bg-gray-400/50 dark:bg-gray-900/50 backdrop-blur-xs transition-opacity duration-500 ease-in-out z-[99999]'>
+        <div className="loader" />
+      </div>
+    </StyledWrapper>
+  );
 }
 
 const StyledWrapper = styled.div`

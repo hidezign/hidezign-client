@@ -127,12 +127,12 @@ const Projects = () => {
                                 } `}
                         >
                             <div
-                                onClick={() => {
-                                    // setLoading(true)
-                                    openPdfForce(project?.file?.url)
-                                    // setLoading(false)
+                                onClick={async () => {
+                                    setLoading(true)
+                                    await openPdfForce(project?.file?.url)
+                                    setLoading(false)
                                 }}
-                                className={`w-full md:w-2/5 aspect-square relative transition-transform`}
+                                className={`w-full md:w-2/5 aspect-square relative transition-transform cursor-pointer`}
                             >
                                 <div className="w-full aspect-square overflow-hidden corner-squircle rounded-2xl">
                                     <img
@@ -178,19 +178,6 @@ const Projects = () => {
                                     </p>
                                 </div>
                             </div>
-
-                            {/* {showPreview && (
-                                <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
-                                    <div className="w-[90%] h-[90%] bg-white rounded-md overflow-hidden">
-                                        <iframe
-                                            src={project?.file?.url}
-                                            title="PDF Preview"
-                                            className="w-full h-full"
-                                        />
-                                        <button onClick={() => setShowPreview(false)}>Close</button>
-                                    </div>
-                                </div>
-                            )} */}
                         </div>
                     );
                 })}

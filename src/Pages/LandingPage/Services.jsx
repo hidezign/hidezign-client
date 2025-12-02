@@ -2,19 +2,19 @@ const Services = () => {
 
     const services = [
         {
-            image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070',
+            image: 'https://res.cloudinary.com/ds8buve4c/image/upload/v1764710914/UIUX_oez5oe.png',
             title: 'UI/UX Designing',
         },
         {
-            image: 'https://images.unsplash.com/photo-1416339134316-0e91dc9ded92?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1674',
+            image: 'https://res.cloudinary.com/ds8buve4c/image/upload/v1764710914/Branding_uwpn35.png',
             title: 'Branding & Design System'
         },
         {
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2015',
+            image: 'https://res.cloudinary.com/ds8buve4c/image/upload/v1764710914/AIAuto_dyrxs9.png',
             title: 'AI & Automation'
         },
         {
-            image: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1064',
+            image: 'https://res.cloudinary.com/ds8buve4c/image/upload/v1764710914/Development_hbp2wm.png',
             title: 'Development'
         },
 
@@ -28,7 +28,7 @@ const Services = () => {
             <div className='grid grid-cols-1 md:grid-cols-4 gap-10 mt-10'>
                 {services.map((service, index) => (
                     <div key={index} className='flex flex-col items-center  justify-center gap-4'>
-                        <img src={service.image} alt={service.title} className='aspect-square corner-squircle object-cover rounded-[50px]' />
+                        <img src={service.image} alt={service.title} className='aspect-square corner-squircle object-cover rounded-2xl' />
                         <h3 className='text-2xl md:text-2xl font-medium text-center text-sp-bg1'>{service.title}</h3>
                     </div>
                 ))}

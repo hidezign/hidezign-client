@@ -25,15 +25,18 @@ const HeroSection = () => {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     return (
-        <div className='min-h-screen border-b border-sp-bg1 pb-10 md:pb-14 lg:pb-20'>
+        <div className='min-h-screen border-b border-sp-bg1 '>
 
             <div className='relative w-full py-10'>
                 {/* <div className='absolute'> */}
                 <img src={HiDezign} alt="" />
                 {/* </div> */}
                 <div className='absolute w-full -bottom-10 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-5 md:gap-10'>
-                    <h1 className='w-full md:w-1/3 text-center capitalize text-sp-bg1 font-semibold text-4xl md:text-5xl'>Turn ideas into impact.</h1>
-                    <Button title="See our impact" route={Routers.WORK} className={"bg-sp-primary-s1 px-10 py-2 rounded-full text-sp-white-s1 capitalize"} />
+                    <h1 className='w-full text-center capitalize text-sp-bg1 font-semibold text-2xl md:text-5xl'>We Design It. We Build It. <br /> We Make It Work.</h1>
+                    <div className='flex gap-10 items-center justify-center'>
+                        <Button title="See our impact" route={Routers.WORK} className={"bg-sp-primary-s1 px-14 py-2 rounded-full text-sp-white-s1 capitalize font-medium border-2 border-transparent hover:bg-transparent hover:text-sp-primary-s1 hover:border-2 hover:border-sp-primary-s1 transition-all duration-300"} />
+                        <Button title="Work with us" route={Routers.CONTACTUS} className={"hidden md:block bg-transparent border-2 border-sp-bg1 px-14 py-2 rounded-full text-sp-bg1 capitalize font-medium hover:bg-sp-bg1 hover:text-sp-white-s1 transition-all duration-300"} />
+                    </div>
                 </div>
             </div>
 
@@ -80,10 +83,13 @@ const HeroSection = () => {
                 )}
             </InView>
 
-            {/* <div className='flex flex-col items-center justify-center gap-10 py-10 md:py-20'>
-                <h1 className='text-3xl text-sp-bg1'>Solved problems for</h1>
-                <img src={brandsPrev} alt="Brands Preview" className='md:w-1/3' />
-            </div> */}
+            <div className='flex flex-col items-center justify-center gap-10 py-20 md:py-40 md:px-20'>
+                {/* <h1 className='text-3xl text-sp-bg1'>Solved problems for</h1>
+                <img src={brandsPrev} alt="Brands Preview" className='md:w-1/3' /> */}
+                <h1 className='text-xl md:text-4xl font-medium text-center bg-text-gradient bg-clip-text text-transparent tracking-wide'>
+                    From brand identity to UI/UX to full-stack development - we create digital experiences that look world-class and perform even better.
+                </h1>
+            </div>
 
         </div>
     )
