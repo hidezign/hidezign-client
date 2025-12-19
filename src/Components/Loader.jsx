@@ -38,7 +38,7 @@ const StyledWrapper = styled.div`
     content: '';
     width: 48px;
     height: 5px;
-    background: #FF303350;
+    background: #0F38DB50;
     position: absolute;
     top: 60px;
     left: 0;
@@ -50,7 +50,7 @@ const StyledWrapper = styled.div`
     content: '';
     width: 100%;
     height: 100%;
-    background: #FF303390;
+    background: #0F38DB90;
     position: absolute;
     top: 0;
     left: 0;

@@ -21,7 +21,7 @@ export default {
 			},
 			colors: {
 				'sp-bg1': '#0E0E0E',
-				'sp-primary-s1': '#FF3033',
+				'sp-primary-s1': '#0F38DB',
 				'sp-secondary-s1': '#FF7173',
 				'sp-white-s1': '#FFFFFF',
 				'sp-text-s1': '#CCCCCC',
