@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hidezign.com/sitemap.xml
