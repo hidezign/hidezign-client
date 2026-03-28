@@ -89,6 +89,12 @@ const Projects = () => {
 
     const hasMore = displayProjects.length < fullProjects.length;
 
+// Cloudinary image optimizer
+const optimizeCloudinaryUrl = (url, width = 800) => {
+    if (!url || !url.includes('cloudinary.com')) return url;
+    return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
+};
+
     const [showPreview, setShowPreview] = React.useState(false);
 
     // const openPdfInNewTab = async (url) => {
@@ -136,7 +142,7 @@ const Projects = () => {
                             >
                                 <div className="w-full aspect-square overflow-hidden corner-squircle rounded-2xl">
                                     <img
-                                        src={project?.image.url}
+                                        src={optimizeCloudinaryUrl(project?.image.url)}
                                         alt={project?.title}
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                                     />
