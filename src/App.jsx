@@ -1,4 +1,3 @@
-cat > src/App.jsx << 'ENDOFFILE'
 import React from 'react'
 import RouterPage from './Routes/RouterPage'
 import { ReactLenis, useLenis } from 'lenis/react'
@@ -38,4 +37,3 @@ const App = () => {
 }
 
 export default App
-ENDOFFILE
