@@ -5,6 +5,19 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'animation-vendor': ['framer-motion', 'lenis'],
+          'ui-vendor': ['lucide-react', 'sonner'],
+          'icons-vendor': ['react-icons'],
+        }
+      }
+    },
+    chunkSizeWarningLimit: 600,
+  },
   server: {
     port: 8080,
     allowedHosts: ['*']
