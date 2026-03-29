@@ -18,9 +18,11 @@ const Home = () => {
   return (
     <>
       <HeroSection />
+       <main>
       <Works />
       <Services />
       <Milestone />
+      </main>
     </>
   )
 }

@@ -150,9 +150,9 @@ const optimizeCloudinaryUrl = (url, width = 800) => {
 
                                 <div className="flex flex-col gap-1 py-3 bg-transparent">
                                     <div className="flex items-center">
-                                        <h3 className="text-xl font-semibold text-slate-900">
+                                        <h2 className="text-xl font-semibold text-slate-900">
                                             {project?.title}
-                                        </h3>
+                                        </h2>
 
                                         <div className="flex-1 border-t border-sp-bg1 mx-4" />
 

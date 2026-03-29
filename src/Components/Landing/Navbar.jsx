@@ -85,7 +85,7 @@ const Navbar = () => {
         </div>
         <div className='flex md:hidden'>
           <Sheet>
-            <SheetTrigger className='p-2 rounded-full text-3xl text-sp-white-s1 bg-sp-bg1'>
+            <SheetTrigger aria-label="Open navigation menu" className='p-2 rounded-full text-3xl text-sp-white-s1 bg-sp-bg1'>
               <TbMenu />
             </SheetTrigger>
             <SheetContent className='w-4/5 p-4'>

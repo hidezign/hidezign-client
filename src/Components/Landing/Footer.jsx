@@ -97,6 +97,7 @@ const Footer = () => {
                                         to={link.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label={`Follow H! Dezign on ${link.name}`}
                                         className="text-lg md:text-xl text-sp-bg1 p-3 rounded-full border border-sp-bg1 hover:bg-sp-bg1 hover:text-sp-primary-s1 transition-all duration-300 flex items-center justify-center"
                                     >
                                         {link.icon}
