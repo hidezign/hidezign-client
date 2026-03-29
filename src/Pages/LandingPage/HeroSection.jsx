@@ -65,6 +65,7 @@ const HeroSection = () => {
                             className="w-full h-full object-cover"
                             loop
                             playsInline
+                            muted
                             onClick={handleVideoClickEvent}
                         />
 
