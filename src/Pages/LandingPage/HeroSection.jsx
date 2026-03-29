@@ -29,7 +29,7 @@ const HeroSection = () => {
 
             <div className='relative w-full py-10'>
                 {/* <div className='absolute'> */}
-                <img src={HiDezign} alt="" />
+                <img src={HiDezign} alt="H! Dezign Creative Agency" fetchPriority="high" width="1200" height="400" />
                 {/* </div> */}
                 <div className='absolute w-full -bottom-10 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-5 md:gap-10'>
                     <h1 className='w-full text-center capitalize text-sp-bg1 font-semibold text-2xl md:text-5xl'>We Design It. We Build It. <br /> We Make It Work.</h1>
