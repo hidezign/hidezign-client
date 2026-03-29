@@ -30,7 +30,7 @@ const App = () => {
       </ReactLenis>
       <Toaster />
       
-        href="https://wa.me/919285114937?text=Hi%20H!%20Dezign%2C%20I%20am%20interested%20in%20your%20services!"
+        href="https://wa.me/919285114937?text=H!%20Let's%20build%20something%20extraordinary%20%F0%9F%9A%80"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
