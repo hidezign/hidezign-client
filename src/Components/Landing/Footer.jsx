@@ -75,7 +75,7 @@ const Footer = () => {
                 </div>
             }
 
-            <footer className="text-sp-bg1 py-6 flex flex-col">
+            <footer role="contentinfo" aria-label="Site footer" className="text-sp-bg1 py-6 flex flex-col">
                 <MaxWidthWrapper>
                     {path !== Routers.CONTACTUS && (
                         <div className='flex flex-col items-start mt-20 mb-5 md:mt-28 md:mb-10'>

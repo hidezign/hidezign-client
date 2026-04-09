@@ -72,7 +72,7 @@ const UserLayout = () => {
         <div className="px-4  overflow-y-auto scrollbar flex flex-col gap-4">
           <div className="w-full flex items-center gap-3 justify-between">
             <div>
-              <img src={MainContent.AppLogo} className='h-14' alt="" />
+              <img src={MainContent.AppLogo} width={224} height={56} className='h-14' alt="H! Dezign Logo" />
             </div>
             <button
               onClick={toggleSidebar}
@@ -174,7 +174,7 @@ const UserLayout = () => {
                   <p className='text-sm text-text-color/80'>{email}</p>
                 </div>
                 <div className='w-10 h-10 rounded-xl overflow-hidden bg-text-white/10 '>
-                  <img className='w-full h-full object-top object-cover' src="https://img.icons8.com/3d-fluency/94/guest-male--v3.png" alt="" />
+                  <img className='w-full h-full object-top object-cover' src="https://img.icons8.com/3d-fluency/94/guest-male--v3.png" width={94} height={94} alt="User avatar" />
                 </div>
               </div>
             </div>

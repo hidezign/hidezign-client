@@ -50,6 +50,8 @@ export default function StaticTiltedStack({ images = DEFAULT_IMAGES, rotations =
                                     <img
                                         src={src}
                                         alt={`cover-${idx}`}
+                                        width={400}
+                                        height={400}
                                         className="w-full h-full object-cover block select-none"
                                         draggable={false}
                                         onDragStart={(e) => e.preventDefault()}

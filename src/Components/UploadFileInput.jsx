@@ -76,6 +76,8 @@ const UploadFileInput = ({ title = "Upload File", name = "file", onChange, label
                     <img
                         src={url ? url : img}
                         alt=""
+                        width={1200}
+                        height={800}
                     />
 
                 </PopupModal>

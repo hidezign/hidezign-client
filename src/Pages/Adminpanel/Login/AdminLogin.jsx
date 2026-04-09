@@ -62,7 +62,7 @@ function AdminLogin() {
                 <div className='flex md:justify-start justify-center items-center h-full'>
                     <div className='bg-[#ffffff13] backdrop-blur-md rounded-xl p-4 flex flex-col gap-5 shadow-md w-[90%] sm:w-[400px]'>
                         <div className='flex justify-center items-center rounded p-2'>
-                            <img src={MainContent.AppLogo} className='h-16' alt="App Logo" />
+                            <img src={MainContent.AppLogo} width={256} height={64} className='h-16' alt="App Logo" />
                         </div>
                         <h1 className='text-2xl text-center font-semibold text-text-white'>Admin Login</h1>
                         <form className='flex flex-col gap-5' onSubmit={handleSubmit}>

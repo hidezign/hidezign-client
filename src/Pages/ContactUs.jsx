@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { IoWarningOutline } from "react-icons/io5";
 import { submitContactForm } from "../Api/user.api";
 import Loader from "../Components/Loader";
+import { Helmet } from "react-helmet-async";
 
 const ContactUs = () => {
     useEffect(() => {
@@ -158,6 +159,34 @@ const ContactUs = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Contact H! Dezign | hello@hidezign.com</title>
+                <meta
+                    name="description"
+                    content="Contact H! Dezign for web design, branding, UI/UX, and digital product support. Reach us at hello@hidezign.com."
+                />
+                <link rel="canonical" href="https://hidezign.com/contact-us" />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "ContactPage",
+                        name: "Contact H! Dezign",
+                        url: "https://hidezign.com/contact-us",
+                        mainEntity: {
+                            "@type": "Organization",
+                            name: "H! Dezign",
+                            email: "hello@hidezign.com",
+                            telephone: "+91-90096-69197",
+                            address: {
+                                "@type": "PostalAddress",
+                                addressLocality: "Indore",
+                                addressRegion: "Madhya Pradesh",
+                                addressCountry: "IN",
+                            },
+                        },
+                    })}
+                </script>
+            </Helmet>
             {loading && <Loader />}
             <div className="lg:min-h-screen">
                 <div className="pt-20 py-10 border-b border-sp-bg1 flex flex-col items-center gap-5">

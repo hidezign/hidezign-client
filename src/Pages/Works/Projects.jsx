@@ -7,6 +7,7 @@ import { getProjects } from "../../Api/admin.api";
 import { toast } from "sonner";
 import Loader from "../../Components/Loader";
 import { openPdfForce } from "../../utils/openPdfForce";
+import { Helmet } from "react-helmet-async";
 
 const Projects = () => {
     const path = useLocation();
@@ -89,12 +90,6 @@ const Projects = () => {
 
     const hasMore = displayProjects.length < fullProjects.length;
 
-// Cloudinary image optimizer
-const optimizeCloudinaryUrl = (url, width = 800) => {
-    if (!url || !url.includes('cloudinary.com')) return url;
-    return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
-};
-
     const [showPreview, setShowPreview] = React.useState(false);
 
     // const openPdfInNewTab = async (url) => {
@@ -120,8 +115,28 @@ const optimizeCloudinaryUrl = (url, width = 800) => {
 
     return (
         <>
+            {path.pathname === Routers.WORK && (
+                <Helmet>
+                    <script type="application/ld+json">
+                        {JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "ItemList",
+                            name: "H! Dezign Portfolio Projects",
+                            itemListElement: fullProjects.map((project, index) => ({
+                                "@type": "ListItem",
+                                position: index + 1,
+                                name: project?.title || `Project ${index + 1}`,
+                                description: project?.description || "",
+                                image: project?.image?.url || undefined,
+                                url: project?.liveUrl || undefined,
+                            })),
+                        })}
+                    </script>
+                </Helmet>
+            )}
             {loading && <Loader />}
-            <div className="w-full flex flex-col gap-y-10 md:gap-y-5 items-start">
+            <section className="w-full flex flex-col gap-y-10 md:gap-y-5 items-start" aria-labelledby="projects-section-heading">
+                <h2 id="projects-section-heading" className="sr-only">Featured Projects</h2>
                 {displayProjects?.map((project, i) => {
                     const isEven = i % 2 === 0;
                     return (
@@ -142,17 +157,20 @@ const optimizeCloudinaryUrl = (url, width = 800) => {
                             >
                                 <div className="w-full aspect-square overflow-hidden corner-squircle rounded-2xl">
                                     <img
-                                        src={optimizeCloudinaryUrl(project?.image.url)}
+                                        src={project?.image.url}
                                         alt={project?.title}
+                                        width={800}
+                                        height={800}
+                                        loading="lazy"
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                                     />
                                 </div>
 
                                 <div className="flex flex-col gap-1 py-3 bg-transparent">
                                     <div className="flex items-center">
-                                        <h2 className="text-xl font-semibold text-slate-900">
+                                        <h3 className="text-xl font-semibold text-slate-900">
                                             {project?.title}
-                                        </h2>
+                                        </h3>
 
                                         <div className="flex-1 border-t border-sp-bg1 mx-4" />
 
@@ -187,7 +205,7 @@ const optimizeCloudinaryUrl = (url, width = 800) => {
                         </div>
                     );
                 })}
-            </div>
+            </section>
 
             <div className="py-20 md:py-40 flex flex-col items-center justify-center gap-y-20 md:gap-y-40">
                 <div className="w-full flex items-center justify-center">
@@ -218,10 +236,10 @@ const optimizeCloudinaryUrl = (url, width = 800) => {
                 </div>
 
                 {path.pathname === "/" && (
-                    <h1 className="w-full md:w-2/3 text-center mx-auto text-2xl lg:text-5xl font-medium bg-text-gradient bg-clip-text text-transparent">
+                    <h2 className="w-full md:w-2/3 text-center mx-auto text-2xl lg:text-5xl font-medium bg-text-gradient bg-clip-text text-transparent">
                         We partner with ambitious brands to create digital
                         experiences that feel true and drive momentum.
-                    </h1>
+                    </h2>
                 )}
             </div>
         </>

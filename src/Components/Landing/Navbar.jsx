@@ -41,9 +41,9 @@ const Navbar = () => {
     <MaxWidthWrapper>
       <div className='flex items-center py-4 md:py-6 justify-between w-full'>
         {/* Logo */}
-        <Link to={Routers.WEBSITE}>
+        <Link to={Routers.WEBSITE} aria-label="Go to H! Dezign homepage">
           <div className='flex gap-5 justify-center items-center'>
-            <img src={MainContent.AppLogo} alt="" className='h-12 md:h-10 sm:h-8 object-cover' />
+            <img src={MainContent.AppLogo} alt="H! Dezign Logo" width={192} height={48} className='h-12 md:h-10 sm:h-8 object-cover' />
           </div>
         </Link>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
         </div>
         <div className='flex md:hidden'>
           <Sheet>
-            <SheetTrigger aria-label="Open navigation menu" className='p-2 rounded-full text-3xl text-sp-white-s1 bg-sp-bg1'>
+            <SheetTrigger className='p-2 rounded-full text-3xl text-sp-white-s1 bg-sp-bg1'>
               <TbMenu />
             </SheetTrigger>
             <SheetContent className='w-4/5 p-4'>

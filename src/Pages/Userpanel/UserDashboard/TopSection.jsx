@@ -44,7 +44,7 @@ const TopSection = ({user}) => {
             className="bg-[#ffffff13] backdrop-blur-md p-4 rounded-xl flex flex-col justify-center items-start "
           >
             <div className="">
-              <img src={card.img} className='h-20' alt="" />
+              <img src={card.img} width={94} height={94} className='h-20' alt="" />
             </div>
             <p className="text-xl font-semibold">$ {Number(card.amount || 0).toFixed(3)}</p>
             <p className="text-sm text-gray-400">{card.label}</p>

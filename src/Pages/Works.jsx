@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Projects from './Works/Projects';
+import { Helmet } from 'react-helmet-async';
 
 
 const Works = () => {
@@ -10,6 +11,14 @@ const Works = () => {
 
     return (
         <div className='min-h-screen text-sp-bg1'>
+            <Helmet>
+                <title>Our Work | H! Dezign Portfolio</title>
+                <meta
+                    name="description"
+                    content="Explore H! Dezign portfolio projects across web design, branding, UI/UX, and development engagements."
+                />
+                <link rel="canonical" href="https://hidezign.com/work" />
+            </Helmet>
             <div className='flex flex-col gap-4 py-10 md:py-14 lg:py-20'>
                 <h1 className='font-semibold text-4xl lg:text-5xl'>We take ideas <br /> from zero to one</h1>
                 <p className='w-full lg:w-1/3 text-sm'>All the products we deliver are the brilliant result of a unique mix: Their founders' ideas and inspiration with our team's expertise and creativity.</p>

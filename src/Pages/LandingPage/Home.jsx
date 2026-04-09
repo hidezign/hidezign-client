@@ -16,14 +16,12 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <main role="main" aria-label="Main content">
       <HeroSection />
-       <main>
       <Works />
       <Services />
       <Milestone />
-      </main>
-    </>
+    </main>
   )
 }
 

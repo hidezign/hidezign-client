@@ -71,7 +71,7 @@ const AdminLayout = () => {
           <div className="w-full flex items-center justify-between">
             <div>
               {/* <h1 className='text-2xl font-bold'>Dashboard</h1> */}
-              <img src={MainContent.AppLogo} className='' alt="" />
+              <img src={MainContent.AppLogo} width={224} height={56} className='' alt="H! Dezign Logo" />
             </div>
             <button
               onClick={toggleSidebar}
@@ -173,7 +173,7 @@ const AdminLayout = () => {
                   <p className=' text-sm text-text-color/80'>{email}</p>
                 </div>
                 <div className='w-10 h-10 rounded-xl overflow-hidden bg-text-white/10 '>
-                  <img className='w-full h-full object-top object-cover' src="https://img.icons8.com/3d-fluency/94/guest-male--v3.png" alt="" />
+                  <img className='w-full h-full object-top object-cover' src="https://img.icons8.com/3d-fluency/94/guest-male--v3.png" width={94} height={94} alt="Admin avatar" />
                 </div>
               </div>
             </div>
