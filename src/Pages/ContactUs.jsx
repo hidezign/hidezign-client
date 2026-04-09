@@ -266,7 +266,7 @@ const ContactUs = () => {
                             <p className="text-sp-bg1/70 text-sm mt-1">
                                 By submitting this form, you agree to our{" "}
                                 <Link
-                                    to="/terms-of-service"
+                                    to={Routers.TERMSOFSERVICE}
                                     className="text-blue-600"
                                 >
                                     Terms of Service

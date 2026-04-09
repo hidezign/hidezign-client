@@ -3,6 +3,7 @@ import RouterPage from './Routes/RouterPage'
 import { ReactLenis, useLenis } from 'lenis/react'
 import { Toaster } from 'sonner'
 import { useLocation } from 'react-router-dom';
+import CookieConsentBanner from './Components/CookieConsentBanner';
 
 const GA_MEASUREMENT_ID = 'G-QFLGVSSW5C';
 
@@ -55,6 +56,7 @@ const App = () => {
           <RouterPage />
           <ScrollHandler />
           <AnalyticsTracker />
+          <CookieConsentBanner />
         </div>
       </ReactLenis>
       <Toaster />

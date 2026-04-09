@@ -67,15 +67,69 @@
     <!-- Accessibility -->
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QFLGVSSW5C"></script>
+    <!-- Google consent mode -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', 'G-QFLGVSSW5C');
+        (function () {
+            var GA_MEASUREMENT_ID = 'G-QFLGVSSW5C';
+            var CONSENT_COOKIE_NAME = 'hidezign_cookie_consent';
+
+            function getCookie(name) {
+                var match = document.cookie.match(
+                    new RegExp('(?:^|; )' + name + '=([^;]*)')
+                );
+
+                return match ? decodeURIComponent(match[1]) : null;
+            }
+
+            var grantedConsent = {
+                analytics_storage: 'granted',
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted'
+            };
+
+            var deniedConsent = {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied'
+            };
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            window.gtag = gtag;
+
+            window.hidezignApplyConsent = function (choice, options) {
+                var consentState = choice === 'accepted' ? grantedConsent : deniedConsent;
+
+                gtag('consent', 'update', consentState);
+
+                if (choice === 'accepted' && (!options || options.trackCurrentPage !== false)) {
+                    gtag('config', GA_MEASUREMENT_ID, {
+                        page_path: window.location.pathname + window.location.search,
+                        page_title: document.title
+                    });
+                }
+            };
+
+            gtag('consent', 'default', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                wait_for_update: 500
+            });
+
+            var existingConsent = getCookie(CONSENT_COOKIE_NAME);
+            if (existingConsent === 'accepted' || existingConsent === 'rejected') {
+                window.hidezignApplyConsent(existingConsent, { trackCurrentPage: false });
+            }
+
+            gtag('js', new Date());
+            gtag('config', GA_MEASUREMENT_ID);
+        })();
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QFLGVSSW5C"></script>
 </head>
 
 <body>

@@ -5,6 +5,7 @@ export const Routers = {
     ABOUTUS: "/about-us",
     CONTACTUS: "/contact-us",
     WORK: "/work",
+    TERMSOFSERVICE: "/terms-of-service",
     /// ----------- User panel ------------- ////
     UNIVERSAL: "*",
     REGISTER: "/register",
