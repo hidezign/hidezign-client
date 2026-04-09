@@ -43,7 +43,13 @@ const Navbar = () => {
         {/* Logo */}
         <Link to={Routers.WEBSITE} aria-label="Go to H! Dezign homepage">
           <div className='flex gap-5 justify-center items-center'>
-            <img src={MainContent.AppLogo} alt="H! Dezign Logo" width={192} height={48} className='h-12 md:h-10 sm:h-8 object-cover' />
+            <img
+              src={MainContent.AppLogo}
+              alt="H! Dezign Logo"
+              width={185}
+              height={185}
+              className='h-12 sm:h-8 md:h-10 w-auto object-contain'
+            />
           </div>
         </Link>
 
