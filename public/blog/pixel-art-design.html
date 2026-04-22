@@ -920,45 +920,45 @@
       <span class="section-badge">INDUSTRIES</span>
       <h2>Industries That Use Pixel Art Design</h2>
       <div class="industry-pills" role="list">
-        <button class="industry-pill active" role="listitem">Gaming &amp; Esports</button>
-        <button class="industry-pill" role="listitem">Crypto &amp; NFT</button>
-        <button class="industry-pill" role="listitem">Music &amp; Entertainment</button>
-        <button class="industry-pill" role="listitem">Streetwear &amp; Fashion</button>
-        <button class="industry-pill" role="listitem">Food &amp; Beverage</button>
-        <button class="industry-pill" role="listitem">Education &amp; EdTech</button>
-        <button class="industry-pill" role="listitem">Indie Software</button>
-        <button class="industry-pill" role="listitem">Art &amp; Culture</button>
+        <button class="industry-pill active" data-industry="gaming" role="listitem">Gaming &amp; Esports</button>
+        <button class="industry-pill" data-industry="crypto" role="listitem">Crypto &amp; NFT</button>
+        <button class="industry-pill" data-industry="music" role="listitem">Music &amp; Entertainment</button>
+        <button class="industry-pill" data-industry="streetwear" role="listitem">Streetwear &amp; Fashion</button>
+        <button class="industry-pill" data-industry="food" role="listitem">Food &amp; Beverage</button>
+        <button class="industry-pill" data-industry="education" role="listitem">Education &amp; EdTech</button>
+        <button class="industry-pill" data-industry="software" role="listitem">Indie Software</button>
+        <button class="industry-pill" data-industry="art" role="listitem">Art &amp; Culture</button>
       </div>
       <div class="industry-details">
-        <div class="industry-item">
+        <div class="industry-item" data-industry="gaming">
           <h3>Gaming &amp; Esports</h3>
           <p>Pixel art is the mother tongue of gaming. From indie studios to esports teams, 8-bit aesthetics signal passion for the craft and nostalgia for gaming's roots. It creates instant community recognition and merchandising opportunities that polished 3D art simply cannot replicate.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="crypto" style="display:none">
           <h3>Crypto &amp; NFT</h3>
           <p>The NFT market discovered what pixel art always knew: simplicity is scarce. Pixel-based collections are easier to generate algorithmically, more distinctive at thumbnail size, and carry the cultural weight of digital art's earliest pioneers. The grid IS the proof of work.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="music" style="display:none">
           <h3>Music &amp; Entertainment</h3>
           <p>Artists from Post Malone to entire music festivals use pixel art for album art, event branding, and merchandise. The aesthetic works across print and digital seamlessly, ages well, and creates the kind of iconic imagery that fans will still recognize in 20 years.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="streetwear" style="display:none">
           <h3>Streetwear &amp; Fashion</h3>
           <p>Pixel art prints translate beautifully to screen printing — limited colors mean lower production costs and higher visual impact. Streetwear labels use pixel graphics to appeal to gaming-native Gen Z consumers who see the aesthetic as a badge of subcultural knowledge.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="food" style="display:none">
           <h3>Food &amp; Beverage</h3>
           <p>Retro diners, craft breweries, and nostalgic snack brands use pixel art to establish a fun, approachable personality. It works especially well on packaging, menus, and social media where a pixel mascot can become as recognizable as any premium logo.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="education" style="display:none">
           <h3>Education &amp; EdTech</h3>
           <p>Learning platforms use pixel art to gamify education — progress bars, achievement badges, and mascots in 8-bit style signal that learning can be as engaging as gaming. Apps targeting kids and teenagers find pixel art lowers anxiety and increases time-on-platform.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="software" style="display:none">
           <h3>Indie Software</h3>
           <p>Developer tools, productivity apps, and utilities built by small teams use pixel art to convey their indie roots and anti-corporate ethos. A pixel icon in the Mac dock or Windows taskbar stands out immediately from the sea of flat, gradient-free corporate icons.</p>
         </div>
-        <div class="industry-item">
+        <div class="industry-item" data-industry="art" style="display:none">
           <h3>Art &amp; Culture</h3>
           <p>Galleries, festivals, and cultural institutions use pixel art when they want to signal accessibility and digital-native thinking. It bridges the gap between fine art and popular culture, making events feel more approachable without sacrificing visual sophistication.</p>
         </div>
@@ -1177,6 +1177,30 @@
     </div>
   </section>
 
+  <!-- ══ OCTOPUS GAME ══ -->
+  <section class="section-dark" id="octopus-game-section">
+    <div class="section-inner">
+      <span class="section-badge section-badge-light">MINI GAME</span>
+      <h2 style="margin-bottom:8px;">Play While You Read</h2>
+      <p style="color:#666; font-size:14px; margin-bottom:24px;">Press <kbd style="background:#222;color:#fff;padding:2px 7px;border:1px solid #444;font-family:monospace;">Space</kbd> / <kbd style="background:#222;color:#fff;padding:2px 7px;border:1px solid #444;font-family:monospace;">↑</kbd> to jump &nbsp;·&nbsp; Tap the game on mobile &nbsp;·&nbsp; Avoid the crabs!</p>
+      <div id="game-wrapper" style="position:relative; width:100%; max-width:700px;">
+        <canvas id="gameCanvas" width="700" height="180"
+          style="width:100%; height:auto; display:block; background:#111; border:3px solid #0F38DB; box-shadow:4px 4px 0 #0a2ba8; cursor:pointer; image-rendering:pixelated;">
+        </canvas>
+        <div id="game-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);">
+          <div style="font-family:'Press Start 2P',monospace;font-size:11px;color:#0F38DB;margin-bottom:16px;text-align:center;line-height:1.8;">OCTOPUS RUN</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#fff;text-align:center;line-height:2;">TAP OR PRESS SPACE<br>TO START</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:32px;margin-top:16px;flex-wrap:wrap;">
+        <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#666;">SCORE: <span id="score-display" style="color:#0F38DB;">0</span></div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#666;">BEST: <span id="best-display" style="color:#0F38DB;">0</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider"></div>
+
   <!-- ══ SECTION 9: CTA ══ -->
   <section id="cta-section">
     <div class="container">
@@ -1256,13 +1280,278 @@
       });
     });
 
-    // ── Industry Pill Hover ──
+    // ── Industry Pills Filter ──
     document.querySelectorAll('.industry-pill').forEach(pill => {
       pill.addEventListener('click', function () {
         document.querySelectorAll('.industry-pill').forEach(p => p.classList.remove('active'));
         this.classList.add('active');
+        const target = this.dataset.industry;
+        document.querySelectorAll('.industry-item').forEach(item => {
+          item.style.display = (item.dataset.industry === target) ? 'block' : 'none';
+        });
       });
     });
+
+    // ══════════════════════════════════════════
+    // OCTOPUS RUNNER GAME
+    // ══════════════════════════════════════════
+    (function () {
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+      const overlay = document.getElementById('game-overlay');
+      const scoreEl = document.getElementById('score-display');
+      const bestEl = document.getElementById('best-display');
+
+      // ── Responsive canvas scaling ──
+      function resizeCanvas() {
+        const wrapper = document.getElementById('game-wrapper');
+        const ratio = wrapper.clientWidth / 700;
+        canvas.style.width = '100%';
+        canvas.style.height = (180 * ratio) + 'px';
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      const W = 700, H = 180;
+      const GROUND = H - 30;
+      const SCALE = 4; // 1 pixel unit = 4 canvas px
+
+      // ── Draw a pixel sprite from a 2D array ──
+      // Each cell: 0=transparent, 1=color1, 2=color2, 3=color3
+      function drawSprite(sprite, colors, x, y, scale) {
+        const s = scale || SCALE;
+        sprite.forEach((row, ry) => {
+          row.forEach((cell, rx) => {
+            if (!cell) return;
+            ctx.fillStyle = colors[cell - 1];
+            ctx.fillRect(x + rx * s, y + ry * s, s, s);
+          });
+        });
+      }
+
+      // ── Octopus sprite (10×12 pixels) ──
+      // Colors: [body=#0F38DB, eye=#F0F0F0, tentacle=#0a2ba8]
+      const OCT_COLORS = ['#0F38DB', '#F0F0F0', '#0a2ba8'];
+      const OCTOPUS_A = [ // frame A (tentacles down)
+        [0,0,1,1,1,1,1,1,0,0],
+        [0,1,1,1,1,1,1,1,1,0],
+        [1,1,2,1,1,1,1,2,1,1],
+        [1,1,2,1,1,1,1,2,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [0,1,1,1,1,1,1,1,1,0],
+        [0,0,1,1,1,1,1,1,0,0],
+        [3,0,3,1,3,3,1,3,0,3],
+        [3,0,3,0,3,3,0,3,0,3],
+        [3,0,0,0,3,3,0,0,0,3],
+        [3,0,0,0,0,0,0,0,0,3],
+      ];
+      const OCTOPUS_B = [ // frame B (tentacles up)
+        [0,0,1,1,1,1,1,1,0,0],
+        [0,1,1,1,1,1,1,1,1,0],
+        [1,1,2,1,1,1,1,2,1,1],
+        [1,1,2,1,1,1,1,2,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [0,1,1,1,1,1,1,1,1,0],
+        [0,0,1,1,1,1,1,1,0,0],
+        [0,3,0,1,0,0,1,0,3,0],
+        [3,3,3,0,3,3,0,3,3,3],
+        [3,0,3,0,3,3,0,3,0,3],
+        [0,0,3,0,0,0,0,3,0,0],
+      ];
+      const OCT_W = 10 * SCALE, OCT_H = 12 * SCALE;
+
+      // ── Crab sprite (10×8 pixels) ──
+      // Colors: [shell=#FF4757, claw=#cc2233, eye=#F0F0F0]
+      const CRAB_COLORS = ['#FF4757', '#cc2233', '#F0F0F0'];
+      const CRAB_A = [
+        [0,2,0,1,1,1,1,0,2,0],
+        [2,2,1,1,1,1,1,1,2,2],
+        [0,1,3,1,1,1,1,3,1,0],
+        [0,1,1,1,1,1,1,1,1,0],
+        [0,1,1,1,1,1,1,1,1,0],
+        [2,1,2,1,0,0,1,2,1,2],
+        [2,0,2,0,0,0,0,2,0,2],
+        [2,0,0,0,0,0,0,0,0,2],
+      ];
+      const CRAB_B = [
+        [0,0,2,1,1,1,1,2,0,0],
+        [0,2,1,1,1,1,1,1,2,0],
+        [2,1,3,1,1,1,1,3,1,2],
+        [2,1,1,1,1,1,1,1,1,2],
+        [0,1,1,1,1,1,1,1,1,0],
+        [2,1,2,1,0,0,1,2,1,2],
+        [2,0,0,0,0,0,0,0,0,2],
+        [0,0,0,0,0,0,0,0,0,0],
+      ];
+      const CRAB_W = 10 * SCALE, CRAB_H = 8 * SCALE;
+
+      // ── Stars / bubbles bg decoration ──
+      const stars = Array.from({length: 12}, () => ({
+        x: Math.random() * W,
+        y: Math.random() * (GROUND - 40) + 10,
+        size: Math.random() > 0.5 ? 2 : 4,
+      }));
+
+      // ── Game State ──
+      let gameState = 'idle'; // idle | playing | dead
+      let score = 0, best = 0, frame = 0, speed = 3, scoreTimer = 0;
+      let oct = { x: 60, y: GROUND - OCT_H, vy: 0, grounded: true, animFrame: 0, animTimer: 0 };
+      let obstacles = [];
+      let nextObstacle = 80;
+      let bgOffset = 0;
+      const GRAVITY = 0.6, JUMP_FORCE = -11;
+
+      function resetGame() {
+        score = 0; frame = 0; speed = 3; scoreTimer = 0;
+        oct = { x: 60, y: GROUND - OCT_H, vy: 0, grounded: true, animFrame: 0, animTimer: 0 };
+        obstacles = [];
+        nextObstacle = 80;
+        bgOffset = 0;
+        scoreEl.textContent = '0';
+      }
+
+      function jump() {
+        if (gameState === 'idle' || gameState === 'dead') {
+          overlay.style.display = 'none';
+          resetGame();
+          gameState = 'playing';
+          oct.vy = JUMP_FORCE;
+          oct.grounded = false;
+          return;
+        }
+        if (oct.grounded) {
+          oct.vy = JUMP_FORCE;
+          oct.grounded = false;
+        }
+      }
+
+      // Controls
+      document.addEventListener('keydown', e => {
+        if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); jump(); }
+      });
+      canvas.addEventListener('click', jump);
+      canvas.addEventListener('touchstart', e => { e.preventDefault(); jump(); }, { passive: false });
+
+      function spawnObstacle() {
+        const tall = Math.random() > 0.5;
+        const h = tall ? CRAB_H * 1.5 : CRAB_H;
+        obstacles.push({ x: W + 10, h: CRAB_H, animFrame: 0, animTimer: 0 });
+      }
+
+      function drawGround() {
+        // ground line
+        ctx.fillStyle = '#0F38DB';
+        ctx.fillRect(0, GROUND, W, 3);
+        // pixel dashes
+        ctx.fillStyle = '#1a1a1a';
+        for (let i = 0; i < W; i += 20) {
+          ctx.fillRect((i + bgOffset) % W, GROUND + 6, 10, 2);
+        }
+      }
+
+      function drawBg() {
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, W, H);
+        // stars/bubbles
+        ctx.fillStyle = '#0F38DB';
+        stars.forEach(s => {
+          ctx.fillRect(Math.floor((s.x - bgOffset * 0.2 + W * 10) % W), s.y, s.size, s.size);
+        });
+        // seabed
+        ctx.fillStyle = '#161616';
+        ctx.fillRect(0, GROUND + 3, W, H - GROUND - 3);
+      }
+
+      function update() {
+        if (gameState !== 'playing') return;
+        frame++;
+        bgOffset = (bgOffset + speed) % W;
+
+        // Score
+        scoreTimer++;
+        if (scoreTimer >= 6) { score++; scoreTimer = 0; }
+        if (score % 100 === 0 && score > 0) speed = Math.min(speed + 0.3, 10);
+        scoreEl.textContent = score;
+
+        // Octopus physics
+        oct.vy += GRAVITY;
+        oct.y += oct.vy;
+        if (oct.y >= GROUND - OCT_H) { oct.y = GROUND - OCT_H; oct.vy = 0; oct.grounded = true; }
+
+        // Octopus animation
+        oct.animTimer++;
+        if (oct.animTimer > 8) { oct.animFrame = 1 - oct.animFrame; oct.animTimer = 0; }
+
+        // Obstacles
+        nextObstacle--;
+        if (nextObstacle <= 0) {
+          spawnObstacle();
+          nextObstacle = Math.floor(80 + Math.random() * 80);
+        }
+        obstacles.forEach(o => {
+          o.x -= speed;
+          o.animTimer++;
+          if (o.animTimer > 10) { o.animFrame = 1 - o.animFrame; o.animTimer = 0; }
+        });
+        obstacles = obstacles.filter(o => o.x > -CRAB_W - 10);
+
+        // Collision (AABB with shrink for fairness)
+        const margin = 6;
+        obstacles.forEach(o => {
+          if (
+            oct.x + margin < o.x + CRAB_W - margin &&
+            oct.x + OCT_W - margin > o.x + margin &&
+            oct.y + margin < GROUND - CRAB_H + CRAB_H - margin &&
+            oct.y + OCT_H - margin > GROUND - CRAB_H + margin
+          ) {
+            gameState = 'dead';
+            if (score > best) { best = score; bestEl.textContent = best; }
+            overlay.innerHTML = `
+              <div style="font-family:'Press Start 2P',monospace;font-size:10px;color:#FF4757;margin-bottom:14px;text-align:center;">GAME OVER</div>
+              <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#fff;text-align:center;line-height:2.2;">
+                SCORE: <span style="color:#0F38DB">${score}</span><br>
+                BEST: <span style="color:#0F38DB">${best}</span><br><br>
+                TAP TO RETRY
+              </div>`;
+            overlay.style.display = 'flex';
+          }
+        });
+      }
+
+      function draw() {
+        drawBg();
+        drawGround();
+
+        // Octopus
+        const octSprite = oct.animFrame === 0 ? OCTOPUS_A : OCTOPUS_B;
+        drawSprite(octSprite, OCT_COLORS, Math.floor(oct.x), Math.floor(oct.y), SCALE);
+
+        // Obstacles (crabs)
+        obstacles.forEach(o => {
+          const crabSprite = o.animFrame === 0 ? CRAB_A : CRAB_B;
+          drawSprite(crabSprite, CRAB_COLORS, Math.floor(o.x), GROUND - CRAB_H, SCALE);
+        });
+
+        // HUD score while playing
+        if (gameState === 'playing') {
+          ctx.fillStyle = '#0F38DB';
+          ctx.font = '8px "Press Start 2P"';
+          ctx.fillText(String(score).padStart(5, '0'), W - 80, 20);
+        }
+      }
+
+      function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      // Draw idle screen
+      draw();
+      loop();
+    })();
   </script>
 
 </body>
