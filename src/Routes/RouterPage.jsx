@@ -21,6 +21,7 @@ import Works from "../Pages/Works";
 import ContactUs from "../Pages/ContactUs";
 import TermsOfService from "../Pages/TermsOfService";
 import WebDesign from "../Pages/Services/WebDesign";
+import BlogIndex from "../Pages/Blog/index";
 
 const RouterPages = () => {
     // const dispatch = useDispatch();
@@ -96,6 +97,10 @@ const RouterPages = () => {
             <Route
                 path={Routers.WEBDESIGN}
                 element={<WrapperComponent children={<WebDesign />} />}
+            />
+            <Route
+                path={Routers.BLOG}
+                element={<WrapperComponent children={<BlogIndex />} />}
             />
             {/* <Route path={Routers.LOGIN} element={<Login />} />
       <Route path={Routers.REGISTER} element={<Register />} />
