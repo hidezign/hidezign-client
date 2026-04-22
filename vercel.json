@@ -17,6 +17,14 @@
             "dest": "/assets/$1"
         },
         {
+            "src": "/blog/pixel-art-design",
+            "dest": "/blog/pixel-art-design.html"
+        },
+        {
+            "src": "/blog/(.*)",
+            "dest": "/blog/$1.html"
+        },
+        {
             "src": "/(.*)",
             "dest": "/index.html"
         }
