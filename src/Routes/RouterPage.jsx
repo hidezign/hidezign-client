@@ -20,6 +20,7 @@ import WrapperComponent from "../Components/WrapperComponent";
 import Works from "../Pages/Works";
 import ContactUs from "../Pages/ContactUs";
 import TermsOfService from "../Pages/TermsOfService";
+import WebDesign from "../Pages/Services/WebDesign";
 
 const RouterPages = () => {
     // const dispatch = useDispatch();
@@ -91,6 +92,10 @@ const RouterPages = () => {
             <Route
                 path={Routers.TERMSOFSERVICE}
                 element={<WrapperComponent children={<TermsOfService />} />}
+            />
+            <Route
+                path={Routers.WEBDESIGN}
+                element={<WrapperComponent children={<WebDesign />} />}
             />
             {/* <Route path={Routers.LOGIN} element={<Login />} />
       <Route path={Routers.REGISTER} element={<Register />} />

@@ -6,6 +6,7 @@ export const Routers = {
     CONTACTUS: "/contact-us",
     WORK: "/work",
     TERMSOFSERVICE: "/terms-of-service",
+    WEBDESIGN: "/services/web-design",
     /// ----------- User panel ------------- ////
     UNIVERSAL: "*",
     REGISTER: "/register",
