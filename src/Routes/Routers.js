@@ -7,6 +7,7 @@ export const Routers = {
     WORK: "/work",
     TERMSOFSERVICE: "/terms-of-service",
     WEBDESIGN: "/services/web-design",
+    BLOG: "/blog",
     /// ----------- User panel ------------- ////
     UNIVERSAL: "*",
     REGISTER: "/register",
