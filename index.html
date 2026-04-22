@@ -67,6 +67,67 @@
     <!-- Accessibility -->
     <meta name="format-detection" content="telephone=no" />
 
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="preconnect" href="https://api.hidezign.com" crossorigin />
+    <link rel="preload" as="image" href="/assets/HiDezign.svg" type="image/svg+xml" fetchpriority="high" />
+
+    <!-- Schema: LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "H! Dezign",
+      "image": "https://res.cloudinary.com/ds8buve4c/image/upload/v1764232690/logo_fie7dg.svg",
+      "url": "https://hidezign.com",
+      "@id": "https://hidezign.com",
+      "telephone": "+91-9285114937",
+      "email": "hello@hidezign.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Indore",
+        "addressLocality": "Indore",
+        "addressRegion": "Madhya Pradesh",
+        "postalCode": "452001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 22.7196,
+        "longitude": 75.8577
+      },
+      "priceRange": "₹₹",
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      }],
+      "sameAs": [
+        "https://www.instagram.com/hidezign",
+        "https://www.linkedin.com/company/hidezign"
+      ]
+    }
+    </script>
+
+    <!-- Schema: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "H! Dezign",
+      "url": "https://hidezign.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://hidezign.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <!-- Google consent mode -->
     <script>
         (function () {

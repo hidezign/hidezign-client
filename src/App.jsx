@@ -51,6 +51,25 @@ const App = () => {
 
   return (
     <>
+      <a
+        href="#main-content"
+        style={{
+          position: 'absolute',
+          top: '-40px',
+          left: 0,
+          background: '#0F38DB',
+          color: 'white',
+          padding: '8px 16px',
+          zIndex: 99999,
+          textDecoration: 'none',
+          fontSize: '14px',
+          transition: 'top 0.2s'
+        }}
+        onFocus={(e) => e.target.style.top = '0'}
+        onBlur={(e) => e.target.style.top = '-40px'}
+      >
+        Skip to main content
+      </a>
       <ReactLenis root>
         <div className='font-gilroy bg-[#F0F0F0]'>
           <RouterPage />

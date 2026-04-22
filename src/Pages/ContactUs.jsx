@@ -160,12 +160,20 @@ const ContactUs = () => {
     return (
         <>
             <Helmet>
-                <title>Contact H! Dezign | hello@hidezign.com</title>
-                <meta
-                    name="description"
-                    content="Contact H! Dezign for web design, branding, UI/UX, and digital product support. Reach us at hello@hidezign.com."
-                />
+                <title>Contact H! Dezign | hello@hidezign.com | +91 9285114937</title>
+                <meta name="description" content="Contact H! Dezign for web design, branding, UI/UX, and digital product support. Reach us at hello@hidezign.com or +91 9285114937." />
                 <link rel="canonical" href="https://hidezign.com/contact-us" />
+                <meta property="og:title" content="Contact H! Dezign | hello@hidezign.com | +91 9285114937" />
+                <meta property="og:description" content="Contact H! Dezign for web design, branding, UI/UX, and digital product support. Reach us at hello@hidezign.com or +91 9285114937." />
+                <meta property="og:url" content="https://hidezign.com/contact-us" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {"@type":"ListItem","position":1,"name":"Home","item":"https://hidezign.com"},
+                        {"@type":"ListItem","position":2,"name":"Contact","item":"https://hidezign.com/contact-us"}
+                    ]
+                })}</script>
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
