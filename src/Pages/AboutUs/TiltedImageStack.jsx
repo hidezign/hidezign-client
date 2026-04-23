@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Routers } from "../../Routes/Routers";
 
 /**
  * StaticTiltedStack
@@ -39,11 +41,11 @@ export default function StaticTiltedStack({ images = DEFAULT_IMAGES, rotations =
                         };
 
                         return (
-                            <div
+                            <Link
                                 key={idx}
-                                role="img"
-                                aria-label={`cover-${idx + 1}`}
-                                className="absolute rounded-md overflow-hidden shadow-xl bg-white"
+                                to={Routers.WORK}
+                                aria-label={`View our work — cover ${idx + 1}`}
+                                className="absolute rounded-md overflow-hidden shadow-xl bg-white cursor-pointer hover:shadow-2xl transition-shadow"
                                 style={style}
                             >
                                 <div className="w-[36vw] min-w-[160px] max-w-[400px] sm:w-[30vw] md:w-[24vw] lg:w-[20vw] aspect-square">
@@ -57,7 +59,7 @@ export default function StaticTiltedStack({ images = DEFAULT_IMAGES, rotations =
                                         onDragStart={(e) => e.preventDefault()}
                                     />
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </div>
