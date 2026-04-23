@@ -912,6 +912,28 @@
     </div>
   </section>
 
+  <!-- ══ OCTOPUS GAME ══ -->
+  <section class="section-dark" id="octopus-game-section">
+    <div class="section-inner" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <span class="section-badge section-badge-light">MINI GAME</span>
+      <h2 style="margin-bottom:8px;">Play While You Read</h2>
+      <p style="color:#666; font-size:14px; margin-bottom:24px;">Press <kbd style="background:#222;color:#fff;padding:2px 7px;border:1px solid #444;font-family:monospace;">Space</kbd> / <kbd style="background:#222;color:#fff;padding:2px 7px;border:1px solid #444;font-family:monospace;">↑</kbd> to jump &nbsp;·&nbsp; Tap the game on mobile &nbsp;·&nbsp; Avoid the crabs!</p>
+      <div id="game-wrapper" style="position:relative; width:100%; max-width:700px; margin:0 auto;">
+        <canvas id="gameCanvas" width="700" height="180"
+          style="width:100%; height:auto; display:block; background:#111; border:3px solid #0F38DB; box-shadow:4px 4px 0 #0a2ba8; cursor:pointer; image-rendering:pixelated;">
+        </canvas>
+        <div id="game-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);">
+          <div style="font-family:'Press Start 2P',monospace;font-size:11px;color:#0F38DB;margin-bottom:16px;text-align:center;line-height:1.8;">OCTOPUS RUN</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#fff;text-align:center;line-height:2;">TAP OR PRESS SPACE<br>TO START</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:32px;margin-top:16px;flex-wrap:wrap;justify-content:center;">
+        <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#666;">SCORE: <span id="score-display" style="color:#0F38DB;">0</span></div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#666;">BEST: <span id="best-display" style="color:#0F38DB;">0</span></div>
+      </div>
+    </div>
+  </section>
+
   <div class="pixel-divider"></div>
 
   <!-- ══ SECTION 3: INDUSTRIES ══ -->
@@ -965,6 +987,26 @@
       </div>
     </div>
   </section>
+
+  <!-- ══ MINI CTA ══ -->
+  <div style="background:#0F38DB; padding:40px 24px; text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0; height:4px; background:repeating-linear-gradient(90deg,#fff 0px,#fff 8px,#0F38DB 8px,#0F38DB 16px);"></div>
+    <div style="max-width:700px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <span style="font-family:'Press Start 2P',monospace; font-size:8px; color:rgba(255,255,255,0.6); letter-spacing:0.1em;">IS YOUR BRAND IN THIS LIST?</span>
+      <p style="font-family:'DM Sans',sans-serif; font-weight:700; font-size:clamp(18px,3vw,26px); color:#fff; line-height:1.3;">
+        Want pixel art design for your brand?<br>We'll build it — fast and SEO-ready.
+      </p>
+      <a href="https://hidezign.com/contact-us"
+        style="display:inline-block; font-family:'DM Sans',sans-serif; font-weight:700; font-size:14px;
+               background:#fff; color:#0F38DB; padding:12px 28px; border:3px solid #fff;
+               box-shadow:4px 4px 0 #0a2ba8; text-decoration:none; transition:all 0.1s;"
+        onmouseover="this.style.transform='translate(2px,2px)';this.style.boxShadow='2px 2px 0 #0a2ba8'"
+        onmouseout="this.style.transform='';this.style.boxShadow='4px 4px 0 #0a2ba8'">
+        Get Free Audit →
+      </a>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0; height:4px; background:repeating-linear-gradient(90deg,#fff 0px,#fff 8px,#0F38DB 8px,#0F38DB 16px);"></div>
+  </div>
 
   <div class="pixel-divider-light"></div>
 
@@ -1035,70 +1077,12 @@
 
   <div class="pixel-divider-light"></div>
 
-  <!-- ══ SECTION 6: FAQ ══ -->
-  <section class="section-dark" id="faq">
-    <div class="section-inner">
-      <span class="section-badge section-badge-light">FAQ</span>
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-list" id="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>What is pixel art design?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Pixel art design is a digital art style where images are created at the pixel level using a limited color palette, inspired by early computer graphics and video games from the 1970s–90s. In modern design, it is used intentionally to create a nostalgic, playful, or retro aesthetic that communicates authenticity and creativity.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Which industries benefit most from pixel art design?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Gaming, indie software, crypto/NFT, entertainment, education, food &amp; beverage, streetwear/fashion, and music benefit most from pixel art design. The style works best for brands targeting Gen Z and millennial audiences who have nostalgia for retro gaming.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>How do I apply pixel art to my website?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Apply pixel art to your website through: pixel-style illustrations for mascots and icons, 8-bit typography for labels and badges, CSS box-shadow pixel art for decorative elements, pixelated hover effects on buttons and cards, and grid-based layouts with visible pixel grid lines on dark background sections.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Is pixel art design good for modern brands?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Yes — pixel art has seen a major revival since 2020. Used correctly, it communicates authenticity, creativity, and nostalgia. It is especially effective for challenger brands wanting to stand out from polished corporate aesthetics. The key is intentionality: pixel art used as a considered aesthetic choice reads as sophisticated; pixel art used poorly reads as unfinished.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>What fonts and colors work best with pixel art design?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Best fonts: Press Start 2P, Silkscreen, VT323, Pixelify Sans. Best colors: limited palettes of 4–8 colors, high contrast combinations like black/white/yellow, or neon green/dark purple. Avoid gradients — use flat, dithered color blocks instead. The constraint is the point: fewer colors, used with precision, create more visual impact than unlimited gradients.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="pixel-divider"></div>
-
   <!-- ══ SECTION 7: FONTS & COLORS ══ -->
-  <section class="section-light" id="design-tokens">
+  <section class="section-light" id="design-tokens" style="background:#fff; border-top:2px solid #e8e8e8;">
     <div class="section-inner">
       <span class="section-badge">DESIGN TOKENS</span>
       <h2>Best Fonts &amp; Colors for Pixel Art Design</h2>
       <div class="tokens-grid">
-        <!-- Fonts -->
         <div>
           <h3 style="font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:24px; color:#0E0E0E;">Pixel Art Fonts</h3>
           <div class="font-list">
@@ -1116,11 +1100,10 @@
             </div>
             <div class="font-item">
               <div class="font-label">Pixelify Sans — "THE MODERN PIXEL"</div>
-              <div class="font-sample-pixelify">Modern & Readable</div>
+              <div class="font-sample-pixelify">Modern &amp; Readable</div>
             </div>
           </div>
         </div>
-        <!-- Colors -->
         <div>
           <h3 style="font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:24px; color:#0E0E0E;">Color Palettes</h3>
           <div class="palette-group">
@@ -1177,24 +1160,59 @@
     </div>
   </section>
 
-  <!-- ══ OCTOPUS GAME ══ -->
-  <section class="section-dark" id="octopus-game-section">
+  <div style="height:2px; background:#1a1a1a;"></div>
+
+  <!-- ══ SECTION 6: FAQ ══ -->
+  <section class="section-dark" id="faq">
     <div class="section-inner">
-      <span class="section-badge section-badge-light">MINI GAME</span>
-      <h2 style="margin-bottom:8px;">Play While You Read</h2>
-      <p style="color:#666; font-size:14px; margin-bottom:24px;">Press <kbd style="background:#222;color:#fff;padding:2px 7px;border:1px solid #444;font-family:monospace;">Space</kbd> / <kbd style="background:#222;color:#fff;padding:2px 7px;border:1px solid #444;font-family:monospace;">↑</kbd> to jump &nbsp;·&nbsp; Tap the game on mobile &nbsp;·&nbsp; Avoid the crabs!</p>
-      <div id="game-wrapper" style="position:relative; width:100%; max-width:700px;">
-        <canvas id="gameCanvas" width="700" height="180"
-          style="width:100%; height:auto; display:block; background:#111; border:3px solid #0F38DB; box-shadow:4px 4px 0 #0a2ba8; cursor:pointer; image-rendering:pixelated;">
-        </canvas>
-        <div id="game-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);">
-          <div style="font-family:'Press Start 2P',monospace;font-size:11px;color:#0F38DB;margin-bottom:16px;text-align:center;line-height:1.8;">OCTOPUS RUN</div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#fff;text-align:center;line-height:2;">TAP OR PRESS SPACE<br>TO START</div>
+      <span class="section-badge section-badge-light">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What is pixel art design?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Pixel art design is a digital art style where images are created at the pixel level using a limited color palette, inspired by early computer graphics and video games from the 1970s–90s. In modern design, it is used intentionally to create a nostalgic, playful, or retro aesthetic that communicates authenticity and creativity.</p>
+          </div>
         </div>
-      </div>
-      <div style="display:flex;gap:32px;margin-top:16px;flex-wrap:wrap;">
-        <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#666;">SCORE: <span id="score-display" style="color:#0F38DB;">0</span></div>
-        <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:#666;">BEST: <span id="best-display" style="color:#0F38DB;">0</span></div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Which industries benefit most from pixel art design?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Gaming, indie software, crypto/NFT, entertainment, education, food &amp; beverage, streetwear/fashion, and music benefit most from pixel art design. The style works best for brands targeting Gen Z and millennial audiences who have nostalgia for retro gaming.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How do I apply pixel art to my website?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Apply pixel art to your website through: pixel-style illustrations for mascots and icons, 8-bit typography for labels and badges, CSS box-shadow pixel art for decorative elements, pixelated hover effects on buttons and cards, and grid-based layouts with visible pixel grid lines on dark background sections.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is pixel art design good for modern brands?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes — pixel art has seen a major revival since 2020. Used correctly, it communicates authenticity, creativity, and nostalgia. It is especially effective for challenger brands wanting to stand out from polished corporate aesthetics. The key is intentionality: pixel art used as a considered aesthetic choice reads as sophisticated; pixel art used poorly reads as unfinished.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What fonts and colors work best with pixel art design?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Best fonts: Press Start 2P, Silkscreen, VT323, Pixelify Sans. Best colors: limited palettes of 4–8 colors, high contrast combinations like black/white/yellow, or neon green/dark purple. Avoid gradients — use flat, dithered color blocks instead. The constraint is the point: fewer colors, used with precision, create more visual impact than unlimited gradients.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
