@@ -90,18 +90,41 @@ const Footer = () => {
                             </a>
 
                             <div className='flex gap-2 '>
-                                {socialLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        to={link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={`Follow H! Dezign on ${link.name}`}
-                                        className="text-lg md:text-xl text-sp-bg1 p-3 rounded-full border border-sp-bg1 hover:bg-sp-bg1 hover:text-sp-primary-s1 transition-all duration-300 flex items-center justify-center"
-                                    >
-                                        {link.icon}
-                                    </Link>
-                                ))}
+                                {socialLinks.map((link) => {
+                                    const iconClass = "text-lg md:text-xl text-sp-bg1 p-3 rounded-full border border-sp-bg1 hover:bg-sp-bg1 hover:text-sp-primary-s1 transition-all duration-300 flex items-center justify-center";
+                                    if (!link.url) {
+                                        return (
+                                            <span key={link.name} aria-label={link.name} className={iconClass}>
+                                                {link.icon}
+                                            </span>
+                                        );
+                                    }
+                                    const isExternal = link.url.startsWith('http');
+                                    if (isExternal) {
+                                        return (
+                                            <a
+                                                key={link.name}
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`Follow H! Dezign on ${link.name}`}
+                                                className={iconClass}
+                                            >
+                                                {link.icon}
+                                            </a>
+                                        );
+                                    }
+                                    return (
+                                        <Link
+                                            key={link.name}
+                                            to={link.url}
+                                            aria-label={`H! Dezign ${link.name}`}
+                                            className={iconClass}
+                                        >
+                                            {link.icon}
+                                        </Link>
+                                    );
+                                })}
                             </div>
                         </div>
                         <div className='flex gap-20 md:gap-44'>

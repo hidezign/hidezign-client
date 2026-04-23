@@ -5,34 +5,6 @@ import { Link } from 'react-router-dom';
 // Each post carries its own `theme` — colors, font, border style etc.
 // This is what makes each card look like the blog it links to.
 const blogPosts = [
-  {
-    slug: '/blog/pixel-art-design',
-    external: true, // served as static HTML
-    title: 'Pixel Art Design: The Complete Guide for Brands',
-    excerpt: 'Discover pixel art design — what it is, which industries use it, and how to apply 8-bit aesthetics to your brand. With a playable octopus game inside.',
-    category: 'Design Style',
-    date: 'Apr 23, 2026',
-    readTime: '12 min read',
-    theme: {
-      // Card looks exactly like the pixel art blog
-      bg: '#0E0E0E',
-      border: '4px solid #0F38DB',
-      shadow: '5px 5px 0 #0a2ba8',
-      radius: '0',
-      badgeBg: 'transparent',
-      badgeColor: '#0F38DB',
-      badgeBorder: '2px solid #0F38DB',
-      badgeFont: "'Press Start 2P', monospace",
-      badgeShadow: '2px 2px 0 #0F38DB',
-      titleColor: '#F0F0F0',
-      excerptColor: '#999',
-      metaColor: '#555',
-      accentColor: '#0F38DB',
-      dividerColor: '#0F38DB',
-      tagline: 'DESIGN STYLE GUIDE',
-      decoration: 'pixel', // triggers pixel corner decorations
-    },
-  },
   // ── Placeholder 2: Glassmorphism (frosted glass theme) ──
   {
     slug: '/blog/glassmorphism-design',
