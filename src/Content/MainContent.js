@@ -15,6 +15,7 @@ export const MainContent = {
   NavLinks: [
     { name: "Home", link: Routers.WEBSITE },
     { name: "Work", link: Routers.WORK },
+    { name: "Services", link: Routers.SERVICES },
     { name: "About us", link: Routers.ABOUTUS },
     { name: "Blog", link: Routers.BLOG }
   ]

@@ -21,6 +21,7 @@ import Works from "../Pages/Works";
 import ContactUs from "../Pages/ContactUs";
 import TermsOfService from "../Pages/TermsOfService";
 import WebDesign from "../Pages/Services/WebDesign";
+import Services from "../Pages/Services/Services";
 import BlogIndex from "../Pages/Blog/index";
 
 const RouterPages = () => {
@@ -85,6 +86,10 @@ const RouterPages = () => {
             <Route
                 path={Routers.WORK}
                 element={<WrapperComponent children={<Works />} />}
+            />
+            <Route
+                path={Routers.SERVICES}
+                element={<WrapperComponent children={<Services />} />}
             />
             <Route
                 path={Routers.CONTACTUS}

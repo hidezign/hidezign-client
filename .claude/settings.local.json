@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr create --draft --title 'fix: footer links, game mobile tap, remove pixel art blog card' --body ' *)",
+      "Bash(gh auth *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(vercel --prod)",
+      "Bash(npx vercel *)"
+    ]
+  }
+}
