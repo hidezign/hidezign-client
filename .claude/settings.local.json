@@ -5,7 +5,17 @@
       "Bash(gh auth *)",
       "mcp__Claude_Preview__preview_start",
       "Bash(vercel --prod)",
-      "Bash(npx vercel *)"
+      "Bash(npx vercel *)",
+      "Bash(git push *)",
+      "Bash(gh pr create --base main --head claude/condescending-davinci-896040 --title 'feat: Services page, blog fix, footer links, mobile game' --body 'Deployment of completed features: *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "Bash(git checkout *)",
+      "Bash(git pull *)",
+      "Bash(git fetch *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
