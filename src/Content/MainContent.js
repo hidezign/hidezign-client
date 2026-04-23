@@ -7,9 +7,9 @@ export const MainContent = {
   AppName: "Hi Dezign",
   AppLogo: logo,
   Email: "hello@hidezign.com",
-  DribbbleLink: "",
-  LinkedInLink: "",
-  InstagramLink: "",
+  DribbbleLink: "/#services",
+  LinkedInLink: "https://www.linkedin.com/company/hidezignsolutions/",
+  InstagramLink: "https://www.instagram.com/hidezign_solutions/",
   TwitterLink: "",
   BehanceLink: "",
   NavLinks: [

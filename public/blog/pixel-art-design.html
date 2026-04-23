@@ -1451,6 +1451,8 @@
       });
       canvas.addEventListener('click', jump);
       canvas.addEventListener('touchstart', e => { e.preventDefault(); jump(); }, { passive: false });
+      overlay.addEventListener('click', jump);
+      overlay.addEventListener('touchstart', e => { e.preventDefault(); jump(); }, { passive: false });
 
       function spawnObstacle() {
         const tall = Math.random() > 0.5;
