@@ -5,6 +5,7 @@ export const Routers = {
     ABOUTUS: "/about-us",
     CONTACTUS: "/contact-us",
     WORK: "/work",
+    SERVICES: "/services",
     TERMSOFSERVICE: "/terms-of-service",
     WEBDESIGN: "/services/web-design",
     BLOG: "/blog",
