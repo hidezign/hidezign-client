@@ -598,6 +598,13 @@
       grid-template-columns: auto 1fr auto;
       gap: 12px;
       align-items: center;
+      transition: box-shadow 320ms cubic-bezier(.2,.8,.2,1), filter 320ms cubic-bezier(.2,.8,.2,1), transform 320ms cubic-bezier(.2,.8,.2,1);
+      will-change: box-shadow, filter, transform;
+    }
+
+    .music-player.playing {
+      box-shadow: 0 12px 40px rgba(31,38,135,0.5), 0 0 12px rgba(168,200,255,0.35);
+      filter: brightness(1.03);
     }
 
     .music-meta {
@@ -616,14 +623,20 @@
     .music-fill {
       position: absolute;
       inset: 0 auto 0 0;
-      width: 35%;
+      width: 0%;
       background: var(--accent);
-      animation: musicPulse 3s ease-in-out infinite;
+      transition: width 120ms linear, opacity 220ms ease;
+      transform-origin: left center;
+      opacity: 0.92;
+    }
+
+    .music-player.playing .music-fill {
+      animation: musicPulse 2.4s ease-in-out infinite;
     }
 
     @keyframes musicPulse {
-      0%, 100% { width: 25%; }
-      50% { width: 85%; }
+      0%, 100% { transform: scaleY(0.92); }
+      50% { transform: scaleY(1); }
     }
 
     footer {
@@ -974,12 +987,13 @@
             <div class="divider"></div>
             <p>This section demonstrates the same glass system on a media control layout to keep visual consistency across product surfaces.</p>
             <div class="glass music-player">
-              <button class="button" type="button">Play</button>
+              <audio id="bgMusic" loop preload="none" src="/assets/audio/glass-ambient.mp3.mp3"></audio>
+              <button class="button" id="playBtn" type="button" aria-label="Play ambient audio">▶</button>
               <div>
                 <p style="margin-bottom: 6px;">Ambient Dashboard Track</p>
-                <div class="music-bar"><span class="music-fill"></span></div>
+                <div class="music-bar"><span class="music-fill" id="musicFill"></span></div>
               </div>
-              <span class="music-meta">02:18 / 04:40</span>
+              <span class="music-meta" id="timeDisplay">00:00 / 00:00</span>
             </div>
           </article>
 
@@ -1116,6 +1130,171 @@
         zone.addEventListener('mousemove', move, { passive: true });
         zone.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
         requestAnimationFrame(render);
+      }
+
+      const player = document.querySelector('.music-player');
+      const bgMusic = document.getElementById('bgMusic');
+      const playBtn = document.getElementById('playBtn');
+      const musicFill = document.getElementById('musicFill');
+      const timeDisplay = document.getElementById('timeDisplay');
+      const hero = document.getElementById('hero');
+      const cta = document.getElementById('cta');
+      const textHeavyIds = new Set([
+        'what-is-glassmorphism',
+        'why-trending',
+        'how-to-use',
+        'accessibility',
+        'design-tokens',
+        'faq',
+      ]);
+
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const lerp = (a, b, t) => a + (b - a) * t;
+
+      const formatTime = (seconds) => {
+        const safe = Number.isFinite(seconds) && seconds >= 0 ? seconds : 0;
+        const mm = Math.floor(safe / 60);
+        const ss = Math.floor(safe % 60);
+        return `${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}`;
+      };
+
+      const isVisible = (element) => {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        const vh = window.innerHeight;
+        return rect.top < vh * 0.72 && rect.bottom > vh * 0.28;
+      };
+
+      const state = {
+        isPlaying: false,
+        isFadingIn: false,
+        fadeStart: 0,
+        fadeDuration: 2000,
+        volumeCurrent: 0,
+        volumeTarget: 0.2,
+        scrollRatio: 0,
+        needsScrollCalc: true,
+      };
+
+      const setPlayingUI = (playing) => {
+        if (!player || !playBtn) return;
+        player.classList.toggle('playing', playing);
+        playBtn.textContent = playing ? '⏸' : '▶';
+        playBtn.setAttribute('aria-label', playing ? 'Pause ambient audio' : 'Play ambient audio');
+      };
+
+      const computeSectionModifier = () => {
+        let modifier = 0;
+        if (isVisible(hero) || isVisible(cta)) modifier += 0.03;
+
+        const probe = document.elementFromPoint(window.innerWidth * 0.5, window.innerHeight * 0.45);
+        const card = probe && probe.closest ? probe.closest('.card') : null;
+        if (card && textHeavyIds.has(card.id)) modifier -= 0.02;
+
+        return modifier;
+      };
+
+      const computeVolumeTarget = () => {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        state.scrollRatio = clamp(window.scrollY / maxScroll, 0, 1);
+
+        let base = 0.15;
+        if (state.scrollRatio <= 0.2) {
+          base = 0.25;
+        } else if (state.scrollRatio >= 0.8) {
+          const t = (state.scrollRatio - 0.8) / 0.2;
+          base = lerp(0.15, 0.08, clamp(t, 0, 1));
+        }
+
+        state.volumeTarget = clamp(base + computeSectionModifier(), 0.05, 0.3);
+      };
+
+      const syncTimeAndProgress = (now) => {
+        const duration = Number.isFinite(bgMusic.duration) ? bgMusic.duration : 0;
+        const current = Number.isFinite(bgMusic.currentTime) ? bgMusic.currentTime : 0;
+        const progressPct = duration > 0 ? (current / duration) * 100 : 0;
+
+        if (musicFill) {
+          musicFill.style.width = `${clamp(progressPct, 0, 100).toFixed(3)}%`;
+          if (state.isPlaying) {
+            const pulse = 0.96 + Math.sin(now / 320) * 0.04;
+            musicFill.style.transform = `scaleY(${pulse.toFixed(3)})`;
+          } else {
+            musicFill.style.transform = 'scaleY(1)';
+          }
+        }
+
+        if (timeDisplay) {
+          timeDisplay.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
+        }
+      };
+
+      const engine = (now) => {
+        if (state.needsScrollCalc) {
+          computeVolumeTarget();
+          state.needsScrollCalc = false;
+        }
+
+        if (state.isPlaying) {
+          if (state.isFadingIn) {
+            const t = clamp((now - state.fadeStart) / state.fadeDuration, 0, 1);
+            state.volumeCurrent = lerp(0, 0.2, t);
+            if (t >= 1) {
+              state.isFadingIn = false;
+            }
+          } else {
+            state.volumeCurrent += (state.volumeTarget - state.volumeCurrent) * 0.06;
+          }
+          bgMusic.volume = clamp(state.volumeCurrent, 0, 1);
+        } else {
+          state.volumeCurrent += (0 - state.volumeCurrent) * 0.25;
+          bgMusic.volume = clamp(state.volumeCurrent, 0, 1);
+        }
+
+        syncTimeAndProgress(now);
+        requestAnimationFrame(engine);
+      };
+
+      if (player && bgMusic && playBtn && musicFill && timeDisplay) {
+        bgMusic.loop = true;
+        bgMusic.preload = 'none';
+        bgMusic.volume = 0;
+
+        playBtn.addEventListener('click', async function () {
+          if (!state.isPlaying) {
+            try {
+              if (!bgMusic.src) bgMusic.src = '/assets/audio/glass-ambient.mp3.mp3';
+              await bgMusic.play();
+              state.isPlaying = true;
+              state.isFadingIn = true;
+              state.fadeStart = performance.now();
+              setPlayingUI(true);
+            } catch (_) {
+              state.isPlaying = false;
+              setPlayingUI(false);
+            }
+          } else {
+            state.isPlaying = false;
+            bgMusic.pause();
+            setPlayingUI(false);
+          }
+        });
+
+        window.addEventListener('scroll', function () {
+          state.needsScrollCalc = true;
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+          state.needsScrollCalc = true;
+        });
+
+        bgMusic.addEventListener('loadedmetadata', function () {
+          timeDisplay.textContent = `${formatTime(0)} / ${formatTime(bgMusic.duration)}`;
+        });
+
+        setPlayingUI(false);
+        timeDisplay.textContent = '00:00 / 00:00';
+        requestAnimationFrame(engine);
       }
 
       const faqButtons = document.querySelectorAll('.faq-q');
