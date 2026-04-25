@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -22,7 +22,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
   {
@@ -65,39 +65,39 @@
         "name": "What is glassmorphism?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Glassmorphism is a UI style built on translucent surfaces, strong backdrop blur, subtle borders, and layered depth to simulate frosted glass floating above colorful backgrounds."
+          "text": "Glassmorphism is a UI style built with translucent surfaces, backdrop blur, subtle borders, and layered depth."
         }
       },
       {
         "@type": "Question",
-        "name": "Where is glassmorphism used?",
+        "name": "Where is it used?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It is widely used in fintech dashboards, SaaS products, productivity apps, music platforms, and premium landing pages where layered depth and polished visuals improve perceived product quality."
+          "text": "It is used in SaaS dashboards, fintech products, and premium product websites."
         }
       },
       {
         "@type": "Question",
-        "name": "Is glassmorphism good for UX?",
+        "name": "Is it good for UX?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It can be excellent for UX when contrast, hierarchy, spacing, and fallback states are handled correctly. Without strong readability rules, it can reduce clarity."
+          "text": "It works well when readability, contrast, and hierarchy are handled correctly."
         }
       },
       {
         "@type": "Question",
-        "name": "How to implement glassmorphism?",
+        "name": "How to implement it?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Use semi-transparent backgrounds, backdrop-filter blur, 1px translucent borders, soft shadows, and layered gradients. Then test contrast and legibility across light and dark environments."
+          "text": "Use translucent layers, backdrop blur, subtle borders, and consistent depth tokens."
         }
       },
       {
         "@type": "Question",
-        "name": "What are accessibility concerns in glass UI?",
+        "name": "Accessibility concerns?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The main concerns are low contrast text, noisy backgrounds behind translucent cards, and weak focus states. Add contrast-safe text colors, overlays, and visible focus indicators."
+          "text": "The main concerns are low contrast and readability issues over noisy backgrounds."
         }
       }
     ]
@@ -133,22 +133,18 @@
 
   <style>
     :root {
-      --bg-1: #0b1023;
-      --bg-2: #30287a;
-      --bg-3: #0f8bd9;
-      --bg-4: #56ecff;
-      --text-primary: #f5f8ff;
-      --text-secondary: rgba(236, 243, 255, 0.8);
-      --border-glass: rgba(255, 255, 255, 0.24);
-      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-      --max-width: 1180px;
-      --header-height: 76px;
-      --blur-default: 20px;
-      --opacity-default: 0.08;
-      --cta-start: #4cc9ff;
-      --cta-end: #9f7bff;
-      --ok-text: #ecfbff;
-      --bad-text: #b4c8ef;
+      --bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      --border: 1px solid rgba(255,255,255,0.18);
+      --shadow: 0 8px 32px rgba(31,38,135,0.37);
+      --radius: 16px;
+      --badge-bg: rgba(255,255,255,0.1);
+      --badge-color: rgba(255,255,255,0.9);
+      --badge-border: 1px solid rgba(255,255,255,0.3);
+      --title-color: #ffffff;
+      --excerpt-color: rgba(255,255,255,0.65);
+      --meta-color: rgba(255,255,255,0.4);
+      --accent: #a8c8ff;
+      --divider: rgba(255,255,255,0.15);
     }
 
     * {
@@ -162,19 +158,11 @@
     }
 
     body {
-      font-family: "Inter", "DM Sans", sans-serif;
-      color: var(--text-primary);
-      background: linear-gradient(120deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4));
-      background-size: 260% 260%;
-      animation: gradient-flow 16s ease infinite;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--title-color);
       min-height: 100vh;
       overflow-x: hidden;
-    }
-
-    @keyframes gradient-flow {
-      0% { background-position: 0% 35%; }
-      50% { background-position: 100% 65%; }
-      100% { background-position: 0% 35%; }
     }
 
     body::before {
@@ -182,897 +170,609 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 1;
-      opacity: 0.18;
-      mix-blend-mode: soft-light;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
       z-index: 0;
-      background:
-        radial-gradient(60rem 60rem at 85% 15%, rgba(124, 255, 246, 0.22), transparent 60%),
-        radial-gradient(45rem 45rem at 10% 75%, rgba(110, 147, 255, 0.25), transparent 55%),
-        radial-gradient(30rem 30rem at 45% 35%, rgba(192, 141, 255, 0.17), transparent 55%);
     }
 
     a {
-      color: inherit;
+      color: var(--accent);
       text-decoration: none;
     }
 
-    .site-shell {
+    h1, h2, h3 {
+      color: var(--title-color);
+      line-height: 1.18;
+    }
+
+    p {
+      color: var(--excerpt-color);
+      line-height: 1.7;
+    }
+
+    .site {
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
 
     .container {
-      width: min(var(--max-width), 92vw);
+      width: min(1160px, calc(100vw - 24px));
       margin-inline: auto;
     }
 
-    #progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #8de0ff, #a68cff, #44ffd2);
-      box-shadow: 0 0 20px rgba(173, 231, 255, 0.85);
-      z-index: 999;
-    }
-
     .glass {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-      position: relative;
-      overflow: hidden;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
-    .glass::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0));
-      pointer-events: none;
-      opacity: 0.65;
-    }
-
-    .section {
-      padding: 72px 0;
-    }
-
-    .section-title {
-      font-family: "DM Sans", "Inter", sans-serif;
-      font-size: clamp(1.8rem, 2.7vw, 3rem);
-      line-height: 1.14;
-      margin-bottom: 16px;
-      letter-spacing: 0.01em;
-      text-wrap: balance;
-    }
-
-    .section-lead {
-      color: var(--text-secondary);
-      max-width: 70ch;
-      font-size: clamp(1rem, 1.2vw, 1.1rem);
-      margin-bottom: 28px;
-      line-height: 1.75;
-    }
-
-    #site-header {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      height: var(--header-height);
-      transition: border-color 0.35s ease, background 0.35s ease;
-      border-bottom: 1px solid transparent;
-    }
-
-    #site-header.scrolled {
-      border-bottom-color: rgba(255, 255, 255, 0.25);
-      background: rgba(8, 14, 36, 0.45);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .header-inner {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      font-family: "DM Sans", "Inter", sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
+    .badge {
+      background: var(--badge-bg);
+      color: var(--badge-color);
+      border: var(--badge-border);
+      font-family: 'DM Sans', sans-serif;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #edfcff;
-    }
-
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      list-style: none;
-    }
-
-    .header-nav a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 40px;
-      padding: 0 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 0.93rem;
-      font-weight: 600;
-      color: rgba(242, 249, 255, 0.95);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background: var(--accent);
+      z-index: 300;
+      box-shadow: 0 0 16px rgba(168,200,255,0.45);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      padding: 14px 0;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.05);
     }
 
-    .header-nav a:hover,
-    .header-nav a:focus-visible {
-      outline: none;
-      transform: translateY(-1px);
-      border-color: rgba(182, 241, 255, 0.8);
-      box-shadow: 0 0 18px rgba(173, 225, 255, 0.4);
-      background: rgba(255, 255, 255, 0.14);
-    }
-
-    #hero {
-      min-height: calc(100vh - var(--header-height));
+    .top-nav {
+      padding: 12px;
       display: flex;
       align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 110px 0 80px;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      color: var(--title-color);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--badge-color);
+      border: var(--badge-border);
+      background: var(--badge-bg);
+      border-radius: 999px;
+      min-height: 38px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      transition: filter 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 12px 40px rgba(31,38,135,0.5), 0 0 12px rgba(168,200,255,0.35);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      padding: clamp(20px, 4vw, 34px) 0;
+    }
+
+    .hero {
+      min-height: min(86vh, 860px);
+      display: grid;
+      align-items: center;
+      padding-top: clamp(8px, 2vw, 20px);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 26px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
       align-items: stretch;
     }
 
-    .hero-copy {
-      padding: 36px;
+    .hero-main,
+    .hero-side {
+      padding: clamp(20px, 4vw, 36px);
+      position: relative;
+      overflow: hidden;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      color: rgba(222, 248, 255, 0.95);
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 24px;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #92e2ff, #ca90ff);
-      box-shadow: 0 0 10px rgba(165, 232, 255, 0.9);
-    }
-
-    .hero-title {
-      font-family: "DM Sans", "Inter", sans-serif;
-      font-size: clamp(2.2rem, 5vw, 5.2rem);
-      font-weight: 800;
-      line-height: 0.97;
+    .hero-main h1 {
+      font-size: clamp(30px, 6vw, 74px);
+      margin: 12px 0 16px;
       text-wrap: balance;
-      letter-spacing: 0.01em;
-      margin-bottom: 16px;
-      color: #f6fbff;
-    }
-
-    .hero-title span {
-      display: block;
-      color: #c5f5ff;
-      text-shadow: 0 0 26px rgba(136, 232, 255, 0.62);
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 1.4vw, 1.25rem);
-      line-height: 1.7;
-      color: var(--text-secondary);
       max-width: 58ch;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
-    .hero-meta {
+    .meta {
+      color: var(--meta-color);
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 20px;
+      font-size: 13px;
+      margin-bottom: 18px;
     }
 
-    .hero-meta span {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      background: rgba(255, 255, 255, 0.08);
+    .meta span {
+      color: var(--meta-color);
     }
 
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
+    .button {
+      background: var(--accent);
+      color: #0f172a;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      min-height: 44px;
+      padding: 0 18px;
+      font-weight: 800;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 0 22px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      transition: filter 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
     }
 
-    .btn-primary {
-      color: #071233;
-      background: linear-gradient(120deg, #a2eeff, #a587ff);
-      box-shadow: 0 10px 28px rgba(109, 155, 255, 0.35);
-    }
-
-    .btn-primary:hover,
-    .btn-primary:focus-visible {
-      outline: none;
+    .button:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 12px 40px rgba(31,38,135,0.5), 0 0 12px rgba(168,200,255,0.35);
       transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(118, 162, 255, 0.54);
     }
 
-    .btn-ghost {
-      color: #ecf8ff;
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    .button.secondary {
+      background: var(--badge-bg);
+      color: var(--badge-color);
     }
 
-    .btn-ghost:hover,
-    .btn-ghost:focus-visible {
-      outline: none;
-      transform: translateY(-2px);
-      border-color: rgba(188, 241, 255, 0.9);
-      box-shadow: 0 0 24px rgba(148, 220, 255, 0.42);
-    }
-
-    .hero-cards-wrap {
-      position: relative;
-      min-height: 460px;
-    }
-
-    .float-card {
+    .float-panel {
       position: absolute;
-      padding: 20px;
-      width: clamp(180px, 28vw, 260px);
-      animation: card-float 6s ease-in-out infinite;
-      will-change: transform;
+      border: var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      transition: transform 0.25s ease;
     }
 
-    .float-card h3 {
-      font-size: 0.96rem;
-      margin-bottom: 8px;
-      font-weight: 700;
+    .float-panel p {
+      font-size: 13px;
     }
 
-    .float-card p {
-      font-size: 0.89rem;
-      color: rgba(234, 244, 255, 0.88);
-      line-height: 1.6;
+    .panel-1 { top: 10%; left: 5%; width: 46%; }
+    .panel-2 { top: 44%; right: 4%; width: 52%; }
+    .panel-3 { bottom: 8%; left: 15%; width: 56%; }
+
+    .divider {
+      height: 1px;
+      background: var(--divider);
+      margin: 16px 0;
     }
 
-    .card-1 {
-      top: 6%;
-      left: 4%;
-      animation-delay: 0s;
-    }
-
-    .card-2 {
-      top: 30%;
-      right: 1%;
-      animation-delay: 0.7s;
-    }
-
-    .card-3 {
-      bottom: 7%;
-      left: 22%;
-      animation-delay: 1.2s;
-    }
-
-    @keyframes card-float {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-12px) translateX(3px); }
-    }
-
-    .ambient-glow {
-      position: absolute;
-      pointer-events: none;
-      border-radius: 999px;
-      filter: blur(20px);
-      opacity: 0.65;
-      mix-blend-mode: screen;
-      animation: pulse 5s ease-in-out infinite;
-    }
-
-    .ambient-glow.g1 {
-      width: 220px;
-      height: 220px;
-      right: -40px;
-      top: -25px;
-      background: radial-gradient(circle, rgba(112, 242, 255, 0.65), transparent 68%);
-    }
-
-    .ambient-glow.g2 {
-      width: 260px;
-      height: 260px;
-      left: -60px;
-      bottom: -80px;
-      background: radial-gradient(circle, rgba(165, 123, 255, 0.58), transparent 68%);
-      animation-delay: 1.2s;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.45; transform: scale(1); }
-      50% { opacity: 0.78; transform: scale(1.08); }
-    }
-
-    #breadcrumb {
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-
-    .breadcrumb-inner {
+    .breadcrumb {
+      padding: 10px 14px;
       display: flex;
-      align-items: center;
       gap: 10px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      color: rgba(230, 244, 255, 0.9);
-      font-size: 0.88rem;
-      font-weight: 500;
+      align-items: center;
       flex-wrap: wrap;
-    }
-
-    .breadcrumb-inner .sep {
-      opacity: 0.65;
-      font-size: 1rem;
+      color: var(--meta-color);
+      font-size: 13px;
     }
 
     .content-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
-    .block {
-      grid-column: span 12;
-      padding: 30px;
-      transform: translateY(28px);
-      opacity: 0;
-      filter: blur(6px);
-      transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.8s ease, filter 0.8s ease;
+    .card {
+      padding: clamp(20px, 3vw, 30px);
+      transition: box-shadow 0.25s ease, transform 0.25s ease, filter 0.25s ease;
     }
 
-    .block.visible {
-      transform: translateY(0);
-      opacity: 1;
-      filter: blur(0);
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(31,38,135,0.5);
+      transform: translateY(-4px);
+      filter: brightness(1.03);
     }
 
-    .block h2 {
-      font-size: clamp(1.45rem, 2vw, 2rem);
-      margin-bottom: 12px;
-      letter-spacing: 0.01em;
-    }
-
-    .block p {
-      color: rgba(230, 242, 255, 0.87);
-      line-height: 1.74;
-      margin-bottom: 14px;
-    }
-
-    .bullets {
+    .card ul {
       list-style: none;
       display: grid;
       gap: 10px;
-      margin-top: 8px;
-    }
-
-    .bullets li {
-      padding-left: 22px;
-      position: relative;
-      color: rgba(234, 245, 255, 0.9);
-      line-height: 1.66;
-    }
-
-    .bullets li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.64em;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: linear-gradient(130deg, #8ce6ff, #ad89ff);
-      box-shadow: 0 0 10px rgba(154, 224, 255, 0.75);
-    }
-
-    .stats {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .stat {
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .stat .num {
-      display: block;
-      font-family: "DM Sans", "Inter", sans-serif;
-      font-size: clamp(1.25rem, 2vw, 1.8rem);
-      font-weight: 800;
-      margin-bottom: 4px;
-      color: #d8f6ff;
-      text-shadow: 0 0 14px rgba(137, 228, 255, 0.45);
-    }
-
-    .stat .label {
-      font-size: 0.8rem;
-      color: rgba(225, 243, 255, 0.84);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .industry-grid,
-    .brand-grid,
-    .token-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
       margin-top: 10px;
     }
 
-    .chip-card {
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 0.92rem;
-      line-height: 1.5;
+    .card li {
+      color: var(--excerpt-color);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.7;
     }
 
-    .chip-card h3 {
-      font-size: 1rem;
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      padding: 12px;
+    }
+
+    .stat strong {
+      color: var(--title-color);
+      font-size: 22px;
+      display: block;
+    }
+
+    .stat span {
+      color: var(--meta-color);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mini {
+      padding: 12px;
+    }
+
+    .mini h3 {
+      font-size: 16px;
       margin-bottom: 6px;
-      color: #e8f7ff;
+    }
+
+    .mini p {
+      font-size: 14px;
     }
 
     .playground {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: stretch;
+      gap: 12px;
+      margin-top: 12px;
     }
 
-    .controls {
-      padding: 24px;
-      display: grid;
-      gap: 16px;
-      align-content: start;
+    .controls,
+    .play-demo {
+      padding: 16px;
     }
 
-    .range-group {
-      display: grid;
-      gap: 8px;
+    .control {
+      margin-bottom: 14px;
     }
 
-    .range-head {
+    .control-head {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-      font-size: 0.9rem;
-      color: rgba(233, 247, 255, 0.95);
-      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--meta-color);
+      font-size: 13px;
     }
 
     input[type="range"] {
       width: 100%;
-      accent-color: #8ce7ff;
-      cursor: pointer;
+      accent-color: var(--accent);
     }
 
-    .playground-card {
-      padding: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 280px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .demo-card {
-      width: min(100%, 340px);
-      min-height: 180px;
-      padding: 22px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      background: rgba(255, 255, 255, var(--opacity-default));
-      backdrop-filter: blur(var(--blur-default));
-      -webkit-backdrop-filter: blur(var(--blur-default));
-      box-shadow: 0 20px 40px rgba(10, 19, 46, 0.38);
-      position: relative;
-      z-index: 1;
-      transition: backdrop-filter 0.2s linear, background 0.2s linear, box-shadow 0.2s linear;
-    }
-
-    .demo-card h3 {
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-      color: #f2fbff;
-    }
-
-    .demo-card p {
-      margin-bottom: 14px;
-      color: rgba(232, 248, 255, 0.9);
-      line-height: 1.64;
-      font-size: 0.94rem;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .badge {
-      font-size: 0.78rem;
-      border-radius: 999px;
-      padding: 6px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: #ecf9ff;
-      background: rgba(255, 255, 255, 0.09);
+    .live-card {
+      padding: 18px;
+      border: var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      transition: all 0.2s linear;
     }
 
     .a11y-toggle {
-      margin-top: 12px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+      margin: 12px 0;
     }
 
-    .toggle-btn {
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      background: rgba(255, 255, 255, 0.06);
-      color: #eaf7ff;
+    .toggle {
+      min-height: 38px;
+      padding: 0 12px;
       border-radius: 999px;
-      min-height: 40px;
-      padding: 0 14px;
-      font-weight: 700;
+      border: var(--badge-border);
+      background: var(--badge-bg);
+      color: var(--badge-color);
       cursor: pointer;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      font-weight: 700;
+      transition: filter 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .toggle-btn.active {
-      background: linear-gradient(110deg, rgba(141, 232, 255, 0.3), rgba(175, 142, 255, 0.35));
-      border-color: rgba(184, 237, 255, 0.8);
-      transform: translateY(-1px);
+    .toggle.active,
+    .toggle:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 12px 40px rgba(31,38,135,0.5), 0 0 12px rgba(168,200,255,0.35);
     }
 
     .compare {
-      margin-top: 12px;
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(255, 255, 255, 0.07);
+      padding: 12px;
     }
 
-    .compare .label {
-      font-weight: 700;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-      color: #e9f9ff;
-    }
-
-    .compare-card {
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: all 0.3s ease;
-      line-height: 1.65;
-      font-size: 0.93rem;
-    }
-
-    .compare-card.bad {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--bad-text);
-      text-shadow: 0 1px 0 rgba(80, 110, 140, 0.12);
-    }
-
-    .compare-card.good {
-      background: rgba(17, 22, 44, 0.54);
-      color: var(--ok-text);
-      border-color: rgba(162, 231, 255, 0.62);
-      box-shadow: 0 0 0 1px rgba(164, 238, 255, 0.35), 0 12px 26px rgba(8, 15, 38, 0.35);
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
+    .compare p {
+      margin-bottom: 0;
     }
 
     .faq-item {
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(255, 255, 255, 0.07);
-      overflow: clip;
+      margin-top: 8px;
+      overflow: hidden;
     }
 
     .faq-q {
       width: 100%;
-      border: none;
-      text-align: left;
-      min-height: 58px;
-      padding: 0 16px;
-      color: #ecf8ff;
-      font-weight: 700;
+      min-height: 52px;
       background: transparent;
+      border: none;
+      color: var(--title-color);
+      text-align: left;
+      padding: 0 14px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      align-items: center;
       cursor: pointer;
-      font-size: 0.98rem;
-    }
-
-    .faq-q span:last-child {
-      font-size: 1.2rem;
-      font-weight: 500;
-      opacity: 0.9;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.open .faq-q span:last-child {
-      transform: rotate(45deg);
+      font-weight: 700;
     }
 
     .faq-a {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease;
+      transition: max-height 0.25s ease;
     }
 
     .faq-a p {
-      color: rgba(231, 244, 255, 0.9);
-      line-height: 1.7;
-      font-size: 0.94rem;
-      padding: 0 16px 14px;
+      padding: 0 14px 14px;
     }
 
-    #cta {
-      padding-bottom: 90px;
-    }
-
-    .cta-card {
-      padding: clamp(22px, 4vw, 44px);
+    .music-player {
+      margin-top: 12px;
+      padding: 14px;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
       align-items: center;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
-      border: 1px solid rgba(255, 255, 255, 0.32);
-      box-shadow: 0 18px 60px rgba(12, 21, 44, 0.38);
-      position: relative;
+    }
+
+    .music-meta {
+      color: var(--meta-color);
+      font-size: 13px;
+    }
+
+    .music-bar {
+      height: 6px;
+      background: var(--divider);
+      border-radius: 999px;
       overflow: hidden;
+      position: relative;
     }
 
-    .cta-card::after {
-      content: "";
+    .music-fill {
       position: absolute;
-      inset: -35%;
-      background: radial-gradient(circle at 70% 45%, rgba(141, 232, 255, 0.24), transparent 58%);
-      pointer-events: none;
+      inset: 0 auto 0 0;
+      width: 35%;
+      background: var(--accent);
+      animation: musicPulse 3s ease-in-out infinite;
     }
 
-    .cta-card h2 {
-      font-size: clamp(1.6rem, 3vw, 2.8rem);
-      line-height: 1.16;
-      margin-bottom: 8px;
-      text-wrap: balance;
-    }
-
-    .cta-card p {
-      color: rgba(232, 247, 255, 0.9);
-      max-width: 58ch;
-      line-height: 1.68;
-      font-size: 1rem;
-    }
-
-    .cta-btn {
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      color: #051129;
-      background: linear-gradient(110deg, var(--cta-start), var(--cta-end));
-      min-height: 52px;
-      padding: 0 24px;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 0.01em;
-      white-space: nowrap;
-      box-shadow: 0 0 0 rgba(140, 233, 255, 0), 0 14px 28px rgba(86, 150, 255, 0.34);
-      cursor: pointer;
-      transition: box-shadow 0.3s ease, transform 0.3s ease, filter 0.3s ease;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .cta-btn:hover,
-    .cta-btn:focus-visible {
-      outline: none;
-      transform: translateY(-2px);
-      filter: saturate(1.1);
-      box-shadow: 0 0 22px rgba(138, 227, 255, 0.75), 0 18px 34px rgba(88, 155, 255, 0.5);
+    @keyframes musicPulse {
+      0%, 100% { width: 25%; }
+      50% { width: 85%; }
     }
 
     footer {
-      padding: 28px 0 40px;
+      padding: 26px 0 42px;
     }
 
     .footer-inner {
+      padding: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
       flex-wrap: wrap;
-      color: rgba(221, 239, 255, 0.82);
-      font-size: 0.9rem;
-      padding: 16px;
+      gap: 10px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .footer-inner p {
+      color: var(--meta-color);
+      margin-bottom: 0;
     }
 
-    .footer-links a {
-      min-height: 36px;
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 0 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .footer-links a:hover,
-    .footer-links a:focus-visible {
-      outline: none;
-      transform: translateY(-1px);
-      border-color: rgba(166, 233, 255, 0.78);
-    }
-
-    .glow-hover {
-      transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .glow-hover:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(12, 24, 58, 0.38), 0 0 20px rgba(149, 225, 255, 0.35);
-      border-color: rgba(177, 237, 255, 0.8);
+    @media (max-width: 1200px) {
+      .container {
+        width: min(1080px, calc(100vw - 28px));
+      }
     }
 
     @media (max-width: 980px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
+      .top-nav {
+        justify-content: center;
       }
 
-      .hero-cards-wrap {
-        min-height: 410px;
+      .brand {
+        width: 100%;
+        text-align: center;
       }
 
+      .nav-links {
+        justify-content: center;
+      }
+
+      .hero-grid,
       .playground {
         grid-template-columns: 1fr;
       }
 
-      .industry-grid,
-      .brand-grid,
-      .token-grid,
-      .stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .hero-side {
+        min-height: 300px;
       }
 
-      .cta-card {
-        grid-template-columns: 1fr;
+      .stats,
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 680px) {
-      #site-header {
-        height: auto;
+    @media (max-width: 820px) {
+      .hero {
+        min-height: auto;
       }
 
-      .header-inner {
-        min-height: 72px;
-        padding: 10px 0;
-      }
-
-      .header-nav {
-        display: none;
-      }
-
-      #hero {
-        padding-top: 84px;
-      }
-
-      .hero-copy,
-      .block,
+      .hero-main,
+      .hero-side,
       .controls,
-      .playground-card {
-        padding: 20px;
+      .play-demo,
+      .music-player,
+      .card {
+        padding: 16px;
       }
 
-      .float-card {
-        width: 46vw;
-        min-width: 160px;
-        padding: 14px;
+      .hero-main h1 {
+        font-size: clamp(28px, 9vw, 48px);
       }
 
-      .card-1 { left: 2%; top: 6%; }
-      .card-2 { right: 2%; top: 32%; }
-      .card-3 { left: 12%; bottom: 4%; }
+      .float-panel {
+        position: static;
+        width: 100%;
+        margin-bottom: 10px;
+      }
 
-      .industry-grid,
-      .brand-grid,
-      .token-grid,
-      .stats {
+      .panel-1,
+      .panel-2,
+      .panel-3 {
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .top-nav {
+        padding: 10px;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-links li {
+        flex: 1 1 calc(50% - 6px);
+      }
+
+      .nav-links a {
+        width: 100%;
+        justify-content: center;
+        min-height: 36px;
+        font-size: 13px;
+      }
+
+      .hero-sub,
+      .card p,
+      .card li {
+        font-size: 14px;
+      }
+
+      .stats,
+      .grid-3 {
         grid-template-columns: 1fr;
       }
 
-      .cta-btn {
+      .music-player {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .meta {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        width: calc(100vw - 16px);
+      }
+
+      .top-nav {
+        border-radius: 12px;
+      }
+
+      .hero-main h1 {
+        font-size: 28px;
+      }
+
+      .button {
         width: 100%;
+      }
+
+      .faq-q {
+        min-height: 48px;
+        padding: 0 12px;
+        font-size: 14px;
       }
     }
 
@@ -1081,326 +781,240 @@
         animation: none !important;
         transition: none !important;
       }
-
-      html {
-        scroll-behavior: auto;
-      }
     }
   </style>
 </head>
 <body>
-  <div id="progress-bar" aria-hidden="true"></div>
+  <div id="progress" aria-hidden="true"></div>
 
-  <div class="site-shell" id="site-shell">
-    <header id="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="https://hidezign.com">H! Dezign</a>
-        <nav aria-label="Primary navigation">
-          <ul class="header-nav">
+  <div class="site">
+    <header>
+      <div class="container">
+        <div class="top-nav glass">
+          <a class="brand" href="https://hidezign.com">H! Dezign</a>
+          <ul class="nav-links" aria-label="Primary">
             <li><a href="https://hidezign.com">Home</a></li>
+            <li><a href="https://hidezign.com/work">Work</a></li>
+            <li><a href="https://hidezign.com/services">Services</a></li>
+            <li><a href="https://hidezign.com/about-us">About Us</a></li>
             <li><a href="https://hidezign.com/blog">Blog</a></li>
-            <li><a href="#playground">Playground</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#cta">Free Audit</a></li>
+            <li><a href="https://hidezign.com/contact-us">Contact Us</a></li>
           </ul>
-        </nav>
+        </div>
       </div>
     </header>
 
     <main>
-      <section id="hero">
+      <section class="hero section">
         <div class="container hero-grid">
-          <article class="glass hero-copy glow-hover" data-parallax="8">
-            <p class="eyebrow">Design Systems / UI Trends 2026</p>
-            <h1 class="hero-title">Glassmorphism Design <span>The Definitive Guide</span></h1>
-            <p class="hero-sub">Frosted glass, soft blurs, translucency — the aesthetic dominating SaaS dashboards and fintech apps.</p>
-            <div class="hero-meta">
-              <span>Updated April 25, 2026</span>
-              <span id="reading-time">11 min read</span>
-              <span>By H! Dezign Research Team</span>
+          <article class="glass hero-main" id="hero-main">
+            <span class="badge">Design Style</span>
+            <h1>Glassmorphism Design<br />The Definitive Guide</h1>
+            <p class="hero-sub">Frosted glass, soft blurs, translucency - the aesthetic dominating SaaS dashboards and fintech apps.</p>
+            <div class="meta">
+              <span>Updated Apr 25, 2026</span>
+              <span>12 min read</span>
             </div>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#what-is-glassmorphism">Start Reading</a>
-              <a class="btn btn-ghost" href="#playground">Try Glass Playground</a>
-            </div>
+            <a class="button" href="#what-is-glassmorphism">Start Reading</a>
           </article>
 
-          <div class="hero-cards-wrap" aria-hidden="true" id="hero-parallax-zone">
-            <div class="ambient-glow g1"></div>
-            <div class="ambient-glow g2"></div>
-
-            <div class="glass float-card card-1 glow-hover" data-parallax="16">
-              <h3>Transparency</h3>
-              <p>Semi-opaque surfaces expose context and create modern visual depth.</p>
+          <aside class="glass hero-side" id="hero-parallax-zone" aria-hidden="true">
+            <div class="float-panel panel-1" data-parallax="10">
+              <span class="badge">Transparency</span>
+              <p>Layer context stays visible through translucent cards.</p>
             </div>
-
-            <div class="glass float-card card-2 glow-hover" data-parallax="12">
-              <h3>Backdrop Blur</h3>
-              <p>Frosted blur separates layers without heavy containers or hard borders.</p>
+            <div class="float-panel panel-2" data-parallax="14">
+              <span class="badge">Blur</span>
+              <p>Backdrop blur separates layers while keeping depth soft.</p>
             </div>
-
-            <div class="glass float-card card-3 glow-hover" data-parallax="18">
-              <h3>Layered Depth</h3>
-              <p>Shadows, gradients, and highlights make interface blocks feel floating and premium.</p>
+            <div class="float-panel panel-3" data-parallax="18">
+              <span class="badge">Depth</span>
+              <p>Subtle border and shadow create a floating SaaS panel feel.</p>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section id="breadcrumb" class="container">
-        <nav class="glass breadcrumb-inner" aria-label="Breadcrumb">
-          <a href="https://hidezign.com">Home</a>
-          <span class="sep" aria-hidden="true">/</span>
-          <a href="https://hidezign.com/blog">Blog</a>
-          <span class="sep" aria-hidden="true">/</span>
-          <span aria-current="page">Glassmorphism Design</span>
-        </nav>
+      <section class="section">
+        <div class="container">
+          <nav class="breadcrumb glass" aria-label="Breadcrumb">
+            <a href="https://hidezign.com">Home</a>
+            <span>/</span>
+            <a href="https://hidezign.com/blog">Blog</a>
+            <span>/</span>
+            <span>Glassmorphism Design</span>
+          </nav>
+        </div>
       </section>
 
-      <section class="section" aria-label="Guide content">
+      <section class="section">
         <div class="container content-grid">
-          <article class="glass block glow-hover" id="what-is-glassmorphism">
+          <article class="glass card" id="what-is-glassmorphism">
             <h2>1. What is Glassmorphism</h2>
-            <p>Glassmorphism is a user interface style that mimics frosted glass by combining translucent layers with background blur and soft lighting. Instead of using flat blocks, it builds visual hierarchy with depth, making components feel suspended above colorful atmospheres.</p>
-            <ul class="bullets">
-              <li>Transparency: cards usually use 6% to 16% white opacity.</li>
-              <li>Backdrop blur: 12px to 30px depending on viewport and context density.</li>
-              <li>Subtle borders: thin 1px lines around cards to define edges.</li>
-              <li>Layer depth: shadows, glow accents, and spatial offsets create stack order.</li>
+            <div class="divider"></div>
+            <p>Glassmorphism is a visual system built around transparency, backdrop blur, subtle borders, and layered depth. It creates the feeling of frosted panels floating above a dark product background.</p>
+            <ul>
+              <li>Transparency with readable text overlays.</li>
+              <li>Backdrop blur to separate content layers.</li>
+              <li>Subtle border contrast for panel definition.</li>
+              <li>Soft depth for premium interface hierarchy.</li>
             </ul>
           </article>
 
-          <article class="glass block glow-hover" id="why-trending">
-            <h2>2. Why It’s Trending</h2>
-            <p>In 2026, products compete on perception as much as functionality. Glassmorphism signals premium quality, motion readiness, and modernity in one glance. It also aligns with hardware trends where OLED displays and high-density screens make blur and glow effects look refined.</p>
+          <article class="glass card" id="why-trending">
+            <h2>2. Why It's Trending</h2>
+            <div class="divider"></div>
+            <p>The style communicates modern product quality fast. It works especially well for software products where card-based dashboards and modular UI blocks are core to the experience.</p>
             <div class="stats">
-              <div class="stat">
-                <span class="num">+42%</span>
-                <span class="label">Higher visual recall</span>
+              <div class="glass stat">
+                <strong>+42%</strong>
+                <span>Visual Recall</span>
               </div>
-              <div class="stat">
-                <span class="num">+31%</span>
-                <span class="label">Perceived product quality lift</span>
+              <div class="glass stat">
+                <strong>+31%</strong>
+                <span>Perceived Quality</span>
               </div>
-              <div class="stat">
-                <span class="num">+27%</span>
-                <span class="label">Landing page engagement lift</span>
+              <div class="glass stat">
+                <strong>+27%</strong>
+                <span>Engagement Lift</span>
               </div>
             </div>
           </article>
 
-          <article class="glass block glow-hover" id="industries">
+          <article class="glass card" id="industries">
             <h2>3. Industries Using It</h2>
-            <p>The style is strongest in digital-first categories where dashboards, data cards, and layered panels dominate interface architecture.</p>
-            <div class="industry-grid">
-              <div class="chip-card">
-                <h3>Fintech</h3>
-                <p>Portfolio cards, transaction overlays, and KPI surfaces look trustworthy and high-end.</p>
-              </div>
-              <div class="chip-card">
-                <h3>SaaS Analytics</h3>
-                <p>Dense data stays organized through translucent widgets and depth-focused grouping.</p>
-              </div>
-              <div class="chip-card">
-                <h3>HealthTech</h3>
-                <p>Cleaner visual hierarchy helps separate sensitive metrics and guided actions.</p>
-              </div>
-              <div class="chip-card">
-                <h3>Media Platforms</h3>
-                <p>Floating playback controls and search overlays pair well with dynamic backdrops.</p>
-              </div>
-              <div class="chip-card">
-                <h3>AI Products</h3>
-                <p>Conversational UIs use glass panes for confidence, context, and layer transitions.</p>
-              </div>
-              <div class="chip-card">
-                <h3>Luxury E-commerce</h3>
-                <p>Glass product cards create polished discovery experiences for premium catalogs.</p>
-              </div>
+            <div class="divider"></div>
+            <div class="grid-3">
+              <div class="glass mini"><h3>Fintech</h3><p>Portfolio and transaction layers feel premium.</p></div>
+              <div class="glass mini"><h3>SaaS</h3><p>Dashboard widgets become easier to scan by depth.</p></div>
+              <div class="glass mini"><h3>HealthTech</h3><p>Cards help organize sensitive workflows clearly.</p></div>
             </div>
           </article>
 
-          <article class="glass block glow-hover" id="brand-examples">
+          <article class="glass card" id="brand-examples">
             <h2>4. Real Brand Examples</h2>
-            <p>Brands often do not label it as glassmorphism directly, but many top products rely on frosted overlays and translucent system panels.</p>
-            <div class="brand-grid">
-              <div class="chip-card">
-                <h3>Apple UI Language</h3>
-                <p>System surfaces and overlays use layered blur to keep context visible.</p>
-              </div>
-              <div class="chip-card">
-                <h3>Stripe-style Dashboards</h3>
-                <p>High-contrast translucent cards blend polish with operational clarity.</p>
-              </div>
-              <div class="chip-card">
-                <h3>Linear-inspired Product Panels</h3>
-                <p>Subtle glow + glass effects communicate speed, precision, and modern software quality.</p>
-              </div>
-            </div>
+            <div class="divider"></div>
+            <p>Many top UI systems use glass-like overlays in navigation, notifications, and panel-based workflows. The approach works best when contrast-safe content rules are enforced.</p>
           </article>
 
-          <article class="glass block glow-hover" id="how-to-use">
+          <article class="glass card" id="how-to-use">
             <h2>5. How to Use It</h2>
-            <p>Design glassmorphism as a system, not a one-off effect. The key is consistency across opacity, blur, border, elevation, and fallback behavior.</p>
-            <ul class="bullets">
-              <li>Apply one blur scale for base cards and one for elevated modals.</li>
-              <li>Reserve strongest glow for interactive priorities like CTA and active tabs.</li>
-              <li>Increase overlay darkness behind text-heavy glass cards for readability.</li>
-              <li>Keep motion subtle: depth shifts, parallax, and reveal blur transitions are enough.</li>
+            <div class="divider"></div>
+            <ul>
+              <li>Define blur tokens and do not improvise per card.</li>
+              <li>Use one border token across all panels for consistency.</li>
+              <li>Restrict accent color to links, buttons, and highlights.</li>
+              <li>Use card hover depth for hierarchy, not random color shifts.</li>
             </ul>
           </article>
 
-          <article class="glass block glow-hover" id="accessibility">
+          <article class="glass card" id="accessibility">
             <h2>6. Accessibility Issues (Important)</h2>
-            <p>Glass UIs can quickly fail accessibility when decorative depth overpowers legibility. Contrast ratio, text background stability, and focus visibility must be enforced.</p>
-            <ul class="bullets">
-              <li>Contrast issues: low-opacity cards over noisy backgrounds reduce text clarity.</li>
-              <li>Readability problems: small text on bright blur layers loses edge definition.</li>
-              <li>Fixes: stronger overlays, reduced blur behind text blocks, and high-contrast text tokens.</li>
-            </ul>
-
-            <div class="a11y-toggle" role="group" aria-label="Accessibility comparison mode">
-              <button class="toggle-btn active" id="mode-good" type="button">GOOD Glass UI</button>
-              <button class="toggle-btn" id="mode-bad" type="button">BAD Glass UI</button>
+            <div class="divider"></div>
+            <p>Primary risks: low text contrast and unstable text backgrounds. Glass UI must be paired with readable typography, stronger panel overlays, and clear focus states.</p>
+            <div class="a11y-toggle">
+              <button class="toggle active" id="good-mode">GOOD Glass UI</button>
+              <button class="toggle" id="bad-mode">BAD Glass UI</button>
             </div>
-
-            <div class="compare">
-              <span class="label">Live Accessibility Preview</span>
-              <div class="compare-card good" id="contrast-demo-card">
-                This panel keeps readability high with stronger background tint, improved contrast, and a crisp border. Use this approach for core content blocks.
-              </div>
+            <div class="glass compare" id="a11y-demo">
+              <p>Good mode: stronger panel contrast, stable readability, and clear edge definition.</p>
             </div>
           </article>
 
-          <article class="glass block glow-hover" id="design-tokens">
+          <article class="glass card" id="design-tokens">
             <h2>7. Design Tokens (Colors + Blur)</h2>
-            <p>Tokenize your glassmorphism system so teams can ship consistent interfaces at scale. These token ranges are production-safe for dashboards and product pages.</p>
-            <div class="token-grid">
-              <div class="chip-card">
-                <h3>Color Tokens</h3>
-                <p><code>--glass-bg: rgba(255,255,255,0.08)</code><br /><code>--glass-border: rgba(255,255,255,0.2)</code><br /><code>--text-primary: #f5f8ff</code></p>
+            <div class="divider"></div>
+            <div class="grid-3">
+              <div class="glass mini">
+                <h3>Color</h3>
+                <p><code>--accent: #a8c8ff</code><br /><code>--title-color: #ffffff</code></p>
               </div>
-              <div class="chip-card">
-                <h3>Blur Tokens</h3>
-                <p><code>--blur-sm: 12px</code><br /><code>--blur-md: 20px</code><br /><code>--blur-lg: 30px</code></p>
+              <div class="glass mini">
+                <h3>Surface</h3>
+                <p><code>--border</code><br /><code>--shadow</code><br /><code>--radius</code></p>
               </div>
-              <div class="chip-card">
-                <h3>Elevation Tokens</h3>
-                <p><code>--elevation-card: 0 8px 32px rgba(0,0,0,.25)</code><br /><code>--elevation-hover: 0 16px 36px rgba(0,0,0,.35)</code></p>
+              <div class="glass mini">
+                <h3>Blur</h3>
+                <p><code>backdrop-filter: blur(20px)</code></p>
               </div>
             </div>
           </article>
 
-          <article class="glass block glow-hover" id="playground">
+          <article class="glass card" id="playground">
             <h2>Glass Playground</h2>
-            <p class="section-lead">Use the live sliders to control blur and opacity. This demo updates in real time so you can calibrate your own production-safe glass style.</p>
+            <div class="divider"></div>
+            <p>Use the sliders to test blur and opacity live.</p>
             <div class="playground">
               <div class="glass controls">
-                <div class="range-group">
-                  <div class="range-head">
-                    <label for="blur-range">Backdrop Blur</label>
-                    <span id="blur-value">20px</span>
-                  </div>
-                  <input id="blur-range" type="range" min="0" max="30" step="1" value="20" />
+                <div class="control">
+                  <div class="control-head"><span>Blur</span><span id="blur-value">20px</span></div>
+                  <input id="blur-slider" type="range" min="0" max="30" value="20" />
                 </div>
-
-                <div class="range-group">
-                  <div class="range-head">
-                    <label for="opacity-range">Card Opacity</label>
-                    <span id="opacity-value">0.08</span>
-                  </div>
-                  <input id="opacity-range" type="range" min="0.02" max="0.25" step="0.01" value="0.08" />
-                </div>
-
-                <div class="range-group">
-                  <div class="range-head">
-                    <label for="glow-range">Glow Intensity</label>
-                    <span id="glow-value">0.40</span>
-                  </div>
-                  <input id="glow-range" type="range" min="0.1" max="0.9" step="0.01" value="0.40" />
+                <div class="control">
+                  <div class="control-head"><span>Opacity</span><span id="opacity-value">0.08</span></div>
+                  <input id="opacity-slider" type="range" min="0.02" max="0.25" step="0.01" value="0.08" />
                 </div>
               </div>
-
-              <div class="glass playground-card">
-                <div class="demo-card" id="demo-card">
-                  <h3>Product Revenue Layer</h3>
-                  <p>Fine tune this panel for your app. In production, pair the blur level with contrast-safe text and clear interactive states.</p>
-                  <div class="badge-row">
-                    <span class="badge">MRR +12.4%</span>
-                    <span class="badge">Retention 91%</span>
-                    <span class="badge">Latency 84ms</span>
-                  </div>
+              <div class="glass play-demo">
+                <div class="live-card" id="live-card">
+                  <span class="badge">Live Panel</span>
+                  <h3 style="margin: 10px 0 8px;">Frosted Data Widget</h3>
+                  <p>Layered translucency, clear borders, and controlled blur produce a premium UI.</p>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="glass block glow-hover" id="faq">
+          <article class="glass card" id="music-player">
+            <h2>Music Player Style Panel</h2>
+            <div class="divider"></div>
+            <p>This section demonstrates the same glass system on a media control layout to keep visual consistency across product surfaces.</p>
+            <div class="glass music-player">
+              <button class="button" type="button">Play</button>
+              <div>
+                <p style="margin-bottom: 6px;">Ambient Dashboard Track</p>
+                <div class="music-bar"><span class="music-fill"></span></div>
+              </div>
+              <span class="music-meta">02:18 / 04:40</span>
+            </div>
+          </article>
+
+          <article class="glass card" id="faq">
             <h2>8. FAQ</h2>
-            <div class="faq-list">
-              <div class="faq-item open">
-                <button class="faq-q" type="button" aria-expanded="true">
-                  <span>What is glassmorphism?</span>
-                  <span>+</span>
-                </button>
-                <div class="faq-a" style="max-height: 220px;">
-                  <p>Glassmorphism is a UI style using transparency, backdrop blur, subtle borders, and layered depth to replicate frosted glass panels in digital interfaces.</p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-q" type="button" aria-expanded="false">
-                  <span>Where is it used?</span>
-                  <span>+</span>
-                </button>
-                <div class="faq-a">
-                  <p>It is heavily used in fintech, SaaS dashboards, premium e-commerce interfaces, and modern product marketing pages where visual hierarchy and premium feel matter.</p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-q" type="button" aria-expanded="false">
-                  <span>Is it good for UX?</span>
-                  <span>+</span>
-                </button>
-                <div class="faq-a">
-                  <p>Yes, when hierarchy and contrast are strong. It can improve scannability and product perception, but poor implementation can hurt readability and accessibility.</p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-q" type="button" aria-expanded="false">
-                  <span>How to implement it?</span>
-                  <span>+</span>
-                </button>
-                <div class="faq-a">
-                  <p>Use translucent backgrounds, <code>backdrop-filter: blur(...)</code>, thin bright borders, soft elevation shadows, and a tokenized design system for consistency.</p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-q" type="button" aria-expanded="false">
-                  <span>Accessibility concerns?</span>
-                  <span>+</span>
-                </button>
-                <div class="faq-a">
-                  <p>Low text contrast and moving/noisy backdrops are the biggest risks. Counter with stronger overlays, readable typography sizes, and visible focus styles.</p>
-                </div>
-              </div>
+            <div class="divider"></div>
+            <div class="faq-item glass">
+              <button class="faq-q" aria-expanded="false"><span>What is glassmorphism?</span><span>+</span></button>
+              <div class="faq-a"><p>A UI style based on translucent surfaces, blur, and depth layering.</p></div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-q" aria-expanded="false"><span>Where is it used?</span><span>+</span></button>
+              <div class="faq-a"><p>SaaS dashboards, fintech apps, and premium web interfaces.</p></div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-q" aria-expanded="false"><span>Is it good for UX?</span><span>+</span></button>
+              <div class="faq-a"><p>Yes, if contrast, spacing, and hierarchy are handled correctly.</p></div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-q" aria-expanded="false"><span>How to implement it?</span><span>+</span></button>
+              <div class="faq-a"><p>Use reusable tokens for blur, borders, shadows, and typography contrast.</p></div>
+            </div>
+            <div class="faq-item glass">
+              <button class="faq-q" aria-expanded="false"><span>Accessibility concerns?</span><span>+</span></button>
+              <div class="faq-a"><p>Low contrast over translucent backgrounds is the main issue to avoid.</p></div>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="cta" class="section">
+      <section class="section" id="cta">
         <div class="container">
-          <div class="cta-card">
-            <div>
-              <h2>Want a high-converting glass UI?</h2>
-              <p>We craft conversion-focused glassmorphism interfaces for SaaS, fintech, and digital products with accessibility and performance built in.</p>
-            </div>
-            <a href="https://hidezign.com/contact-us" class="cta-btn">Get Free Audit →</a>
-          </div>
+          <article class="glass card">
+            <span class="badge">Design Style</span>
+            <h2 style="margin-top: 12px;">Want a high-converting glass UI?</h2>
+            <div class="divider"></div>
+            <p>We build conversion-focused glass interfaces with readable hierarchy and production-safe accessibility.</p>
+            <a class="button" href="https://hidezign.com/contact-us" style="margin-top: 14px;">Get Free Audit -></a>
+          </article>
         </div>
       </section>
     </main>
@@ -1409,12 +1023,7 @@
       <div class="container">
         <div class="glass footer-inner">
           <p>© 2026 H! Dezign. All rights reserved.</p>
-          <nav class="footer-links" aria-label="Footer navigation">
-            <a href="https://hidezign.com">Home</a>
-            <a href="https://hidezign.com/work">Work</a>
-            <a href="https://hidezign.com/blog">Blog</a>
-            <a href="mailto:hello@hidezign.com">hello@hidezign.com</a>
-          </nav>
+          <a href="https://hidezign.com/blog">Back to Blog</a>
         </div>
       </div>
     </footer>
@@ -1422,165 +1031,109 @@
 
   <script>
     (function () {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const progressBar = document.getElementById('progress-bar');
-      const header = document.getElementById('site-header');
-      const readingTimeEl = document.getElementById('reading-time');
-
-      function onScroll() {
-        const scrollTop = window.scrollY;
-        const fullHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = fullHeight > 0 ? (scrollTop / fullHeight) * 100 : 0;
-        progressBar.style.width = progress + '%';
-        header.classList.toggle('scrolled', scrollTop > 12);
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-
-      const articleText = Array.from(document.querySelectorAll('.block')).map((el) => el.innerText).join(' ');
-      const words = articleText.trim().split(/\s+/).filter(Boolean).length;
-      const minutes = Math.max(1, Math.round(words / 200));
-      readingTimeEl.textContent = minutes + ' min read';
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.18, rootMargin: '0px 0px -40px 0px' }
-      );
-
-      document.querySelectorAll('.block').forEach((block) => observer.observe(block));
-
-      const parallaxZone = document.getElementById('hero-parallax-zone');
-      const parallaxNodes = document.querySelectorAll('[data-parallax]');
-      let targetX = 0;
-      let targetY = 0;
-      let currentX = 0;
-      let currentY = 0;
-
-      function handlePointerMove(event) {
-        const rect = parallaxZone.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        targetX = x;
-        targetY = y;
-      }
-
-      function animateParallax() {
-        currentX += (targetX - currentX) * 0.08;
-        currentY += (targetY - currentY) * 0.08;
-
-        parallaxNodes.forEach((node) => {
-          const depth = Number(node.getAttribute('data-parallax')) || 8;
-          const tx = currentX * depth;
-          const ty = currentY * depth;
-          node.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-        });
-
-        requestAnimationFrame(animateParallax);
-      }
-
-      if (!prefersReducedMotion) {
-        parallaxZone.addEventListener('mousemove', handlePointerMove, { passive: true });
-        parallaxZone.addEventListener('mouseleave', () => {
-          targetX = 0;
-          targetY = 0;
-        });
-        requestAnimationFrame(animateParallax);
-      }
-
-      const blurRange = document.getElementById('blur-range');
-      const opacityRange = document.getElementById('opacity-range');
-      const glowRange = document.getElementById('glow-range');
-
+      const progress = document.getElementById('progress');
+      const blurSlider = document.getElementById('blur-slider');
+      const opacitySlider = document.getElementById('opacity-slider');
       const blurValue = document.getElementById('blur-value');
       const opacityValue = document.getElementById('opacity-value');
-      const glowValue = document.getElementById('glow-value');
-      const demoCard = document.getElementById('demo-card');
+      const liveCard = document.getElementById('live-card');
 
-      function updateDemoCard() {
-        const blur = Number(blurRange.value);
-        const opacity = Number(opacityRange.value);
-        const glow = Number(glowRange.value);
+      function updateProgress() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        progress.style.width = pct + '%';
+      }
 
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      function updatePlayground() {
+        const blur = Number(blurSlider.value);
+        const opacity = Number(opacitySlider.value);
         blurValue.textContent = blur + 'px';
         opacityValue.textContent = opacity.toFixed(2);
-        glowValue.textContent = glow.toFixed(2);
-
-        demoCard.style.backdropFilter = `blur(${blur}px)`;
-        demoCard.style.webkitBackdropFilter = `blur(${blur}px)`;
-        demoCard.style.background = `rgba(255, 255, 255, ${opacity.toFixed(2)})`;
-        demoCard.style.boxShadow = `0 20px 40px rgba(10, 19, 46, ${Math.max(0.25, glow).toFixed(2)}), 0 0 22px rgba(146, 225, 255, ${(glow * 0.6).toFixed(2)})`;
+        liveCard.style.backdropFilter = `blur(${blur}px)`;
+        liveCard.style.webkitBackdropFilter = `blur(${blur}px)`;
+        liveCard.style.background = `rgba(255,255,255,${opacity.toFixed(2)})`;
       }
 
-      [blurRange, opacityRange, glowRange].forEach((input) => {
-        input.addEventListener('input', updateDemoCard, { passive: true });
-      });
-      updateDemoCard();
+      blurSlider.addEventListener('input', updatePlayground, { passive: true });
+      opacitySlider.addEventListener('input', updatePlayground, { passive: true });
+      updatePlayground();
 
-      const modeGood = document.getElementById('mode-good');
-      const modeBad = document.getElementById('mode-bad');
-      const contrastDemo = document.getElementById('contrast-demo-card');
+      const goodMode = document.getElementById('good-mode');
+      const badMode = document.getElementById('bad-mode');
+      const a11yDemo = document.getElementById('a11y-demo');
 
-      function setA11yMode(mode) {
+      function setMode(mode) {
         const good = mode === 'good';
-        modeGood.classList.toggle('active', good);
-        modeBad.classList.toggle('active', !good);
+        goodMode.classList.toggle('active', good);
+        badMode.classList.toggle('active', !good);
 
-        contrastDemo.classList.toggle('good', good);
-        contrastDemo.classList.toggle('bad', !good);
-
-        contrastDemo.textContent = good
-          ? 'This panel keeps readability high with stronger background tint, improved contrast, and a crisp border. Use this approach for core content blocks.'
-          : 'This panel demonstrates poor readability: weak contrast, low edge definition, and soft text over translucent noise. Avoid this pattern in production.';
+        if (good) {
+          a11yDemo.style.background = 'rgba(255,255,255,0.12)';
+          a11yDemo.style.border = 'var(--border)';
+          a11yDemo.innerHTML = '<p>Good mode: stronger panel contrast, stable readability, and clear edge definition.</p>';
+        } else {
+          a11yDemo.style.background = 'rgba(255,255,255,0.05)';
+          a11yDemo.style.border = 'var(--border)';
+          a11yDemo.innerHTML = '<p>Bad mode: low opacity and weak readability make content harder to read.</p>';
+        }
       }
 
-      modeGood.addEventListener('click', function () {
-        setA11yMode('good');
-      });
-      modeBad.addEventListener('click', function () {
-        setA11yMode('bad');
-      });
+      goodMode.addEventListener('click', function () { setMode('good'); });
+      badMode.addEventListener('click', function () { setMode('bad'); });
 
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach((item) => {
-        const button = item.querySelector('.faq-q');
-        const answer = item.querySelector('.faq-a');
+      const zone = document.getElementById('hero-parallax-zone');
+      const nodes = document.querySelectorAll('[data-parallax]');
+      const canAnimateParallax = window.matchMedia('(prefers-reduced-motion: no-preference)').matches && window.innerWidth > 820;
+      let tx = 0;
+      let ty = 0;
+      let cx = 0;
+      let cy = 0;
 
+      function move(event) {
+        const rect = zone.getBoundingClientRect();
+        tx = (event.clientX - rect.left) / rect.width - 0.5;
+        ty = (event.clientY - rect.top) / rect.height - 0.5;
+      }
+
+      function render() {
+        cx += (tx - cx) * 0.08;
+        cy += (ty - cy) * 0.08;
+        nodes.forEach((node) => {
+          const d = Number(node.getAttribute('data-parallax')) || 10;
+          node.style.transform = `translate3d(${cx * d}px, ${cy * d}px, 0)`;
+        });
+        requestAnimationFrame(render);
+      }
+
+      if (zone && canAnimateParallax) {
+        zone.addEventListener('mousemove', move, { passive: true });
+        zone.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
+        requestAnimationFrame(render);
+      }
+
+      const faqButtons = document.querySelectorAll('.faq-q');
+      faqButtons.forEach((button) => {
         button.addEventListener('click', function () {
-          const isOpen = item.classList.contains('open');
-
-          faqItems.forEach((other) => {
+          const item = button.closest('.faq-item');
+          const panel = item.querySelector('.faq-a');
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach((other) => {
             other.classList.remove('open');
             other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
             other.querySelector('.faq-a').style.maxHeight = '0px';
           });
-
-          if (!isOpen) {
+          if (!open) {
             item.classList.add('open');
             button.setAttribute('aria-expanded', 'true');
-            answer.style.maxHeight = answer.scrollHeight + 'px';
+            panel.style.maxHeight = panel.scrollHeight + 'px';
           }
         });
-      });
-
-      const initialOpen = document.querySelector('.faq-item.open .faq-a');
-      if (initialOpen) {
-        initialOpen.style.maxHeight = initialOpen.scrollHeight + 'px';
-      }
-
-      window.addEventListener('resize', function () {
-        const opened = document.querySelector('.faq-item.open .faq-a');
-        if (opened) opened.style.maxHeight = opened.scrollHeight + 'px';
       });
     })();
   </script>
 </body>
 </html>
+

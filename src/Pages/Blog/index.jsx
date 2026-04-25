@@ -39,7 +39,7 @@ const blogPosts = [
     title: 'Glassmorphism Design: The Definitive Guide',
     excerpt: 'Frosted glass, soft blurs, translucency — the aesthetic dominating SaaS dashboards and fintech apps. How to use it without breaking accessibility.',
     category: 'Design Style',
-    date: 'Coming Soon',
+    date: 'Apr 25, 2026',
     readTime: '10 min read',
     theme: {
       bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
