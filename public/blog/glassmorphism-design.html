@@ -137,6 +137,8 @@
       --border: 1px solid rgba(255,255,255,0.18);
       --shadow: 0 8px 32px rgba(31,38,135,0.37);
       --radius: 16px;
+      --glass-opacity: 0.08;
+      --glass-blur: 20px;
       --badge-bg: rgba(255,255,255,0.1);
       --badge-color: rgba(255,255,255,0.9);
       --badge-border: 1px solid rgba(255,255,255,0.3);
@@ -200,9 +202,9 @@
     }
 
     .glass {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255,255,255,var(--glass-opacity));
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
       border: var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -250,6 +252,22 @@
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
+    }
+
+    .nav-toggle {
+      display: none;
+      min-height: 38px;
+      min-width: 38px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: var(--badge-border);
+      background: var(--badge-bg);
+      color: var(--badge-color);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
     }
 
     .brand {
@@ -371,9 +389,9 @@
       position: absolute;
       border: var(--border);
       border-radius: var(--radius);
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255,255,255,var(--glass-opacity));
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
       box-shadow: var(--shadow);
       padding: 14px;
       transition: transform 0.25s ease;
@@ -521,9 +539,9 @@
       padding: 18px;
       border: var(--border);
       border-radius: var(--radius);
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255,255,255,var(--glass-opacity));
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
       box-shadow: var(--shadow);
       transition: all 0.2s linear;
     }
@@ -730,22 +748,40 @@
     @media (max-width: 640px) {
       .top-nav {
         padding: 10px;
+        justify-content: space-between;
+      }
+
+      .brand {
+        width: auto;
+        text-align: left;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
       }
 
       .nav-links {
+        display: none;
         width: 100%;
-        gap: 6px;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .top-nav.menu-open .nav-links {
+        display: flex;
       }
 
       .nav-links li {
-        flex: 1 1 calc(50% - 6px);
+        width: 100%;
+        flex: 1 1 auto;
       }
 
       .nav-links a {
         width: 100%;
-        justify-content: center;
-        min-height: 36px;
-        font-size: 13px;
+        justify-content: flex-start;
+        min-height: 40px;
+        font-size: 14px;
       }
 
       .hero-sub,
@@ -809,7 +845,8 @@
       <div class="container">
         <div class="top-nav glass">
           <a class="brand" href="https://hidezign.com">H! Dezign</a>
-          <ul class="nav-links" aria-label="Primary">
+          <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">☰</button>
+          <ul class="nav-links" id="navMenu" aria-label="Primary">
             <li><a href="https://hidezign.com">Home</a></li>
             <li><a href="https://hidezign.com/work">Work</a></li>
             <li><a href="https://hidezign.com/services">Services</a></li>
@@ -1054,7 +1091,9 @@
       const opacitySlider = document.getElementById('opacity-slider');
       const blurValue = document.getElementById('blur-value');
       const opacityValue = document.getElementById('opacity-value');
-      const liveCard = document.getElementById('live-card');
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      const topNav = document.querySelector('.top-nav');
 
       function updateProgress() {
         const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -1070,9 +1109,8 @@
         const opacity = Number(opacitySlider.value);
         blurValue.textContent = blur + 'px';
         opacityValue.textContent = opacity.toFixed(2);
-        liveCard.style.backdropFilter = `blur(${blur}px)`;
-        liveCard.style.webkitBackdropFilter = `blur(${blur}px)`;
-        liveCard.style.background = `rgba(255,255,255,${opacity.toFixed(2)})`;
+        document.documentElement.style.setProperty('--glass-blur', `${blur}px`);
+        document.documentElement.style.setProperty('--glass-opacity', opacity.toFixed(2));
       }
 
       blurSlider.addEventListener('input', updatePlayground, { passive: true });
@@ -1132,21 +1170,25 @@
         requestAnimationFrame(render);
       }
 
+      if (navToggle && navMenu && topNav) {
+        navToggle.addEventListener('click', function () {
+          const isOpen = topNav.classList.toggle('menu-open');
+          navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        navMenu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', function () {
+            topNav.classList.remove('menu-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
       const player = document.querySelector('.music-player');
       const bgMusic = document.getElementById('bgMusic');
       const playBtn = document.getElementById('playBtn');
       const musicFill = document.getElementById('musicFill');
       const timeDisplay = document.getElementById('timeDisplay');
-      const hero = document.getElementById('hero');
-      const cta = document.getElementById('cta');
-      const textHeavyIds = new Set([
-        'what-is-glassmorphism',
-        'why-trending',
-        'how-to-use',
-        'accessibility',
-        'design-tokens',
-        'faq',
-      ]);
 
       const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
       const lerp = (a, b, t) => a + (b - a) * t;
@@ -1158,13 +1200,6 @@
         return `${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}`;
       };
 
-      const isVisible = (element) => {
-        if (!element) return false;
-        const rect = element.getBoundingClientRect();
-        const vh = window.innerHeight;
-        return rect.top < vh * 0.72 && rect.bottom > vh * 0.28;
-      };
-
       const state = {
         isPlaying: false,
         isFadingIn: false,
@@ -1172,8 +1207,6 @@
         fadeDuration: 2000,
         volumeCurrent: 0,
         volumeTarget: 0.2,
-        scrollRatio: 0,
-        needsScrollCalc: true,
       };
 
       const setPlayingUI = (playing) => {
@@ -1183,30 +1216,8 @@
         playBtn.setAttribute('aria-label', playing ? 'Pause ambient audio' : 'Play ambient audio');
       };
 
-      const computeSectionModifier = () => {
-        let modifier = 0;
-        if (isVisible(hero) || isVisible(cta)) modifier += 0.03;
-
-        const probe = document.elementFromPoint(window.innerWidth * 0.5, window.innerHeight * 0.45);
-        const card = probe && probe.closest ? probe.closest('.card') : null;
-        if (card && textHeavyIds.has(card.id)) modifier -= 0.02;
-
-        return modifier;
-      };
-
       const computeVolumeTarget = () => {
-        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        state.scrollRatio = clamp(window.scrollY / maxScroll, 0, 1);
-
-        let base = 0.15;
-        if (state.scrollRatio <= 0.2) {
-          base = 0.25;
-        } else if (state.scrollRatio >= 0.8) {
-          const t = (state.scrollRatio - 0.8) / 0.2;
-          base = lerp(0.15, 0.08, clamp(t, 0, 1));
-        }
-
-        state.volumeTarget = clamp(base + computeSectionModifier(), 0.05, 0.3);
+        state.volumeTarget = 0.2;
       };
 
       const syncTimeAndProgress = (now) => {
@@ -1230,10 +1241,7 @@
       };
 
       const engine = (now) => {
-        if (state.needsScrollCalc) {
-          computeVolumeTarget();
-          state.needsScrollCalc = false;
-        }
+        computeVolumeTarget();
 
         if (state.isPlaying) {
           if (state.isFadingIn) {
@@ -1278,14 +1286,6 @@
             bgMusic.pause();
             setPlayingUI(false);
           }
-        });
-
-        window.addEventListener('scroll', function () {
-          state.needsScrollCalc = true;
-        }, { passive: true });
-
-        window.addEventListener('resize', function () {
-          state.needsScrollCalc = true;
         });
 
         bgMusic.addEventListener('loadedmetadata', function () {
