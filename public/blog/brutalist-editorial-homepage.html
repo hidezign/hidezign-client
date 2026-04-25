@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brutalist Editorial Blog Homepage</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      cursor: none;
+    }
+
+    :root {
+      --bg: #FFFF00;
+      --text: #000000;
+      --muted-1: #111111;
+      --muted-2: #333333;
+      --border: 4px solid #000000;
+      --shadow: 6px 6px 0 #000000;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Arial Black", Impact, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      position: relative;
+    }
+
+    .divider {
+      width: 100%;
+      height: 8px;
+      background: #000;
+      margin: 16px 0;
+    }
+
+    .meta {
+      font-size: 11px;
+      color: var(--muted-2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .menu-toggle,
+    .newsletter-trigger,
+    .close-btn,
+    .menu-close {
+      background: var(--bg);
+      color: var(--text);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 0;
+      text-transform: uppercase;
+      font-family: "Arial Black", Impact, sans-serif;
+      padding: 10px 14px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 1200;
+      transform: rotate(-2deg);
+    }
+
+    .newsletter-trigger {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1200;
+      transform: rotate(2deg);
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      border-bottom: var(--border);
+      overflow: hidden;
+      padding: 96px 16px 30px;
+    }
+
+    .hero-text {
+      position: absolute;
+      text-transform: uppercase;
+      line-height: 0.8;
+      user-select: none;
+    }
+
+    .hero-text.main-a {
+      top: 12%;
+      left: 3%;
+      font-size: clamp(78px, 15vw, 160px);
+      transform: rotate(-2deg);
+      z-index: 2;
+    }
+
+    .hero-text.main-b {
+      top: 36%;
+      left: 28%;
+      font-size: clamp(74px, 14vw, 150px);
+      transform: rotate(1.6deg);
+      z-index: 4;
+    }
+
+    .hero-text.main-c {
+      bottom: 13%;
+      left: 7%;
+      font-size: clamp(66px, 13vw, 130px);
+      transform: rotate(-1.1deg);
+      z-index: 3;
+    }
+
+    .hero-label {
+      position: absolute;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      background: var(--bg);
+      padding: 7px 10px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 8;
+    }
+
+    .label-1 { top: 23%; right: 10%; transform: rotate(2deg); }
+    .label-2 { bottom: 18%; right: 18%; transform: rotate(-2deg); }
+    .label-3 { bottom: 9%; left: 48%; transform: rotate(1deg); }
+
+    .hero-sub {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      max-width: 360px;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 10px;
+      background: var(--bg);
+      font-size: 13px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      z-index: 9;
+    }
+
+    .blog-wrap {
+      padding: 28px 12px 90px;
+      position: relative;
+    }
+
+    .section-head {
+      font-size: clamp(40px, 8vw, 96px);
+      text-transform: uppercase;
+      margin: 0 0 18px 3px;
+      transform: rotate(-0.7deg);
+      line-height: 0.85;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--bg);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 0;
+      padding: 14px;
+      position: relative;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .card h3 {
+      font-size: clamp(24px, 3.8vw, 56px);
+      line-height: 0.92;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.3;
+      color: var(--muted-1);
+      margin-bottom: 12px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #000;
+      color: #FFFF00;
+      border: 2px solid #000;
+      border-radius: 0;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 6px 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-meta {
+      font-size: 10px;
+      color: var(--muted-2);
+      letter-spacing: 0.09em;
+      line-height: 1.3;
+    }
+
+    .card:nth-child(1) { grid-column: span 7; transform: translateY(0px) rotate(-1deg); }
+    .card:nth-child(2) { grid-column: span 5; transform: translateY(22px) rotate(1.2deg); }
+    .card:nth-child(3) { grid-column: span 3; transform: translateY(-12px) rotate(-0.6deg); }
+    .card:nth-child(4) { grid-column: span 8; transform: translateY(10px) rotate(1deg); margin-left: -18px; }
+    .card:nth-child(5) { grid-column: span 4; transform: translateY(-16px) rotate(-1.4deg); }
+    .card:nth-child(6) { grid-column: span 6; transform: translateY(4px) rotate(1.4deg); }
+    .card:nth-child(7) { grid-column: span 3; transform: translateY(-10px) rotate(-1.2deg); }
+    .card:nth-child(8) { grid-column: span 3; transform: translateY(20px) rotate(0.7deg); }
+
+    .fullscreen-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #000;
+      color: #FFFF00;
+      z-index: 1400;
+      padding: 24px;
+      border: 10px solid #FFFF00;
+    }
+
+    .fullscreen-menu.active { display: block; }
+
+    .menu-close {
+      background: #FFFF00;
+      color: #000;
+      border: 4px solid #FFFF00;
+      box-shadow: 6px 6px 0 #FFFF00;
+      margin-bottom: 30px;
+    }
+
+    .menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .menu-list a {
+      color: #FFFF00;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: clamp(42px, 11vw, 130px);
+      line-height: 0.86;
+      letter-spacing: -0.03em;
+      display: inline-block;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1300;
+    }
+
+    .overlay.active { display: block; }
+
+    .newsletter-modal {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-1deg);
+      width: min(92vw, 640px);
+      z-index: 1500;
+      background: #FFFF00;
+      border: var(--border);
+      box-shadow: 10px 10px 0 #000;
+      padding: 18px;
+    }
+
+    .newsletter-modal.active { display: block; }
+
+    .newsletter-modal h2 {
+      text-transform: uppercase;
+      font-size: clamp(26px, 6vw, 72px);
+      line-height: 0.85;
+      margin-bottom: 12px;
+    }
+
+    .newsletter-modal p {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      text-transform: none;
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .modal-input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .modal-input-row input {
+      flex: 1;
+      min-width: 190px;
+      border: var(--border);
+      border-radius: 0;
+      padding: 10px 12px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      background: #FFFF00;
+      color: #000;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 80px;
+      height: 80px;
+      border: 6px solid #FFFF00;
+      border-radius: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      mix-blend-mode: normal;
+      image-rendering: pixelated;
+      background-color: transparent;
+    }
+
+    .cursor.hover {
+      background-color: #FFFF00;
+      border-color: #000;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .interactive:hover,
+    .card:hover,
+    .menu-list a:hover,
+    .hero-label:hover,
+    .hero-sub:hover {
+      background: #000;
+      color: #FFFF00;
+      transform: scale(1.03) !important;
+    }
+
+    .interactive:hover .badge,
+    .card:hover .badge {
+      background: #FFFF00;
+      color: #000;
+    }
+
+    .interactive:hover .card-meta,
+    .card:hover .card-meta,
+    .interactive:hover p,
+    .card:hover p,
+    .hero-sub:hover,
+    .hero-label:hover {
+      color: #FFFF00;
+    }
+
+    @media (max-width: 980px) {
+      .card,
+      .card:nth-child(1),
+      .card:nth-child(2),
+      .card:nth-child(3),
+      .card:nth-child(4),
+      .card:nth-child(5),
+      .card:nth-child(6),
+      .card:nth-child(7),
+      .card:nth-child(8) {
+        grid-column: span 12;
+        transform: rotate(0deg) translateY(0px);
+        margin-left: 0;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .hero-text.main-a { top: 18%; }
+      .hero-text.main-b { top: 43%; left: 8%; }
+      .hero-text.main-c { bottom: 22%; left: 9%; }
+
+      .hero-sub {
+        max-width: calc(100% - 24px);
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .cursor { display: none; }
+      * { cursor: auto; }
+    }
+  </style>
+</head>
+<body>
+  <button class="menu-toggle interactive" id="menuOpenBtn" aria-label="Open menu">Menu</button>
+  <button class="newsletter-trigger interactive" id="newsletterBtn" aria-label="Open newsletter">Newsletter</button>
+
+  <div class="cursor" id="cursor"></div>
+
+  <section class="hero">
+    <div class="hero-text main-a">RAW</div>
+    <div class="hero-text main-b">BLOG</div>
+    <div class="hero-text main-c">SYSTEM</div>
+
+    <div class="hero-label interactive label-1">Issue 32 / Experimental</div>
+    <div class="hero-label interactive label-2">No polish / all signal</div>
+    <div class="hero-label interactive label-3">Brutal layout logic</div>
+
+    <div class="hero-sub interactive">
+      Editorial experiments, visual noise, and hard-cut opinions. Designed for speed, tension, and readability.
+      <div class="divider"></div>
+      <div class="meta">Updated April 25, 2026 / Category: Culture + Interface</div>
+    </div>
+  </section>
+
+  <main class="blog-wrap">
+    <h2 class="section-head">Latest Drops</h2>
+    <div class="blog-grid">
+      <article class="card interactive">
+        <span class="badge">Hot Take</span>
+        <h3>Design Systems Are Turning Into Brand Cages</h3>
+        <p>Rules scale teams, but they also flatten voice. Where does structure stop and creative decay begin?</p>
+        <div class="card-meta">APR 24 2026 / EDITORIAL</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Process</span>
+        <h3>How We Break Grids Without Breaking UX</h3>
+        <p>Controlled asymmetry with legible hierarchy: oversized headers, tiny metadata, and intentional friction.</p>
+        <div class="card-meta">APR 21 2026 / UI THEORY</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Brief</span>
+        <h3>Type vs Space</h3>
+        <p>When text fights layout, meaning gets louder.</p>
+        <div class="card-meta">APR 20 2026 / TYPOGRAPHY</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Long Read</span>
+        <h3>The Return Of Ugly Interfaces</h3>
+        <p>Clean UI fatigue is real. Raw interfaces feel authored, immediate, and human in a way sterile systems do not.</p>
+        <div class="card-meta">APR 18 2026 / WEB CULTURE</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Toolkit</span>
+        <h3>Five Hard Rules For Brutalist Pages</h3>
+        <p>No blur. No gradients. No radius. Loud text. Functional chaos.</p>
+        <div class="card-meta">APR 17 2026 / RESOURCES</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Behind Scene</span>
+        <h3>We Killed The Navbar</h3>
+        <p>Navigation should interrupt the page like an alarm, not melt into chrome.</p>
+        <div class="card-meta">APR 15 2026 / NAVIGATION</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Micro Note</span>
+        <h3>Hard Shadows</h3>
+        <p>Depth should feel printed, not floating.</p>
+        <div class="card-meta">APR 14 2026 / VISUAL LANGUAGE</div>
+      </article>
+
+      <article class="card interactive">
+        <span class="badge">Archive</span>
+        <h3>Issue Index 2019-2026</h3>
+        <p>Every release, every iteration, every overruled grid.</p>
+        <div class="card-meta">APR 12 2026 / ARCHIVE</div>
+      </article>
+    </div>
+  </main>
+
+  <div class="fullscreen-menu" id="fullscreenMenu" aria-hidden="true">
+    <button class="menu-close interactive" id="menuCloseBtn" aria-label="Close menu">Close</button>
+    <ul class="menu-list">
+      <li><a class="interactive" href="#">Home</a></li>
+      <li><a class="interactive" href="#">Articles</a></li>
+      <li><a class="interactive" href="#">Manifesto</a></li>
+      <li><a class="interactive" href="#">Archive</a></li>
+      <li><a class="interactive" href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="newsletter-modal" id="newsletterModal" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle">
+    <h2 id="newsletterTitle">Join The Noise</h2>
+    <p>Weekly dispatch from the messy edge of design. No fluff, no soft takes.</p>
+    <div class="modal-input-row">
+      <input type="email" placeholder="EMAIL ADDRESS" aria-label="Email address" />
+      <button class="close-btn interactive" type="button">Subscribe</button>
+    </div>
+    <button class="close-btn interactive" id="closeModalBtn" type="button">Close</button>
+  </div>
+
+  <script>
+    const menu = document.getElementById("fullscreenMenu");
+    const menuOpenBtn = document.getElementById("menuOpenBtn");
+    const menuCloseBtn = document.getElementById("menuCloseBtn");
+    const overlay = document.getElementById("overlay");
+
+    const modal = document.getElementById("newsletterModal");
+    const newsletterBtn = document.getElementById("newsletterBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    function openMenu() {
+      menu.classList.add("active");
+      menu.setAttribute("aria-hidden", "false");
+    }
+
+    function closeMenu() {
+      menu.classList.remove("active");
+      menu.setAttribute("aria-hidden", "true");
+    }
+
+    function openModal() {
+      modal.classList.add("active");
+      overlay.classList.add("active");
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      overlay.classList.remove("active");
+    }
+
+    menuOpenBtn.addEventListener("click", openMenu);
+    menuCloseBtn.addEventListener("click", closeMenu);
+
+    newsletterBtn.addEventListener("click", openModal);
+    closeModalBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
+
+    window.setTimeout(() => {
+      openModal();
+    }, 2300);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+        closeMenu();
+      }
+    });
+
+    const cursor = document.getElementById("cursor");
+    const interactiveElements = document.querySelectorAll(".interactive, a, button, input, .card");
+
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      document.addEventListener("mousemove", (event) => {
+        cursor.style.left = event.clientX + "px";
+        cursor.style.top = event.clientY + "px";
+      });
+
+      interactiveElements.forEach((element) => {
+        element.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+        element.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+      });
+    }
+  </script>
+</body>
+</html>
