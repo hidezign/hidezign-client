@@ -116,6 +116,65 @@ const Services = () => {
             provider: { '@type': 'Organization', name: 'H! Dezign', url: 'https://hidezign.com' },
           })),
         })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'H! Dezign',
+          url: 'https://hidezign.com',
+          logo: 'https://res.cloudinary.com/ds8buve4c/image/upload/v1764232690/logo_fie7dg.svg',
+          description: 'Creative web design and branding agency in Indore, India.',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Indore',
+            addressLocality: 'Indore',
+            addressRegion: 'Madhya Pradesh',
+            postalCode: '452001',
+            addressCountry: 'IN'
+          },
+          sameAs: [
+            'https://www.instagram.com/hidezign',
+            'https://www.linkedin.com/company/hidezign',
+            'https://www.behance.net/hidezign'
+          ],
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'What UI/UX design services do you offer?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'We provide comprehensive UI/UX design services including user research, wireframes, prototypes, high-fidelity design, and usability testing to create intuitive digital experiences.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'Do you provide branding and design system services?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Yes, we create complete brand identities including logos, visual guidelines, design systems with components and tokens, plus marketing collateral that scales with your growth.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'Can you integrate AI and automation into our products?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'We specialize in AI feature integration (LLMs, RAG, agents), workflow automation, chatbots, internal assistants, and data pipelines to reduce manual work and improve efficiency.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'What development services do you provide?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'We offer full-stack development including web apps, SaaS platforms, marketing websites, API development, backend services, and performance/SEO optimization using modern tooling.'
+              }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen bg-sp-white-s1 text-sp-bg1">

@@ -26,11 +26,9 @@ const ContactUs = () => {
     const [loading, setLoading] = useState(false);
     const [termsChecked, setTermsChecked] = useState(false);
     const [payload, setPayload] = useState({
-        firstname: "",
-        lastname: "",
+        name: "",
         email: "",
         service: "",
-        projectDescription: "",
     });
     const [formDataErr, setFormDataErr] = useState({});
 
@@ -50,24 +48,13 @@ const ContactUs = () => {
 
         if (field === "email") {
             error = emailValidator(value);
-        } else if (field === "firstname" || field === "lastname") {
+        } else if (field === "name") {
             error = nameValidator(value);
         } else if (field === "service") {
             error =
                 value && selectOptions.some((opt) => opt.value === value)
                     ? null
                     : "Please select a valid service";
-        } else if (field === "projectDescription") {
-            if (!value || value.trim() === "") {
-                error = "Project description cannot be empty";
-            } else if (value.length < 10) {
-                error =
-                    "Project description must be at least 10 characters long";
-            } else if (value.length > 500) {
-                error = "Project description cannot exceed 500 characters";
-            } else {
-                error = null;
-            }
         }
 
         setFormDataErr({
@@ -122,11 +109,9 @@ const ContactUs = () => {
 
     const resetFunctions = () => {
         setPayload({
-            firstname: "",
-            lastname: "",
+            name: "",
             email: "",
             service: "",
-            projectDescription: "",
         });
         setFormDataErr({});
         setTermsChecked(false);
@@ -194,6 +179,36 @@ const ContactUs = () => {
                         },
                     })}
                 </script>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "LocalBusiness",
+                        name: "H! Dezign",
+                        url: "https://hidezign.com",
+                        logo: "https://res.cloudinary.com/ds8buve4c/image/upload/v1764232690/logo_fie7dg.svg",
+                        description: "Creative web design, branding, UI/UX, AI automation, and development agency in Indore, India.",
+                        email: "hello@hidezign.com",
+                        telephone: "+91-90096-69197",
+                        address: {
+                            "@type": "PostalAddress",
+                            streetAddress: "Indore",
+                            addressLocality: "Indore",
+                            addressRegion: "Madhya Pradesh",
+                            postalCode: "452001",
+                            addressCountry: "IN"
+                        },
+                        geo: {
+                            "@type": "GeoCoordinates",
+                            latitude: "22.7196",
+                            longitude: "75.8577"
+                        },
+                        sameAs: [
+                            "https://www.instagram.com/hidezign",
+                            "https://www.linkedin.com/company/hidezign",
+                            "https://www.behance.net/hidezign"
+                        ],
+                    })}
+                </script>
             </Helmet>
             {loading && <Loader />}
             <div className="lg:min-h-screen">
@@ -218,29 +233,11 @@ const ContactUs = () => {
                                     Personal Data
                                 </h1>
                             </div>
-                            <div className="flex flex-col md:flex-row gap-10 w-full">
-                                <InputField
-                                    label={"First Name*"}
-                                    value={payload.firstname}
-                                    onChange={(e) => handleChange(e, "firstname")}
-                                    error={formDataErr.firstname}
-                                    classes="w-full"
-                                />
-                                <InputField
-                                    label={"Last Name*"}
-                                    value={payload.lastname}
-                                    onChange={(e) => handleChange(e, "lastname")}
-                                    error={formDataErr.lastname}
-                                    classes="w-full"
-                                />
-                            </div>
-
-                            <SelectInput
-                                label={"Service*"}
-                                options={selectOptions}
-                                value={payload.service}
-                                onChange={(e) => handleChange(e, "service")}
-                                error={formDataErr.service}
+                            <InputField
+                                label={"Full Name*"}
+                                value={payload.name}
+                                onChange={(e) => handleChange(e, "name")}
+                                error={formDataErr.name}
                                 classes="w-full"
                             />
 
@@ -253,16 +250,13 @@ const ContactUs = () => {
                                 classes="w-full"
                             />
 
-                            <InputField
-                                label={"Project Description*"}
-                                value={payload.projectDescription}
-                                onChange={(e) =>
-                                    handleChange(e, "projectDescription")
-                                }
-                                error={formDataErr.projectDescription}
+                            <SelectInput
+                                label={"Project Type*"}
+                                options={selectOptions}
+                                value={payload.service}
+                                onChange={(e) => handleChange(e, "service")}
+                                error={formDataErr.service}
                                 classes="w-full"
-                                as="textarea"
-                                maxLength={500}
                             />
                         </div>
 

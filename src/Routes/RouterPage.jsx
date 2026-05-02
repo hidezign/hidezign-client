@@ -23,6 +23,8 @@ import TermsOfService from "../Pages/TermsOfService";
 import WebDesign from "../Pages/Services/WebDesign";
 import Services from "../Pages/Services/Services";
 import BlogIndex from "../Pages/Blog/index";
+import FreeWebsiteAudit from "../Pages/FreeWebsiteAudit";
+import CostCalculator from "../Pages/CostCalculator";
 
 const RouterPages = () => {
     // const dispatch = useDispatch();
@@ -106,6 +108,14 @@ const RouterPages = () => {
             <Route
                 path={Routers.BLOG}
                 element={<WrapperComponent children={<BlogIndex />} />}
+            />
+            <Route
+                path={Routers.FREE_AUDIT}
+                element={<WrapperComponent children={<FreeWebsiteAudit />} />}
+            />
+            <Route
+                path={Routers.COST_CALCULATOR}
+                element={<WrapperComponent children={<CostCalculator />} />}
             />
             {/* <Route path={Routers.LOGIN} element={<Login />} />
       <Route path={Routers.REGISTER} element={<Register />} />

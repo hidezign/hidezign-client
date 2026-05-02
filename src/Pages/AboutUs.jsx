@@ -38,6 +38,31 @@ const AboutUs = () => {
                     description: "About page for H! Dezign, a creative web design and branding agency.",
                     isPartOf: {"@type": "WebSite", name: "H! Dezign", url: "https://hidezign.com/"},
                 })}</script>
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    name: "H! Dezign",
+                    url: "https://hidezign.com",
+                    logo: "https://res.cloudinary.com/ds8buve4c/image/upload/v1764232690/logo_fie7dg.svg",
+                    description: "Creative web design and branding agency in Indore, India.",
+                    address: {
+                        "@type": "PostalAddress",
+                        streetAddress: "Indore",
+                        addressLocality: "Indore",
+                        addressRegion: "Madhya Pradesh",
+                        postalCode: "452001",
+                        addressCountry: "IN"
+                    },
+                    sameAs: [
+                        "https://www.instagram.com/hidezign",
+                        "https://www.linkedin.com/company/hidezign",
+                        "https://www.behance.net/hidezign"
+                    ],
+                    founder: {
+                        "@type": "Person",
+                        name: "H! Dezign Team"
+                    }
+                })}</script>
             </Helmet>
             <AboutHome />
             <HowWeHelp />

@@ -17,7 +17,9 @@ export const MainContent = {
     { name: "Work", link: Routers.WORK },
     { name: "Services", link: Routers.SERVICES },
     { name: "About us", link: Routers.ABOUTUS },
-    { name: "Blog", link: Routers.BLOG }
+    { name: "Blog", link: Routers.BLOG },
+    { name: "Free Audit", link: Routers.FREE_AUDIT },
+    { name: "Cost Calculator", link: Routers.COST_CALCULATOR }
   ]
 }
 

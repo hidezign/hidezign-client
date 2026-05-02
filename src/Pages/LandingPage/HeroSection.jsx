@@ -85,6 +85,24 @@ const HeroSection = () => {
                 )}
             </InView>
 
+            {/* Trust Badges */}
+            <div className='flex flex-col md:flex-row items-center justify-center gap-8 py-16 px-4 border-y border-sp-bg1/10'>
+                <div className='text-center md:text-left'>
+                    <div className='text-2xl md:text-4xl font-bold text-sp-bg1'>50+</div>
+                    <p className='text-sm text-sp-bg1/70'>Projects Delivered</p>
+                </div>
+                <div className='hidden md:block w-px h-12 bg-sp-bg1/10'></div>
+                <div className='text-center md:text-left'>
+                    <div className='text-2xl md:text-4xl font-bold text-sp-bg1'>99</div>
+                    <p className='text-sm text-sp-bg1/70'>PageSpeed Score</p>
+                </div>
+                <div className='hidden md:block w-px h-12 bg-sp-bg1/10'></div>
+                <div className='text-center md:text-left'>
+                    <div className='text-2xl md:text-4xl font-bold text-sp-bg1'>India's</div>
+                    <p className='text-sm text-sp-bg1/70'>Fastest Web Design Agency</p>
+                </div>
+            </div>
+
             <div className='flex flex-col items-center justify-center gap-10 py-20 md:py-40 md:px-20'>
                 {/* <h1 className='text-3xl text-sp-bg1'>Solved problems for</h1>
                 <img src={brandsPrev} alt="Brands Preview" className='md:w-1/3' /> */}

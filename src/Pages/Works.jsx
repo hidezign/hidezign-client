@@ -26,6 +26,27 @@ const Works = () => {
                         {"@type":"ListItem","position":2,"name":"Work","item":"https://hidezign.com/work"}
                     ]
                 })}</script>
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    name: "H! Dezign",
+                    url: "https://hidezign.com",
+                    logo: "https://res.cloudinary.com/ds8buve4c/image/upload/v1764232690/logo_fie7dg.svg",
+                    description: "Creative web design and branding agency in Indore, India. We create digital experiences from idea to launch.",
+                    address: {
+                        "@type": "PostalAddress",
+                        streetAddress: "Indore",
+                        addressLocality: "Indore",
+                        addressRegion: "Madhya Pradesh",
+                        postalCode: "452001",
+                        addressCountry: "IN"
+                    },
+                    sameAs: [
+                        "https://www.instagram.com/hidezign",
+                        "https://www.linkedin.com/company/hidezign",
+                        "https://www.behance.net/hidezign"
+                    ],
+                })}</script>
             </Helmet>
             <div className='flex flex-col gap-4 py-10 md:py-14 lg:py-20'>
                 <h1 className='font-semibold text-4xl lg:text-5xl'>We take ideas <br /> from zero to one</h1>

@@ -9,6 +9,8 @@ export const Routers = {
     TERMSOFSERVICE: "/terms-of-service",
     WEBDESIGN: "/services/web-design",
     BLOG: "/blog",
+    FREE_AUDIT: "/free-website-audit",
+    COST_CALCULATOR: "/cost-calculator",
     /// ----------- User panel ------------- ////
     UNIVERSAL: "*",
     REGISTER: "/register",

@@ -1,0 +1,168 @@
+TECHNICAL SEO AUDIT CHECKLIST
+H! Dezign — Complete Technical SEO Optimization Guide
+
+═══════════════════════════════════════════════════════════════════
+
+SITE ARCHITECTURE & CRAWLABILITY
+☐ XML sitemap exists and is valid
+☐ Sitemap submitted to Google Search Console
+☐ Sitemap submitted to Bing Webmaster Tools
+☐ Robots.txt file is properly configured
+☐ No important pages are blocked in robots.txt
+☐ Site structure is logical and hierarchical
+☐ URL depth is no more than 4 levels
+☐ Mobile version is crawlable
+☐ No redirect chains or loops exist
+☐ Preferred domain (www vs non-www) is set
+
+INDEXATION
+☐ Homepage is indexed
+☐ All important pages are indexed
+☐ No pages are blocked by noindex tag
+☐ No duplicate content issues
+☐ Canonical tags are properly implemented
+☐ Self-referencing canonicals for pagination
+☐ Check Google Search Console for indexing issues
+☐ Check for crawl errors in Search Console
+☐ Blocked resources are intentional
+☐ Check for soft 404 errors
+
+SITE SPEED & CORE WEB VITALS
+☐ Page load time < 3 seconds
+☐ Largest Contentful Paint (LCP) < 2.5 seconds
+☐ First Input Delay (FID) < 100 milliseconds
+☐ Cumulative Layout Shift (CLS) < 0.1
+☐ Images are optimized and compressed
+☐ CSS and JavaScript are minified
+☐ Render-blocking resources are identified
+☐ Lazy loading implemented for images
+☐ Caching headers are configured
+☐ CDN is implemented
+☐ Server response time < 200ms
+☐ Enable gzip compression
+
+MOBILE OPTIMIZATION
+☐ Mobile-first design implemented
+☐ Viewport meta tag is configured
+☐ Text is readable without zooming
+☐ Touch elements are appropriately sized
+☐ No mobile usability issues in Search Console
+☐ Mobile page speed is optimized
+☐ Responsive images implemented
+☐ Mobile navigation is functional
+☐ Forms work properly on mobile
+☐ No intrusive interstitials on mobile
+
+STRUCTURED DATA & SCHEMA MARKUP
+☐ Schema.org markup implemented
+☐ JSON-LD format used for schema
+☐ BreadcrumbList schema added
+☐ Organization schema implemented
+☐ LocalBusiness schema (if applicable)
+☐ Product schema (if applicable)
+☐ Review/Rating schema (if applicable)
+☐ FAQPage schema (if applicable)
+☐ Article schema (if applicable)
+☐ Schema markup is valid
+☐ Rich snippets appear in search results
+☐ Test schema with Google Rich Results Test
+
+SSL & SECURITY
+☐ SSL certificate installed (HTTPS)
+☐ All pages redirect to HTTPS
+☐ No mixed content (HTTP & HTTPS)
+☐ Security headers configured (CSP, X-Frame-Options)
+☐ No security vulnerabilities
+☐ Password fields are secure
+☐ Payment processing is secure (if applicable)
+☐ Regular security audits performed
+
+ON-PAGE SEO
+☐ Each page has unique H1 tag
+☐ Heading hierarchy is proper (H1→H2→H3)
+☐ Title tags are descriptive (50-60 characters)
+☐ Meta descriptions are compelling (150-160 chars)
+☐ Target keywords in titles and descriptions
+☐ Internal linking structure is optimized
+☐ Anchor text is descriptive
+☐ No keyword stuffing
+☐ Images have descriptive alt text
+☐ URLs are descriptive and include keywords
+☐ Page content is well-organized
+☐ Focus keywords appear naturally in content
+
+BACKLINKS & AUTHORITY
+☐ Backlink profile is analyzed
+☐ No toxic or low-quality backlinks
+☐ Broken backlinks are identified and fixed
+☐ Relevant domains link to your site
+☐ Backlink anchor text is diverse
+☐ Backlinks are from authoritative sources
+☐ No paid links (against Google guidelines)
+☐ Internal linking strategy is solid
+☐ Link velocity is natural
+
+TECHNICAL CONFIGURATION
+☐ 404 errors return 404 status code
+☐ 301 redirects for moved pages
+☐ 302 redirects for temporary moves
+☐ Broken links are minimized
+☐ Server response codes are correct
+☐ Character encoding is UTF-8
+☐ Language is properly declared (hreflang)
+☐ Alternate language versions (if applicable)
+
+INTERNATIONALIZATION (If Applicable)
+☐ hreflang tags are implemented
+☐ Language-specific sitemaps created
+☐ Correct language declared in HTML
+☐ Language-specific content is distinct
+☐ No duplicate content across languages
+☐ Regional targeting configured in Search Console
+
+CONTENT OPTIMIZATION
+☐ Content is original and valuable
+☐ Keyword research is thorough
+☐ Content length is appropriate (800+ words)
+☐ Content is updated regularly
+☐ Outdated content is refreshed
+☐ Content answers user intent
+☐ Readability is optimized
+☐ Bullet points and lists are used
+☐ Multimedia content enhances content
+☐ Content is properly formatted
+
+LOG FILES & MONITORING
+☐ Server logs are accessible
+☐ 404 errors are logged and monitored
+☐ Crawl stats are reviewed regularly
+☐ Search Console is monitored
+☐ Analytics are tracked accurately
+☐ Error tracking is in place
+☐ Website is monitored 24/7
+☐ Uptime is tracked
+
+USER EXPERIENCE SIGNALS
+☐ Page layout is user-friendly
+☐ Navigation is clear and intuitive
+☐ Call-to-action buttons are prominent
+☐ Forms are simple and quick
+☐ Trust signals are displayed (testimonials, certifications)
+☐ No intrusive ads or pop-ups
+☐ Content is skimmable
+☐ Readability is high
+
+MONITORING & MAINTENANCE
+☐ Google Search Console is regularly checked
+☐ Bing Webmaster Tools are monitored
+☐ Core Web Vitals are monitored
+☐ Crawl budget is optimized
+☐ Regular technical SEO audits scheduled
+☐ Broken links are fixed promptly
+☐ Outdated content is updated
+☐ Server errors are fixed immediately
+☐ Performance is continuously optimized
+
+═══════════════════════════════════════════════════════════════════
+Need help optimizing your technical SEO? Contact H! Dezign at hello@hidezign.com
+Learn more: https://hidezign.com/services/web-design

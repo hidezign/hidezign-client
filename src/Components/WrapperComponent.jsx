@@ -1,6 +1,8 @@
 import Navbar from './Landing/Navbar'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Footer from './Landing/Footer'
+import ExitIntentPopup from './ExitIntentPopup'
+import NewsletterBar from './NewsletterBar'
 
 const WrapperComponent = ({ children }) => {
     return (
@@ -10,6 +12,8 @@ const WrapperComponent = ({ children }) => {
                 {children}
             </MaxWidthWrapper>
             <Footer />
+            <ExitIntentPopup />
+            <NewsletterBar />
         </div>
     )
 }

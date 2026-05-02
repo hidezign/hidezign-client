@@ -1,0 +1,236 @@
+BRAND IDENTITY CHECKLIST
+H! Dezign — Build a Cohesive Brand Identity Guide
+
+═══════════════════════════════════════════════════════════════════
+
+BRAND STRATEGY & FOUNDATION
+☐ Define brand purpose and mission
+☐ Articulate brand vision and values
+☐ Identify target audience personas
+☐ Document brand positioning statement
+☐ Analyze competitive landscape
+☐ Define unique value proposition
+☐ Create brand promise statement
+☐ Document brand personality traits
+☐ Define brand voice and tone
+☐ Establish brand promise and benefits
+
+VISUAL IDENTITY
+☐ Logo design is finalized
+☐ Logo variations created (horizontal, vertical, icon)
+☐ Logo minimum size is documented
+☐ Logo clear space is defined
+☐ Logo usage guidelines documented
+☐ Logo appears on all touchpoints
+☐ Logo files provided in all formats (PNG, SVG, PDF)
+☐ Favicon created and implemented
+☐ Favicon appears in browser tab
+
+COLOR PALETTE
+☐ Primary colors identified (2-3 colors)
+☐ Secondary colors identified
+☐ Accent colors defined
+☐ Color codes documented (RGB, HEX, CMYK)
+☐ Colors work across mediums (print, digital, web)
+☐ Sufficient contrast for accessibility
+☐ Color meanings and psychology aligned with brand
+☐ Color palette is consistently applied
+☐ Gradients are defined if used
+☐ Color swatches created and shared
+
+TYPOGRAPHY
+☐ Primary font selected and licensed
+☐ Secondary font selected and licensed
+☐ Heading font established
+☐ Body text font established
+☐ Font sizes defined for all elements
+☐ Line heights optimized for readability
+☐ Font weights are consistent
+☐ Letter spacing is defined
+☐ Web fonts are optimized for performance
+☐ Font fallbacks are specified
+☐ Typography scale is documented
+
+IMAGERY & PHOTOGRAPHY
+☐ Photography style is defined
+☐ Image tone and mood are consistent
+☐ Subject matter guidelines established
+☐ Lighting and composition style documented
+☐ Filter or editing style defined
+☐ Stock photo sources identified (if used)
+☐ Image dimensions and aspect ratios documented
+☐ Image optimization guidelines created
+☐ Brand imagery library created
+☐ Imagery usage rights documented
+
+DESIGN ELEMENTS
+☐ Pattern library created
+☐ Icon style defined and documented
+☐ Button styles designed
+☐ Form element styles designed
+☐ Card designs created
+☐ Layout grid system established
+☐ Whitespace guidelines documented
+☐ Texture or background elements defined
+☐ Graphic elements created and documented
+☐ Animation style guidelines created
+
+BRAND VOICE & MESSAGING
+☐ Brand voice is documented
+☐ Tone guidelines created (formal, friendly, professional)
+☐ Vocabulary and language style defined
+☐ Messaging pillars established (3-5 pillars)
+☐ Key messages documented
+☐ Tagline or slogan created
+☐ Unique value proposition clearly articulated
+☐ Brand story documented
+☐ Elevator pitch created (30-second version)
+☐ How-to-talk-about-us guide created
+
+WRITTEN COMMUNICATION
+☐ Grammar and style guide created
+☐ Punctuation rules documented
+☐ Capitalization style established
+☐ Abbreviations guidelines created
+☐ Use of emojis documented (if applicable)
+☐ Hashtag guidelines created (if applicable)
+☐ Email signature template created
+☐ Standard email greetings/closings established
+☐ Press release template created
+☐ Common phrases and examples documented
+
+VISUAL GUIDELINES
+☐ Logo usage guidelines documented
+☐ Color usage guidelines created
+☐ Typography guidelines created
+☐ Photography guidelines created
+☐ Icon usage guidelines documented
+☐ Layout and spacing guidelines created
+☐ Visual hierarchy guidelines documented
+☐ Shadow and depth guidelines created
+☐ Transparency/opacity guidelines documented
+☐ Guidelines for partners and vendors created
+
+DIGITAL BRAND APPLICATION
+☐ Website design reflects brand identity
+☐ Email templates created and branded
+☐ Social media templates designed
+☐ Ad templates created
+☐ App design follows brand guidelines
+☐ Blog post templates designed
+☐ Infographic style established
+☐ Video intro/outro designed
+☐ Loading screens/spinners designed
+☐ 404 error page branded
+
+PRINT MATERIALS
+☐ Business card design finalized
+☐ Letterhead design finalized
+☐ Envelope design finalized
+☐ Notepad design finalized
+☐ Presentation template created
+☐ Brochure template created
+☐ Flyer template created
+☐ Poster template created
+☐ Print guidelines documented
+☐ Color specifications for print documented
+
+BRANDED MERCHANDISE
+☐ T-shirt design created
+☐ Hat/cap design created
+☐ Mug design created
+☐ Bag design created
+☐ Pen/pencil design created
+☐ Notebook design created
+☐ Sticker design created
+☐ Badge/button design created
+☐ Merchandise guidelines documented
+☐ Supplier specifications documented
+
+SOCIAL MEDIA BRANDING
+☐ Profile picture established for all platforms
+☐ Banner/header images created for all platforms
+☐ Bio/about section written for all platforms
+☐ Profile link colors match brand
+☐ Story templates created
+☐ Post templates created
+☐ Carousel templates created
+☐ Highlight covers designed
+☐ Social media color palette optimized
+☐ Hashtag strategy documented
+
+ENVIRONMENTAL DESIGN
+☐ Office space design reflects brand
+☐ Signage design created
+☐ Reception area branded
+☐ Meeting room design branded
+☐ Event booth design created
+☐ Vehicle wrap design created (if applicable)
+☐ Store/shop design branded
+☐ Packaging design branded
+☐ Retail display design created
+☐ Environmental guidelines documented
+
+BRAND ASSETS ORGANIZATION
+☐ Brand asset folder structure created
+☐ Logo files organized by format
+☐ Color swatches organized and labeled
+☐ Font files properly organized
+☐ Image library organized by category
+☐ Design templates organized
+☐ Icon library organized
+☐ All files properly named and versioned
+☐ Asset inventory created
+☐ Access permissions established
+
+BRAND GUIDELINES DOCUMENTATION
+☐ Brand book/guidelines document created
+☐ Guidelines are comprehensive but concise
+☐ Visual examples provided for all guidelines
+☐ Do's and don'ts documented
+☐ Real-world application examples shown
+☐ Guidelines are easy to understand
+☐ Digital and print versions created
+☐ Version control implemented
+☐ Distribution plan established
+☐ Update process documented
+
+TRAINING & COMMUNICATION
+☐ Team training scheduled on brand guidelines
+☐ Brand guidelines walkthrough conducted
+☐ Q&A document created
+☐ Common mistakes documented and explained
+☐ Best practices shared with team
+☐ Guidelines accessible to all team members
+☐ Vendor/partner guidelines created
+☐ Third-party guidelines established
+☐ Feedback mechanism created
+☐ Regular brand audits scheduled
+
+BRAND CONSISTENCY
+☐ Audit conducted of all current materials
+☐ Inconsistencies identified and documented
+☐ Outdated materials updated
+☐ Brand applied consistently across channels
+☐ Partner materials reviewed for compliance
+☐ Vendor work approved against guidelines
+☐ Regular consistency checks scheduled
+☐ Brand audit templates created
+☐ Review process established
+☐ Approval process for new materials created
+
+MEASUREMENTS & EVOLUTION
+☐ Brand perception study scheduled
+☐ Customer feedback collected
+☐ Competitor analysis updated regularly
+☐ Brand strength metrics tracked
+☐ Recognition metrics measured
+☐ Loyalty metrics tracked
+☐ Brand equity assessed
+☐ Regular brand review meetings scheduled
+☐ Evolution strategy documented
+☐ Annual refresh cycle established
+
+═══════════════════════════════════════════════════════════════════
+Ready to build a cohesive brand identity? Contact H! Dezign at hello@hidezign.com
+Learn more: https://hidezign.com/services/branding
