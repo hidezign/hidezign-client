@@ -62,8 +62,10 @@ const NewsletterBar = () => {
         handleClose();
       }, 3000);
     } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      const errorMessage = error?.details?.error || error?.message || "Please try again later.";
       toast.error("Subscription failed", {
-        description: "Please try again later.",
+        description: errorMessage,
       });
     } finally {
       setLoading(false);
@@ -73,15 +75,15 @@ const NewsletterBar = () => {
   if (!showBar) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-sp-bg1 to-sp-bg1/90 text-white shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-sp-bg1 to-sp-bg2 text-white shadow-lg border-t border-sp-primary-s1/20">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         {/* Content */}
         {!submitted ? (
           <div className="flex-1 flex items-center gap-4">
-            <Mail className="w-5 h-5 flex-shrink-0 hidden sm:block" />
+            <Mail className="w-5 h-5 flex-shrink-0 hidden sm:block text-sp-secondary-s1" />
             <div className="flex-1">
-              <h3 className="font-semibold text-sm">H! Weekly</h3>
-              <p className="text-xs opacity-90">
+              <h3 className="font-semibold text-sm text-sp-white-s1">H! Weekly</h3>
+              <p className="text-xs text-sp-text-s1 opacity-80">
                 Design insights, growth hacks, and industry trends. Every Friday.
               </p>
             </div>
@@ -94,13 +96,13 @@ const NewsletterBar = () => {
                   setEmail(e.target.value);
                   setError("");
                 }}
-                className="px-3 py-2 rounded text-sp-bg1 text-sm placeholder-sp-bg1/50 focus:outline-none focus:ring-2 focus:ring-white"
+                className="px-3 py-2 rounded bg-sp-bg2 text-sp-white-s1 text-sm placeholder-sp-text-s1/40 focus:outline-none focus:ring-2 focus:ring-sp-primary-s1"
                 disabled={loading}
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-white text-sp-bg1 px-4 py-2 rounded font-semibold text-sm hover:bg-white/90 transition disabled:opacity-50"
+                className="bg-sp-secondary-s1 text-sp-white-s1 px-4 py-2 rounded font-semibold text-sm hover:bg-sp-secondary-s1/90 transition disabled:opacity-50"
               >
                 {loading ? "..." : "Join"}
               </button>
@@ -108,7 +110,7 @@ const NewsletterBar = () => {
           </div>
         ) : (
           <div className="flex-1 text-center">
-            <p className="font-semibold text-sm">✓ Thanks for subscribing!</p>
+            <p className="font-semibold text-sm text-sp-white-s1">✓ Thanks for subscribing!</p>
           </div>
         )}
 
@@ -123,7 +125,7 @@ const NewsletterBar = () => {
 
       {/* Error Message */}
       {error && (
-        <div className="text-center py-2 bg-red-500/20 text-sm border-t border-white/20">
+        <div className="text-center py-2 bg-sp-primary-s1/20 text-sm border-t border-sp-primary-s1/30 text-sp-white-s1">
           {error}
         </div>
       )}

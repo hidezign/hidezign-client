@@ -151,8 +151,10 @@ const CostCalculator = () => {
         setFormData({ name: "", email: "" });
       }, 3000);
     } catch (error) {
+      console.error("Form error details:", error);
+      const errorMessage = error?.details?.error || error?.message || "Failed to submit. Please try again later.";
       toast.error("Failed to submit quote request", {
-        description: error?.response?.data?.message || "Please try again later.",
+        description: errorMessage,
       });
     } finally {
       setLoading(false);
@@ -236,14 +238,14 @@ const CostCalculator = () => {
 
       {loading && <Loader />}
 
-      <div className="min-h-screen py-16">
+      <div className="min-h-screen py-16 bg-sp-bg1">
         <div className="max-w-4xl mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-bold text-sp-bg1 mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-sp-white-s1 mb-4">
               Project Cost Calculator
             </h1>
-            <p className="text-lg text-sp-bg1/70">
+            <p className="text-lg text-sp-text-s1">
               Get an instant estimate for your web design, app, or branding
               project
             </p>
@@ -254,15 +256,15 @@ const CostCalculator = () => {
             {/* Left: Calculator Options */}
             <div className="space-y-8">
               {/* Project Type */}
-              <div className="p-6 rounded-lg border border-sp-bg1/10 bg-sp-white/50">
-                <h3 className="text-lg font-semibold text-sp-bg1 mb-4">
+              <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50">
+                <h3 className="text-lg font-semibold text-sp-white-s1 mb-4">
                   1. What do you need?
                 </h3>
                 <div className="space-y-3">
                   {Object.entries(projectTypes).map(([key, value]) => (
                     <label
                       key={key}
-                      className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg1/10 cursor-pointer hover:bg-sp-bg1/5 transition"
+                      className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg2 cursor-pointer hover:border-sp-primary-s1/30 transition"
                     >
                       <input
                         type="radio"
@@ -275,11 +277,11 @@ const CostCalculator = () => {
                             projectType: e.target.value,
                           })
                         }
-                        className="w-4 h-4"
+                        className="w-4 h-4 accent-sp-primary-s1"
                       />
                       <div>
-                        <p className="font-medium text-sp-bg1">{value.name}</p>
-                        <p className="text-sm text-sp-bg1/60">
+                        <p className="font-medium text-sp-white-s1">{value.name}</p>
+                        <p className="text-sm text-sp-text-s1/60">
                           Base: ₹{value.basePrice.toLocaleString("en-IN")}
                         </p>
                       </div>
@@ -289,8 +291,8 @@ const CostCalculator = () => {
               </div>
 
               {/* Pages */}
-              <div className="p-6 rounded-lg border border-sp-bg1/10 bg-sp-white/50">
-                <h3 className="text-lg font-semibold text-sp-bg1 mb-4">
+              <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50">
+                <h3 className="text-lg font-semibold text-sp-white-s1 mb-4">
                   2. How many pages?
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -302,8 +304,8 @@ const CostCalculator = () => {
                       }
                       className={`p-3 rounded-lg border-2 transition font-semibold ${
                         calculator.pages === num
-                          ? "border-sp-bg1 bg-sp-bg1 text-white"
-                          : "border-sp-bg1/10 bg-sp-white/50 text-sp-bg1 hover:border-sp-bg1"
+                          ? "border-sp-primary-s1 bg-sp-primary-s1 text-sp-white-s1"
+                          : "border-sp-bg2 bg-sp-bg2/50 text-sp-white-s1 hover:border-sp-primary-s1/50"
                       }`}
                     >
                       {num} Pages
@@ -313,27 +315,27 @@ const CostCalculator = () => {
               </div>
 
               {/* Features */}
-              <div className="p-6 rounded-lg border border-sp-bg1/10 bg-sp-white/50">
-                <h3 className="text-lg font-semibold text-sp-bg1 mb-4">
+              <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50">
+                <h3 className="text-lg font-semibold text-sp-white-s1 mb-4">
                   3. Add features (optional)
                 </h3>
                 <div className="space-y-3">
                   {featuresList.map((feature) => (
                     <label
                       key={feature.id}
-                      className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg1/10 cursor-pointer hover:bg-sp-bg1/5 transition"
+                      className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg2 cursor-pointer hover:border-sp-primary-s1/30 transition"
                     >
                       <input
                         type="checkbox"
                         checked={calculator.features.includes(feature.id)}
                         onChange={() => toggleFeature(feature.id)}
-                        className="w-4 h-4"
+                        className="w-4 h-4 accent-sp-primary-s1"
                       />
                       <div className="flex-1">
-                        <p className="font-medium text-sp-bg1">
+                        <p className="font-medium text-sp-white-s1">
                           {feature.name}
                         </p>
-                        <p className="text-sm text-sp-bg1/60">
+                        <p className="text-sm text-sp-text-s1/60">
                           +₹{feature.price.toLocaleString("en-IN")}
                         </p>
                       </div>
@@ -343,12 +345,12 @@ const CostCalculator = () => {
               </div>
 
               {/* Timeline */}
-              <div className="p-6 rounded-lg border border-sp-bg1/10 bg-sp-white/50">
-                <h3 className="text-lg font-semibold text-sp-bg1 mb-4">
+              <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50">
+                <h3 className="text-lg font-semibold text-sp-white-s1 mb-4">
                   4. What's your timeline?
                 </h3>
                 <div className="space-y-3">
-                  <label className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg1/10 cursor-pointer hover:bg-sp-bg1/5 transition">
+                  <label className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg2 cursor-pointer hover:border-sp-primary-s1/30 transition">
                     <input
                       type="radio"
                       name="timeline"
@@ -360,14 +362,14 @@ const CostCalculator = () => {
                           timeline: e.target.value,
                         })
                       }
-                      className="w-4 h-4"
+                      className="w-4 h-4 accent-sp-primary-s1"
                     />
                     <div>
-                      <p className="font-medium text-sp-bg1">Rush (1 month)</p>
-                      <p className="text-sm text-sp-bg1/60">+30% cost</p>
+                      <p className="font-medium text-sp-white-s1">Rush (1 month)</p>
+                      <p className="text-sm text-sp-text-s1/60">+30% cost</p>
                     </div>
                   </label>
-                  <label className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg1/10 cursor-pointer hover:bg-sp-bg1/5 transition">
+                  <label className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg2 cursor-pointer hover:border-sp-primary-s1/30 transition">
                     <input
                       type="radio"
                       name="timeline"
@@ -379,11 +381,11 @@ const CostCalculator = () => {
                           timeline: e.target.value,
                         })
                       }
-                      className="w-4 h-4"
+                      className="w-4 h-4 accent-sp-primary-s1"
                     />
-                    <p className="font-medium text-sp-bg1">Standard (2-3 months) — Recommended</p>
+                    <p className="font-medium text-sp-white-s1">Standard (2-3 months) — Recommended</p>
                   </label>
-                  <label className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg1/10 cursor-pointer hover:bg-sp-bg1/5 transition">
+                  <label className="flex items-center gap-3 p-3 rounded-lg border border-sp-bg2 cursor-pointer hover:border-sp-primary-s1/30 transition">
                     <input
                       type="radio"
                       name="timeline"
@@ -395,11 +397,11 @@ const CostCalculator = () => {
                           timeline: e.target.value,
                         })
                       }
-                      className="w-4 h-4"
+                      className="w-4 h-4 accent-sp-primary-s1"
                     />
                     <div>
-                      <p className="font-medium text-sp-bg1">Flexible (4-6 months)</p>
-                      <p className="text-sm text-sp-bg1/60">-10% discount</p>
+                      <p className="font-medium text-sp-white-s1">Flexible (4-6 months)</p>
+                      <p className="text-sm text-sp-text-s1/60">-10% discount</p>
                     </div>
                   </label>
                 </div>
@@ -409,9 +411,9 @@ const CostCalculator = () => {
             {/* Right: Cost Display */}
             <div className="flex flex-col">
               {/* Cost Box */}
-              <div className="sticky top-20 p-8 rounded-lg border-2 border-sp-bg1 bg-sp-bg1 text-white">
-                <h3 className="text-lg font-semibold mb-2">Estimated Cost</h3>
-                <div className="text-5xl font-bold mb-4">
+              <div className="sticky top-20 p-8 rounded-lg border-2 border-sp-primary-s1 bg-gradient-to-br from-sp-bg2 to-sp-bg1 text-sp-white-s1">
+                <h3 className="text-lg font-semibold mb-2 text-sp-secondary-s1">Estimated Cost</h3>
+                <div className="text-5xl font-bold mb-4 text-sp-white-s1">
                   ₹{estimatedCost.toLocaleString("en-IN")}
                 </div>
                 <p className="text-sm opacity-90 mb-6">
@@ -470,7 +472,7 @@ const CostCalculator = () => {
                 {!showForm ? (
                   <button
                     onClick={() => setShowForm(true)}
-                    className="w-full bg-white text-sp-bg1 font-semibold py-3 rounded-lg hover:bg-sp-white/90 transition"
+                    className="w-full bg-sp-secondary-s1 text-sp-white-s1 font-semibold py-3 rounded-lg hover:bg-sp-secondary-s1/90 transition-all duration-200"
                   >
                     Get Exact Quote
                   </button>

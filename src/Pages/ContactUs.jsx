@@ -127,12 +127,11 @@ const ContactUs = () => {
                 className: "bg-card text-card-foreground border-border"
             });
         } catch (error) {
-            console.log(error);
+            console.error("Form error details:", error);
             setLoading(false);
+            const errorMessage = error?.details?.error || error?.message || "Failed to submit. Please try again later.";
             toast.error("Submission Failed", {
-                description:
-                    error?.response?.data?.message ||
-                    "Failed to submit details. Please try again later.",
+                description: errorMessage,
                 duration: 5000,
                 className: "bg-card text-card-foreground border-border"
             });

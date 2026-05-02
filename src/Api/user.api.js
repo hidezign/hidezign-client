@@ -59,38 +59,37 @@ const serviceLabels = {
 };
 
 // ─── Generic Airtable Submission Function ──────────────────────
+// Routes through Vercel serverless function to avoid CORS issues
 async function sendToAirtable(tableId, fields) {
   try {
-    if (!AIRTABLE_API_KEY) {
-      console.warn("⚠️ Airtable API key not configured. Set VITE_AIRTABLE_API_KEY in .env");
-      // Don't throw - allow graceful degradation
-      return { id: "demo-" + Date.now(), fields };
-    }
+    console.log("📤 Submitting form data...", { tableId, fields });
 
-    const response = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${tableId}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          records: [{ fields }],
-        }),
-      }
-    );
+    // Call the Vercel API route instead of Airtable directly
+    const response = await fetch("/api/submit-form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tableId,
+        fields,
+      }),
+    });
+
+    const data = await response.json();
 
     if (!response.ok) {
-      const err = await response.json();
-      console.error("Airtable error:", err);
-      throw err;
-    } else {
-      console.log("✅ Airtable record created!");
-      return await response.json();
+      console.error("❌ Form submission failed:", data);
+      const errorMessage = data.error || "Failed to submit form";
+      const error = new Error(errorMessage);
+      error.details = data;
+      throw error;
     }
+
+    console.log("✅ Form submitted successfully!", data);
+    return data.data;
   } catch (error) {
-    console.error("Airtable submission error:", error);
+    console.error("❌ Form submission error:", error.message || error);
     throw error;
   }
 }
