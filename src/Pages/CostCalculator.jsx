@@ -238,14 +238,14 @@ const CostCalculator = () => {
 
       {loading && <Loader />}
 
-      <div className="min-h-screen py-16 bg-[#0F172A]">
+      <div className="min-h-screen py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-[#0F172A] mb-4">
               Project Cost Calculator
             </h1>
-            <p className="text-lg text-[#F5F5F5]/70">
+            <p className="text-lg text-[#0F172A]/60">
               Get an instant estimate for your web design, app, or branding
               project
             </p>
@@ -256,15 +256,19 @@ const CostCalculator = () => {
             {/* Left: Calculator Options */}
             <div className="space-y-8">
               {/* Project Type */}
-              <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-                <h3 className="text-lg font-semibold text-white mb-4">
+              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
+                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
                   1. What do you need?
                 </h3>
                 <div className="space-y-3">
                   {Object.entries(projectTypes).map(([key, value]) => (
                     <label
                       key={key}
-                      className="flex items-center gap-3 p-3 rounded-lg border border-white/10 cursor-pointer hover:border-[#0F38DB]/40 transition"
+                      className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
+                        calculator.projectType === key
+                          ? "border-[#0F38DB] bg-[#0F38DB]/5"
+                          : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
+                      }`}
                     >
                       <input
                         type="radio"
@@ -280,8 +284,8 @@ const CostCalculator = () => {
                         className="w-4 h-4 accent-[#0F38DB]"
                       />
                       <div>
-                        <p className="font-medium text-white">{value.name}</p>
-                        <p className="text-sm text-[#F5F5F5]/50">
+                        <p className="font-medium text-[#0F172A]">{value.name}</p>
+                        <p className="text-sm text-[#0F172A]/50">
                           Base: ₹{value.basePrice.toLocaleString("en-IN")}
                         </p>
                       </div>
@@ -291,8 +295,8 @@ const CostCalculator = () => {
               </div>
 
               {/* Pages */}
-              <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-                <h3 className="text-lg font-semibold text-white mb-4">
+              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
+                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
                   2. How many pages?
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -305,7 +309,7 @@ const CostCalculator = () => {
                       className={`p-3 rounded-lg border-2 transition font-semibold ${
                         calculator.pages === num
                           ? "border-[#0F38DB] bg-[#0F38DB] text-white"
-                          : "border-white/10 bg-white/5 text-white hover:border-[#0F38DB]/50"
+                          : "border-[#0F172A]/10 bg-white text-[#0F172A] hover:border-[#0F38DB]/50"
                       }`}
                     >
                       {num} Pages
@@ -315,15 +319,19 @@ const CostCalculator = () => {
               </div>
 
               {/* Features */}
-              <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-                <h3 className="text-lg font-semibold text-white mb-4">
+              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
+                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
                   3. Add features (optional)
                 </h3>
                 <div className="space-y-3">
                   {featuresList.map((feature) => (
                     <label
                       key={feature.id}
-                      className="flex items-center gap-3 p-3 rounded-lg border border-white/10 cursor-pointer hover:border-[#0F38DB]/40 transition"
+                      className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
+                        calculator.features.includes(feature.id)
+                          ? "border-[#0F38DB] bg-[#0F38DB]/5"
+                          : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
+                      }`}
                     >
                       <input
                         type="checkbox"
@@ -332,10 +340,10 @@ const CostCalculator = () => {
                         className="w-4 h-4 accent-[#0F38DB]"
                       />
                       <div className="flex-1">
-                        <p className="font-medium text-white">
+                        <p className="font-medium text-[#0F172A]">
                           {feature.name}
                         </p>
-                        <p className="text-sm text-[#F5F5F5]/50">
+                        <p className="text-sm text-[#0F172A]/50">
                           +₹{feature.price.toLocaleString("en-IN")}
                         </p>
                       </div>
@@ -345,12 +353,14 @@ const CostCalculator = () => {
               </div>
 
               {/* Timeline */}
-              <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-                <h3 className="text-lg font-semibold text-white mb-4">
+              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
+                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
                   4. What's your timeline?
                 </h3>
                 <div className="space-y-3">
-                  <label className="flex items-center gap-3 p-3 rounded-lg border border-white/10 cursor-pointer hover:border-[#0F38DB]/40 transition">
+                  <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
+                    calculator.timeline === "1-month" ? "border-[#0F38DB] bg-[#0F38DB]/5" : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
+                  }`}>
                     <input
                       type="radio"
                       name="timeline"
@@ -365,11 +375,13 @@ const CostCalculator = () => {
                       className="w-4 h-4 accent-[#0F38DB]"
                     />
                     <div>
-                      <p className="font-medium text-white">Rush (1 month)</p>
-                      <p className="text-sm text-[#F5F5F5]/50">+30% cost</p>
+                      <p className="font-medium text-[#0F172A]">Rush (1 month)</p>
+                      <p className="text-sm text-[#0F172A]/50">+30% cost</p>
                     </div>
                   </label>
-                  <label className="flex items-center gap-3 p-3 rounded-lg border border-white/10 cursor-pointer hover:border-[#0F38DB]/40 transition">
+                  <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
+                    calculator.timeline === "2-3-months" ? "border-[#0F38DB] bg-[#0F38DB]/5" : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
+                  }`}>
                     <input
                       type="radio"
                       name="timeline"
@@ -383,9 +395,11 @@ const CostCalculator = () => {
                       }
                       className="w-4 h-4 accent-[#0F38DB]"
                     />
-                    <p className="font-medium text-white">Standard (2-3 months) — Recommended</p>
+                    <p className="font-medium text-[#0F172A]">Standard (2-3 months) — Recommended</p>
                   </label>
-                  <label className="flex items-center gap-3 p-3 rounded-lg border border-white/10 cursor-pointer hover:border-[#0F38DB]/40 transition">
+                  <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
+                    calculator.timeline === "4-6-months" ? "border-[#0F38DB] bg-[#0F38DB]/5" : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
+                  }`}>
                     <input
                       type="radio"
                       name="timeline"
@@ -400,8 +414,8 @@ const CostCalculator = () => {
                       className="w-4 h-4 accent-[#0F38DB]"
                     />
                     <div>
-                      <p className="font-medium text-white">Flexible (4-6 months)</p>
-                      <p className="text-sm text-[#F5F5F5]/50">-10% discount</p>
+                      <p className="font-medium text-[#0F172A]">Flexible (4-6 months)</p>
+                      <p className="text-sm text-[#0F172A]/50">-10% discount</p>
                     </div>
                   </label>
                 </div>
@@ -411,17 +425,17 @@ const CostCalculator = () => {
             {/* Right: Cost Display */}
             <div className="flex flex-col">
               {/* Cost Box */}
-              <div className="sticky top-20 p-8 rounded-lg border-2 border-[#0F38DB] bg-[#0F172A]">
-                <h3 className="text-lg font-semibold mb-2 text-[#0F38DB]">Estimated Cost</h3>
+              <div className="sticky top-20 p-8 rounded-xl border-2 border-[#0F38DB] bg-[#0F38DB] text-white">
+                <h3 className="text-lg font-semibold mb-2 text-white/80">Estimated Cost</h3>
                 <div className="text-5xl font-bold mb-4 text-white">
                   ₹{estimatedCost.toLocaleString("en-IN")}
                 </div>
-                <p className="text-sm text-[#F5F5F5]/60 mb-6">
+                <p className="text-sm text-white/60 mb-6">
                   *Final quote may vary based on specific requirements
                 </p>
 
                 <div className="space-y-4 mb-6 text-sm">
-                  <div className="flex justify-between text-[#F5F5F5]/70">
+                  <div className="flex justify-between text-white/80">
                     <span>{projectTypes[calculator.projectType].name}</span>
                     <span>
                       ₹{projectTypes[calculator.projectType].basePrice.toLocaleString(
@@ -430,7 +444,7 @@ const CostCalculator = () => {
                     </span>
                   </div>
                   {calculator.pages !== "3" && (
-                    <div className="flex justify-between text-[#F5F5F5]/70">
+                    <div className="flex justify-between text-white/80">
                       <span>{calculator.pages} Pages</span>
                       <span>
                         +₹
@@ -441,7 +455,7 @@ const CostCalculator = () => {
                     </div>
                   )}
                   {calculator.features.length > 0 && (
-                    <div className="flex justify-between text-[#F5F5F5]/70">
+                    <div className="flex justify-between text-white/80">
                       <span>{calculator.features.length} Features</span>
                       <span>
                         +₹
@@ -457,7 +471,7 @@ const CostCalculator = () => {
                     </div>
                   )}
                   {timelinePricing[calculator.timeline] !== 0 && (
-                    <div className="flex justify-between text-[#F5F5F5]/70">
+                    <div className="flex justify-between text-white/80">
                       <span>Timeline Adjustment</span>
                       <span>
                         {timelinePricing[calculator.timeline] > 0 ? "+" : ""}₹
@@ -472,7 +486,7 @@ const CostCalculator = () => {
                 {!showForm ? (
                   <button
                     onClick={() => setShowForm(true)}
-                    className="w-full bg-[#0F38DB] text-white font-semibold py-3 rounded-lg hover:bg-[#0F38DB]/90 transition-all duration-200"
+                    className="w-full bg-white text-[#0F38DB] font-semibold py-3 rounded-lg hover:bg-[#F5F5F5] transition-all duration-200"
                   >
                     Get Exact Quote
                   </button>
@@ -481,8 +495,8 @@ const CostCalculator = () => {
 
               {/* Quote Form */}
               {showForm && !submitted && (
-                <div className="mt-6 p-6 rounded-lg border border-white/10 bg-white/5">
-                  <h3 className="text-lg font-semibold text-white mb-4">
+                <div className="mt-6 p-6 rounded-lg border border-[#0F172A]/10 bg-white">
+                  <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
                     Get Your Exact Quote
                   </h3>
                   <form onSubmit={handleGetQuote} className="space-y-4">
@@ -513,12 +527,12 @@ const CostCalculator = () => {
               )}
 
               {submitted && (
-                <div className="mt-6 p-6 rounded-lg border border-[#0F38DB]/30 bg-[#0F38DB]/10">
+                <div className="mt-6 p-6 rounded-lg border border-[#0F38DB]/20 bg-[#0F38DB]/5">
                   <div className="text-3xl mb-2 text-[#0F38DB]">✓</div>
-                  <h3 className="font-semibold text-white mb-1">
+                  <h3 className="font-semibold text-[#0F172A] mb-1">
                     Quote Sent!
                   </h3>
-                  <p className="text-sm text-[#F5F5F5]/70">
+                  <p className="text-sm text-[#0F172A]/60">
                     Check your email for the detailed quote.
                   </p>
                 </div>

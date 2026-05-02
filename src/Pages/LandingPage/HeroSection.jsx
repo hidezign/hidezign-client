@@ -56,8 +56,7 @@ const HeroSection = () => {
                 {({ ref }) => (
                     <div
                         ref={ref}
-                        className="relative w-full h-[70vh] md:h-full md:aspect-video bg-black overflow-hidden mt-20 md:mt-0"
-                        style={{ aspectRatio: '16/9' }}
+                        className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] lg:h-[85vh] bg-black overflow-hidden"
                     >
                         <video
                             ref={videoRef}

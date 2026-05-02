@@ -184,14 +184,14 @@ const FreeWebsiteAudit = () => {
 
       {loading && <Loader />}
 
-      <div className="min-h-screen py-16 bg-[#0F172A]">
+      <div className="min-h-screen py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           {/* Header Section */}
           <div className="mb-16 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-[#0F172A] mb-4">
               Free Website Audit
             </h1>
-            <p className="text-lg text-[#F5F5F5]/70 max-w-2xl mx-auto">
+            <p className="text-lg text-[#0F172A]/60 max-w-2xl mx-auto">
               Get a personalized report identifying what's hurting your website's
               performance, SEO ranking, and user experience.
             </p>
@@ -199,27 +199,27 @@ const FreeWebsiteAudit = () => {
 
           {/* Benefits Section */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="p-6 rounded-lg border border-white/10 bg-white/5 hover:border-[#0F38DB]/40 transition">
-              <h3 className="text-xl font-semibold text-white mb-3">
+            <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white hover:border-[#0F38DB]/40 hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">
                 Performance Check
               </h3>
-              <p className="text-[#F5F5F5]/60 text-sm">
+              <p className="text-[#0F172A]/60 text-sm">
                 PageSpeed, Core Web Vitals, load times, and mobile optimization
               </p>
             </div>
-            <div className="p-6 rounded-lg border border-white/10 bg-white/5 hover:border-[#0F38DB]/40 transition">
-              <h3 className="text-xl font-semibold text-white mb-3">
+            <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white hover:border-[#0F38DB]/40 hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">
                 SEO Analysis
               </h3>
-              <p className="text-[#F5F5F5]/60 text-sm">
+              <p className="text-[#0F172A]/60 text-sm">
                 Meta tags, schema markup, backlinks, and keyword optimization
               </p>
             </div>
-            <div className="p-6 rounded-lg border border-white/10 bg-white/5 hover:border-[#0F38DB]/40 transition">
-              <h3 className="text-xl font-semibold text-white mb-3">
+            <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white hover:border-[#0F38DB]/40 hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">
                 UX Review
               </h3>
-              <p className="text-[#F5F5F5]/60 text-sm">
+              <p className="text-[#0F172A]/60 text-sm">
                 Design quality, accessibility, conversion rate optimization
               </p>
             </div>
@@ -227,8 +227,8 @@ const FreeWebsiteAudit = () => {
 
           {/* Form Section */}
           <div className="max-w-2xl mx-auto">
-            <div className="p-8 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm">
-              <h2 className="text-2xl font-semibold text-white mb-6">
+            <div className="p-8 rounded-xl border border-[#0F172A]/10 bg-[#F5F5F5]">
+              <h2 className="text-2xl font-semibold text-[#0F172A] mb-6">
                 Get Your Free Audit
               </h2>
 
@@ -262,9 +262,9 @@ const FreeWebsiteAudit = () => {
                     classes="w-full"
                   />
 
-                  <div className="bg-[#0F38DB]/10 border border-[#0F38DB]/20 p-4 rounded-lg text-sm">
-                    <p className="font-semibold mb-2 text-white">What you'll receive:</p>
-                    <ul className="list-disc list-inside space-y-1 text-[#F5F5F5]/70">
+                  <div className="bg-[#0F38DB]/5 border border-[#0F38DB]/15 p-4 rounded-lg text-sm">
+                    <p className="font-semibold mb-2 text-[#0F172A]">What you'll receive:</p>
+                    <ul className="list-disc list-inside space-y-1 text-[#0F172A]/60">
                       <li>Personalized PDF audit report</li>
                       <li>Top 5 issues to fix immediately</li>
                       <li>Actionable recommendations</li>
@@ -278,7 +278,7 @@ const FreeWebsiteAudit = () => {
                     className="w-full bg-[#0F38DB] text-white py-3 rounded-lg font-semibold hover:bg-[#0F38DB]/90 transition-all duration-200"
                   />
 
-                  <p className="text-xs text-[#F5F5F5]/50 text-center">
+                  <p className="text-xs text-[#0F172A]/40 text-center">
                     We'll send your audit report within 24 hours. No spam, no
                     credit card required.
                   </p>
@@ -286,10 +286,10 @@ const FreeWebsiteAudit = () => {
               ) : (
                 <div className="text-center py-8">
                   <div className="text-5xl mb-4 text-[#0F38DB]">✓</div>
-                  <h3 className="text-2xl font-semibold text-white mb-2">
+                  <h3 className="text-2xl font-semibold text-[#0F172A] mb-2">
                     Thank you!
                   </h3>
-                  <p className="text-[#F5F5F5]/70">
+                  <p className="text-[#0F172A]/60">
                     Check your email for your personalized audit report.
                   </p>
                 </div>
@@ -298,12 +298,12 @@ const FreeWebsiteAudit = () => {
 
             {/* Social Proof */}
             <div className="mt-12 text-center">
-              <p className="text-[#F5F5F5]/50 text-sm mb-4">
+              <p className="text-[#0F172A]/40 text-sm mb-4">
                 Trusted by 50+ businesses in India
               </p>
               <div className="flex justify-center gap-4">
                 <span className="text-yellow-400">★★★★★</span>
-                <span className="text-[#F5F5F5]/60 text-sm">
+                <span className="text-[#0F172A]/50 text-sm">
                   4.9/5 average rating
                 </span>
               </div>
