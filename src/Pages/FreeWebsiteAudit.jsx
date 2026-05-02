@@ -184,7 +184,7 @@ const FreeWebsiteAudit = () => {
 
       {loading && <Loader />}
 
-      <div className="min-h-screen py-16 bg-white">
+      <div className="min-h-screen py-16 bg-[#F5F5F5]">
         <div className="max-w-6xl mx-auto px-4">
           {/* Header Section */}
           <div className="mb-16 text-center">

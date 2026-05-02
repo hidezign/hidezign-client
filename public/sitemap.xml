@@ -4,7 +4,7 @@
   <!-- Home Page -->
   <url>
     <loc>https://hidezign.com/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- About Page -->
   <url>
     <loc>https://hidezign.com/about-us</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -20,26 +20,73 @@
   <!-- Work / Portfolio Page -->
   <url>
     <loc>https://hidezign.com/work</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://hidezign.com/services</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Web Design Service Page -->
+  <url>
+    <loc>https://hidezign.com/services/web-design</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Contact Page -->
   <url>
     <loc>https://hidezign.com/contact-us</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
+  <!-- Free Website Audit -->
+  <url>
+    <loc>https://hidezign.com/free-website-audit</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cost Calculator -->
+  <url>
+    <loc>https://hidezign.com/cost-calculator</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://hidezign.com/blog</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Blog: Pixel Art Design -->
   <url>
     <loc>https://hidezign.com/blog/pixel-art-design</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://hidezign.com/terms-of-service</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
