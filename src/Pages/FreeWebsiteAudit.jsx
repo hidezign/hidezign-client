@@ -5,7 +5,7 @@ import InputField from "../Components/InputField";
 import Loader from "../Components/Loader";
 import { emailValidator } from "../utils/inputValidator";
 import { toast } from "sonner";
-import { submitContactForm } from "../Api/user.api";
+import { submitFreeAuditForm } from "../Api/user.api";
 import Swal from "sweetalert2";
 
 const FreeWebsiteAudit = () => {
@@ -16,10 +16,11 @@ const FreeWebsiteAudit = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [payload, setPayload] = useState({
-    firstname: "",
+    name: "",
     email: "",
-    website_url: "",
-    projectDescription: "Free Website Audit Request",
+    websiteUrl: "",
+    businessType: "Not specified",
+    focusArea: "General Audit",
   });
   const [formDataErr, setFormDataErr] = useState({});
 
@@ -29,7 +30,7 @@ const FreeWebsiteAudit = () => {
 
     if (field === "email") {
       error = emailValidator(value);
-    } else if (field === "website_url") {
+    } else if (field === "websiteUrl") {
       if (!value.trim()) {
         error = "Website URL cannot be empty";
       } else if (!/^https?:\/\//.test(value)) {
@@ -37,7 +38,7 @@ const FreeWebsiteAudit = () => {
       } else {
         error = null;
       }
-    } else if (field === "firstname") {
+    } else if (field === "name") {
       if (!value.trim()) {
         error = "Name cannot be empty";
       } else if (value.length < 2) {
@@ -55,8 +56,8 @@ const FreeWebsiteAudit = () => {
     let isValid = true;
     let errors = {};
 
-    if (!payload.firstname.trim()) {
-      errors.firstname = "Name is required";
+    if (!payload.name.trim()) {
+      errors.name = "Name is required";
       isValid = false;
     }
     if (!payload.email.trim()) {
@@ -66,11 +67,11 @@ const FreeWebsiteAudit = () => {
       errors.email = emailValidator(payload.email);
       isValid = false;
     }
-    if (!payload.website_url.trim()) {
-      errors.website_url = "Website URL is required";
+    if (!payload.websiteUrl.trim()) {
+      errors.websiteUrl = "Website URL is required";
       isValid = false;
-    } else if (!/^https?:\/\//.test(payload.website_url)) {
-      errors.website_url = "URL must start with http:// or https://";
+    } else if (!/^https?:\/\//.test(payload.websiteUrl)) {
+      errors.websiteUrl = "URL must start with http:// or https://";
       isValid = false;
     }
 
@@ -84,28 +85,26 @@ const FreeWebsiteAudit = () => {
 
     try {
       setLoading(true);
-      const auditPayload = {
-        firstname: payload.firstname,
-        email: payload.email,
-        website_url: payload.website_url,
-        service: "FREE-WEBSITE-AUDIT",
-        projectDescription: `Free Website Audit Request\nWebsite: ${payload.website_url}`,
-      };
 
-      await submitContactForm(auditPayload);
+      await submitFreeAuditForm(payload);
 
       setSubmitted(true);
+      const previousName = payload.name;
+      const previousUrl = payload.websiteUrl;
+      const previousEmail = payload.email;
+
       setPayload({
-        firstname: "",
+        name: "",
         email: "",
-        website_url: "",
-        projectDescription: "Free Website Audit Request",
+        websiteUrl: "",
+        businessType: "Not specified",
+        focusArea: "General Audit",
       });
 
       Swal.fire({
         icon: "success",
         title: "Audit Request Submitted!",
-        html: `<p>Hi ${payload.firstname},</p><p>We've received your website audit request. Our team will review <strong>${payload.website_url}</strong> and send you a personalized PDF audit report within 24 hours.</p><p>Check your email (${payload.email}) for updates.</p>`,
+        html: `<p>Hi ${previousName},</p><p>We've received your website audit request. Our team will review <strong>${previousUrl}</strong> and send you a personalized PDF audit report within 24 hours.</p><p>Check your email (${previousEmail}) for updates.</p>`,
         confirmButtonText: "Great!",
         confirmButtonColor: "#1a1a1a",
       });
@@ -113,7 +112,7 @@ const FreeWebsiteAudit = () => {
       setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
       toast.error("Submission Failed", {
-        description: error?.response?.data?.message || "Please try again later.",
+        description: error?.message || "Please try again later.",
         duration: 5000,
       });
     } finally {
@@ -235,9 +234,9 @@ const FreeWebsiteAudit = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <InputField
                     label="Full Name *"
-                    value={payload.firstname}
-                    onChange={(e) => handleChange(e, "firstname")}
-                    error={formDataErr.firstname}
+                    value={payload.name}
+                    onChange={(e) => handleChange(e, "name")}
+                    error={formDataErr.name}
                     placeholder="Your name"
                     classes="w-full"
                   />
@@ -254,9 +253,9 @@ const FreeWebsiteAudit = () => {
 
                   <InputField
                     label="Website URL *"
-                    value={payload.website_url}
-                    onChange={(e) => handleChange(e, "website_url")}
-                    error={formDataErr.website_url}
+                    value={payload.websiteUrl}
+                    onChange={(e) => handleChange(e, "websiteUrl")}
+                    error={formDataErr.websiteUrl}
                     placeholder="https://yourwebsite.com"
                     classes="w-full"
                   />

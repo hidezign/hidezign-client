@@ -5,7 +5,7 @@ import InputField from "../Components/InputField";
 import Loader from "../Components/Loader";
 import { emailValidator } from "../utils/inputValidator";
 import { toast } from "sonner";
-import { submitContactForm } from "../Api/user.api";
+import { submitCostCalculatorForm } from "../Api/user.api";
 import Swal from "sweetalert2";
 
 const CostCalculator = () => {
@@ -126,13 +126,15 @@ const CostCalculator = () => {
       const estimatedCost = calculateCost();
 
       const payload = {
-        firstname: formData.name,
+        name: formData.name,
         email: formData.email,
-        service: "PROJECT-QUOTE",
-        projectDescription: `Project Cost Calculator Quote Request\n\nProject Type: ${projectTypes[calculator.projectType].name}\nPages: ${calculator.pages}\nFeatures: ${calculator.features.length > 0 ? calculator.features.join(", ") : "None"}\nTimeline: ${calculator.timeline}\n\nEstimated Cost: ₹${estimatedCost.toLocaleString("en-IN")}`,
+        projectType: projectTypes[calculator.projectType].name,
+        budget: estimatedCost,
+        timeline: calculator.timeline,
+        projectDescription: `Project Type: ${projectTypes[calculator.projectType].name}\nPages: ${calculator.pages}\nFeatures: ${calculator.features.length > 0 ? calculator.features.map(f => featuresList.find(feat => feat.id === f)?.name).join(", ") : "None"}`,
       };
 
-      await submitContactForm(payload);
+      await submitCostCalculatorForm(payload);
 
       Swal.fire({
         icon: "success",

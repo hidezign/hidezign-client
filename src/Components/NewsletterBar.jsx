@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Mail, X } from "lucide-react";
 import { emailValidator } from "../utils/inputValidator";
 import { toast } from "sonner";
-import { submitContactForm } from "../Api/user.api";
+import { submitNewsletterForm } from "../Api/user.api";
 
 const NewsletterBar = () => {
   const [showBar, setShowBar] = useState(false);
@@ -46,13 +46,10 @@ const NewsletterBar = () => {
     try {
       setLoading(true);
       const payload = {
-        firstname: "Newsletter Subscriber",
         email: email,
-        service: "NEWSLETTER-SIGNUP",
-        projectDescription: "Subscribed to H! Weekly Newsletter",
       };
 
-      await submitContactForm(payload);
+      await submitNewsletterForm(payload);
 
       toast.success("Subscribed to H! Weekly!", {
         description: "Check your email for the latest design insights.",
