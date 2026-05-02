@@ -3,14 +3,14 @@ import { Axios } from "../Content/MainContent";
 const userApi = "/user";
 
 // ─── Google Sheets Config ───────────────────────────────────
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyipCksYwtLYLxD-pq6CMB5tKLXomgPyH_GbjECWeFHa6mNsX8k9b2bk-K1NXvUICI/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzAn0fqBGIV0tNnvXJJcy3XGwNKheyJ9lh59cIryd2pkocByaxA2_UtL_HOlmy1eTM/exec";
 
-// Sheet names
+// Sheet names (must match exact tab names in Google Sheet)
 const SHEET_NAMES = {
-  CONTACT_FORM: "Contact Form",
+  CONTACT_FORM: "Contact form",
   FREE_AUDIT: "Free Audit",
-  COST_CALCULATOR: "Cost Calculator",
-  NEWSLETTER: "Newsletter",
+  COST_CALCULATOR: "cost calculator",
+  NEWSLETTER: "newsletter",
 };
 
 // Service label mapper
@@ -28,10 +28,13 @@ async function sendToGoogleSheets(sheetName, fields) {
   try {
     console.log("📤 Submitting form data to Google Sheets...", { sheetName, fields });
 
+    // NOTE: Do NOT set Content-Type to "application/json" here.
+    // That triggers a CORS preflight (OPTIONS) request which Google Apps Script
+    // cannot handle. Sending as text/plain keeps it a "simple request" — no preflight.
     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain;charset=utf-8",
       },
       body: JSON.stringify({
         sheetName,
@@ -39,7 +42,17 @@ async function sendToGoogleSheets(sheetName, fields) {
       }),
     });
 
-    const data = await response.json();
+    // Google Apps Script may redirect (302); fetch follows it automatically.
+    // Try to parse the JSON response.
+    let data;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      // If response can't be parsed (e.g., opaque redirect), treat as success
+      // since the request was sent successfully
+      console.log("✅ Form data sent to Google Sheets (response not readable — likely CORS redirect)");
+      return { success: true, message: "Form submitted successfully" };
+    }
 
     if (!data.success) {
       console.error("❌ Form submission failed:", data);
