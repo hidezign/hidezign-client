@@ -106,7 +106,7 @@ const FreeWebsiteAudit = () => {
         title: "Audit Request Submitted!",
         html: `<p>Hi ${previousName},</p><p>We've received your website audit request. Our team will review <strong>${previousUrl}</strong> and send you a personalized PDF audit report within 24 hours.</p><p>Check your email (${previousEmail}) for updates.</p>`,
         confirmButtonText: "Great!",
-        confirmButtonColor: "#1a1a1a",
+        confirmButtonColor: "#0F38DB",
       });
 
       setTimeout(() => setSubmitted(false), 5000);
@@ -184,14 +184,14 @@ const FreeWebsiteAudit = () => {
 
       {loading && <Loader />}
 
-      <div className="min-h-screen py-16 bg-sp-bg1">
+      <div className="min-h-screen py-16 bg-[#0F172A]">
         <div className="max-w-6xl mx-auto px-4">
           {/* Header Section */}
           <div className="mb-16 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-sp-white-s1 mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
               Free Website Audit
             </h1>
-            <p className="text-lg text-sp-text-s1 max-w-2xl mx-auto">
+            <p className="text-lg text-[#F5F5F5]/70 max-w-2xl mx-auto">
               Get a personalized report identifying what's hurting your website's
               performance, SEO ranking, and user experience.
             </p>
@@ -199,27 +199,27 @@ const FreeWebsiteAudit = () => {
 
           {/* Benefits Section */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50 hover:border-sp-primary-s1/30 transition">
-              <h3 className="text-xl font-semibold text-sp-white-s1 mb-3">
+            <div className="p-6 rounded-lg border border-white/10 bg-white/5 hover:border-[#0F38DB]/40 transition">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Performance Check
               </h3>
-              <p className="text-sp-text-s1 text-sm">
+              <p className="text-[#F5F5F5]/60 text-sm">
                 PageSpeed, Core Web Vitals, load times, and mobile optimization
               </p>
             </div>
-            <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50 hover:border-sp-primary-s1/30 transition">
-              <h3 className="text-xl font-semibold text-sp-white-s1 mb-3">
+            <div className="p-6 rounded-lg border border-white/10 bg-white/5 hover:border-[#0F38DB]/40 transition">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 SEO Analysis
               </h3>
-              <p className="text-sp-text-s1 text-sm">
+              <p className="text-[#F5F5F5]/60 text-sm">
                 Meta tags, schema markup, backlinks, and keyword optimization
               </p>
             </div>
-            <div className="p-6 rounded-lg border border-sp-bg2 bg-sp-bg2/50 hover:border-sp-primary-s1/30 transition">
-              <h3 className="text-xl font-semibold text-sp-white-s1 mb-3">
+            <div className="p-6 rounded-lg border border-white/10 bg-white/5 hover:border-[#0F38DB]/40 transition">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 UX Review
               </h3>
-              <p className="text-sp-text-s1 text-sm">
+              <p className="text-[#F5F5F5]/60 text-sm">
                 Design quality, accessibility, conversion rate optimization
               </p>
             </div>
@@ -227,8 +227,8 @@ const FreeWebsiteAudit = () => {
 
           {/* Form Section */}
           <div className="max-w-2xl mx-auto">
-            <div className="p-8 rounded-lg border border-sp-bg2 bg-sp-bg2/80 backdrop-blur-sm">
-              <h2 className="text-2xl font-semibold text-sp-white-s1 mb-6">
+            <div className="p-8 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm">
+              <h2 className="text-2xl font-semibold text-white mb-6">
                 Get Your Free Audit
               </h2>
 
@@ -262,9 +262,9 @@ const FreeWebsiteAudit = () => {
                     classes="w-full"
                   />
 
-                  <div className="bg-sp-primary-s1/10 border border-sp-primary-s1/30 p-4 rounded-lg text-sm">
-                    <p className="font-semibold mb-2 text-sp-white-s1">What you'll receive:</p>
-                    <ul className="list-disc list-inside space-y-1 text-sp-text-s1">
+                  <div className="bg-[#0F38DB]/10 border border-[#0F38DB]/20 p-4 rounded-lg text-sm">
+                    <p className="font-semibold mb-2 text-white">What you'll receive:</p>
+                    <ul className="list-disc list-inside space-y-1 text-[#F5F5F5]/70">
                       <li>Personalized PDF audit report</li>
                       <li>Top 5 issues to fix immediately</li>
                       <li>Actionable recommendations</li>
@@ -275,21 +275,21 @@ const FreeWebsiteAudit = () => {
                   <Button
                     title="Get Free Audit Report"
                     onClick={handleSubmit}
-                    className="w-full bg-sp-primary-s1 text-sp-white-s1 py-3 rounded-lg font-semibold hover:bg-sp-primary-s1/90 transition-all duration-200"
+                    className="w-full bg-[#0F38DB] text-white py-3 rounded-lg font-semibold hover:bg-[#0F38DB]/90 transition-all duration-200"
                   />
 
-                  <p className="text-xs text-sp-text-s1/60 text-center">
+                  <p className="text-xs text-[#F5F5F5]/50 text-center">
                     We'll send your audit report within 24 hours. No spam, no
                     credit card required.
                   </p>
                 </form>
               ) : (
                 <div className="text-center py-8">
-                  <div className="text-5xl mb-4 text-sp-secondary-s1">✓</div>
-                  <h3 className="text-2xl font-semibold text-sp-white-s1 mb-2">
+                  <div className="text-5xl mb-4 text-[#0F38DB]">✓</div>
+                  <h3 className="text-2xl font-semibold text-white mb-2">
                     Thank you!
                   </h3>
-                  <p className="text-sp-text-s1">
+                  <p className="text-[#F5F5F5]/70">
                     Check your email for your personalized audit report.
                   </p>
                 </div>
@@ -298,12 +298,12 @@ const FreeWebsiteAudit = () => {
 
             {/* Social Proof */}
             <div className="mt-12 text-center">
-              <p className="text-sp-text-s1 text-sm mb-4">
+              <p className="text-[#F5F5F5]/50 text-sm mb-4">
                 Trusted by 50+ businesses in India
               </p>
               <div className="flex justify-center gap-4">
-                <span className="text-sp-secondary-s1">★★★★★</span>
-                <span className="text-sp-text-s1 text-sm">
+                <span className="text-yellow-400">★★★★★</span>
+                <span className="text-[#F5F5F5]/60 text-sm">
                   4.9/5 average rating
                 </span>
               </div>

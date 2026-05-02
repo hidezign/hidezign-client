@@ -75,15 +75,15 @@ const NewsletterBar = () => {
   if (!showBar) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-sp-bg1 to-sp-bg2 text-white shadow-lg border-t border-sp-primary-s1/20">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0F172A] text-white shadow-lg border-t border-[#0F38DB]/20">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         {/* Content */}
         {!submitted ? (
           <div className="flex-1 flex items-center gap-4">
-            <Mail className="w-5 h-5 flex-shrink-0 hidden sm:block text-sp-secondary-s1" />
+            <Mail className="w-5 h-5 flex-shrink-0 hidden sm:block text-[#0F38DB]" />
             <div className="flex-1">
-              <h3 className="font-semibold text-sm text-sp-white-s1">H! Weekly</h3>
-              <p className="text-xs text-sp-text-s1 opacity-80">
+              <h3 className="font-semibold text-sm text-white">H! Weekly</h3>
+              <p className="text-xs text-[#F5F5F5]/70">
                 Design insights, growth hacks, and industry trends. Every Friday.
               </p>
             </div>
@@ -96,13 +96,13 @@ const NewsletterBar = () => {
                   setEmail(e.target.value);
                   setError("");
                 }}
-                className="px-3 py-2 rounded bg-sp-bg2 text-sp-white-s1 text-sm placeholder-sp-text-s1/40 focus:outline-none focus:ring-2 focus:ring-sp-primary-s1"
+                className="px-3 py-2 rounded bg-white/10 border border-white/20 text-white text-sm placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#0F38DB]"
                 disabled={loading}
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-sp-secondary-s1 text-sp-white-s1 px-4 py-2 rounded font-semibold text-sm hover:bg-sp-secondary-s1/90 transition disabled:opacity-50"
+                className="bg-[#0F38DB] text-white px-4 py-2 rounded font-semibold text-sm hover:bg-[#0F38DB]/90 transition disabled:opacity-50"
               >
                 {loading ? "..." : "Join"}
               </button>
@@ -110,14 +110,14 @@ const NewsletterBar = () => {
           </div>
         ) : (
           <div className="flex-1 text-center">
-            <p className="font-semibold text-sm text-sp-white-s1">✓ Thanks for subscribing!</p>
+            <p className="font-semibold text-sm text-white">✓ Thanks for subscribing!</p>
           </div>
         )}
 
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="flex-shrink-0 p-1 hover:bg-white/20 rounded transition"
+          className="flex-shrink-0 p-1 hover:bg-white/10 rounded transition"
         >
           <X className="w-5 h-5" />
         </button>
@@ -125,7 +125,7 @@ const NewsletterBar = () => {
 
       {/* Error Message */}
       {error && (
-        <div className="text-center py-2 bg-sp-primary-s1/20 text-sm border-t border-sp-primary-s1/30 text-sp-white-s1">
+        <div className="text-center py-2 bg-[#0F38DB]/10 text-sm border-t border-[#0F38DB]/20 text-white">
           {error}
         </div>
       )}

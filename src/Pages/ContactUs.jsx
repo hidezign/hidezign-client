@@ -268,7 +268,7 @@ const ContactUs = () => {
                                 By submitting this form, you agree to our{" "}
                                 <Link
                                     to={Routers.TERMSOFSERVICE}
-                                    className="text-blue-600"
+                                    className="text-[#0F38DB]"
                                 >
                                     Terms of Service
                                 </Link>
@@ -278,7 +278,7 @@ const ContactUs = () => {
                         <Button
                             title={"Submit"}
                             onClick={handleSubmit}
-                            className="bg-sp-bg1 text-sp-white-s1 px-6 py-2 rounded-full w-max text-base tracking-wider"
+                            className="bg-[#0F172A] text-white px-6 py-2 rounded-full w-max text-base tracking-wider hover:bg-[#0F172A]/90 transition"
                         />
                     </div>
                 </div>
