@@ -1,544 +1,361 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import Button from "../Components/Button";
-import InputField from "../Components/InputField";
-import Loader from "../Components/Loader";
-import { emailValidator } from "../utils/inputValidator";
 import { toast } from "sonner";
 import { submitCostCalculatorForm } from "../Api/user.api";
-import Swal from "sweetalert2";
+import GlassTile from "../Components/GlassTile";
+import ProgressBar from "../Components/ProgressBar";
+
+/* ─── internal pricing (never shown to user) ─── */
+const projectTypes = {
+  website:   { name: "Website Design",    basePrice: 75000 },
+  ecommerce: { name: "E-Commerce Store",  basePrice: 150000 },
+  webapp:    { name: "Web Application",   basePrice: 200000 },
+  mobile:    { name: "Mobile App",        basePrice: 250000 },
+};
+const pagesPricing  = { "3": 0, "5": 15000, "8": 30000, "12": 50000 };
+const timelinePricing = { "rush": 30000, "standard": 0, "flexible": -10000 };
+const featuresList = [
+  { id: "cms",       name: "CMS / Admin Panel",         price: 25000 },
+  { id: "ecommerce", name: "E-Commerce Integration",    price: 40000 },
+  { id: "api",       name: "API / Third-party Connect", price: 30000 },
+  { id: "analytics", name: "Analytics & Tracking",      price: 15000 },
+  { id: "seo",       name: "SEO Optimisation",          price: 20000 },
+  { id: "security",  name: "Enhanced Security",         price: 25000 },
+];
+
+const calcEstimate = (state) => {
+  let t = projectTypes[state.projectType]?.basePrice ?? 75000;
+  t += pagesPricing[state.pages] ?? 0;
+  t += state.features.reduce((s, id) => {
+    const f = featuresList.find((x) => x.id === id);
+    return s + (f?.price ?? 0);
+  }, 0);
+  t += timelinePricing[state.timeline] ?? 0;
+  return Math.max(t, 50000);
+};
+
+/* ─── step option tiles ─── */
+const TileBtn = ({ label, sub, selected, onClick }) => (
+  <button
+    onClick={onClick}
+    className={`flex flex-col gap-0.5 p-4 rounded-xl border text-left transition-all duration-200 hover:scale-[1.01] cursor-pointer ${
+      selected
+        ? "border-[#0F38DB] bg-[#0F38DB]/5 shadow-[0_0_0_1px_#0F38DB]"
+        : "border-black/8 bg-white/70 hover:border-[#0F38DB]/50 hover:bg-[#0F38DB]/3"
+    }`}
+  >
+    <span className="font-medium text-[#111111] text-sm">{label}</span>
+    {sub && <span className="text-xs text-[#888888]">{sub}</span>}
+  </button>
+);
+
+const inputCls =
+  "w-full px-4 py-3 rounded-xl border border-black/10 bg-white/70 text-[#111111] placeholder-[#aaaaaa] focus:outline-none focus:border-[#0F38DB] focus:shadow-[0_0_0_3px_rgba(15,56,219,0.12)] transition-all duration-200 text-sm";
+
+const ContinueBtn = ({ onClick, disabled, label = "Continue →" }) => (
+  <button
+    onClick={onClick}
+    disabled={disabled}
+    className="w-full py-3 px-6 rounded-xl bg-[#0F38DB] text-white font-semibold shadow-[0_4px_20px_rgba(15,56,219,0.3)] hover:bg-[#0c2eb8] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+  >
+    {label}
+  </button>
+);
+
+/* ─── main component ─── */
+const TOTAL_STEPS = 5;
 
 const CostCalculator = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
+  const [step, setStep]       = useState(1);
   const [loading, setLoading] = useState(false);
-  const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors]   = useState({});
 
-  const [calculator, setCalculator] = useState({
-    projectType: "website",
-    pages: "5",
+  const [calc, setCalc] = useState({
+    projectType: "",
+    pages: "",
     features: [],
-    timeline: "2-3-months",
+    timeline: "",
   });
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-  });
+  const [contact, setContact] = useState({ name: "", email: "" });
 
-  const [formErrors, setFormErrors] = useState({});
+  const next = () => setStep((s) => Math.min(s + 1, TOTAL_STEPS));
+  const back = () => setStep((s) => Math.max(s - 1, 1));
 
-  const projectTypes = {
-    website: { name: "Website Design", basePrice: 75000 },
-    ecommerce: { name: "E-Commerce Store", basePrice: 150000 },
-    webapp: { name: "Web Application", basePrice: 200000 },
-    mobile: { name: "Mobile App", basePrice: 250000 },
-  };
-
-  const featuresList = [
-    { id: "cms", name: "Content Management System", price: 25000 },
-    { id: "ecommerce", name: "E-Commerce Integration", price: 40000 },
-    { id: "api", name: "API Integration", price: 30000 },
-    { id: "analytics", name: "Analytics & Tracking", price: 15000 },
-    { id: "seo", name: "SEO Optimization", price: 20000 },
-    { id: "security", name: "Enhanced Security", price: 25000 },
-  ];
-
-  const pagesPricing = {
-    "3": 0,
-    "5": 15000,
-    "8": 30000,
-    "12": 50000,
-  };
-
-  const timelinePricing = {
-    "1-month": 30000,
-    "2-3-months": 0,
-    "4-6-months": -10000,
-  };
-
-  const calculateCost = () => {
-    let total = projectTypes[calculator.projectType].basePrice;
-    total += pagesPricing[calculator.pages] || 0;
-    total += calculator.features.reduce((sum, featureId) => {
-      const feature = featuresList.find((f) => f.id === featureId);
-      return sum + (feature ? feature.price : 0);
-    }, 0);
-    total += timelinePricing[calculator.timeline] || 0;
-    return Math.max(total, 50000);
-  };
-
-  const toggleFeature = (featureId) => {
-    setCalculator((prev) => ({
+  const toggleFeature = (id) =>
+    setCalc((prev) => ({
       ...prev,
-      features: prev.features.includes(featureId)
-        ? prev.features.filter((f) => f !== featureId)
-        : [...prev.features, featureId],
+      features: prev.features.includes(id)
+        ? prev.features.filter((f) => f !== id)
+        : [...prev.features, id],
     }));
+
+  const handleContactChange = (field, val) => {
+    setContact((prev) => ({ ...prev, [field]: val }));
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: null }));
   };
 
-  const handleFormChange = (e, field) => {
-    const { value } = e.target;
-    let error = null;
-
-    if (field === "email") {
-      error = emailValidator(value);
-    } else if (field === "name") {
-      if (!value.trim()) {
-        error = "Name is required";
-      } else if (value.length < 2) {
-        error = "Name must be at least 2 characters";
-      } else {
-        error = null;
-      }
-    }
-
-    setFormErrors({ ...formErrors, [field]: error });
-    setFormData({ ...formData, [field]: value });
+  const validate = () => {
+    const e = {};
+    if (!contact.name.trim() || contact.name.length < 2)
+      e.name = "Please enter your name";
+    if (!contact.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email))
+      e.email = "Please enter a valid email";
+    return e;
   };
 
-  const handleGetQuote = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    const errs = validate();
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
-    let isValid = true;
-    let errors = {};
-
-    if (!formData.name.trim()) {
-      errors.name = "Name is required";
-      isValid = false;
-    }
-    if (!formData.email.trim()) {
-      errors.email = "Email is required";
-      isValid = false;
-    } else if (emailValidator(formData.email)) {
-      errors.email = emailValidator(formData.email);
-      isValid = false;
-    }
-
-    setFormErrors(errors);
-    if (!isValid) return;
-
+    setLoading(true);
     try {
-      setLoading(true);
-      const estimatedCost = calculateCost();
-
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        projectType: projectTypes[calculator.projectType].name,
-        budget: estimatedCost,
-        timeline: calculator.timeline,
-        projectDescription: `Project Type: ${projectTypes[calculator.projectType].name}\nPages: ${calculator.pages}\nFeatures: ${calculator.features.length > 0 ? calculator.features.map(f => featuresList.find(feat => feat.id === f)?.name).join(", ") : "None"}`,
-      };
-
-      await submitCostCalculatorForm(payload);
-
-      Swal.fire({
-        icon: "success",
-        title: "Quote Sent!",
-        html: `<p>Hi ${formData.name},</p><p>We've received your project details. An exact quote will be sent to <strong>${formData.email}</strong> within 24 hours.</p><p><strong>Estimated Range: ₹${estimatedCost.toLocaleString("en-IN")}</strong></p>`,
-        confirmButtonText: "Done",
-        confirmButtonColor: "#0F38DB",
+      const estimated = calcEstimate(calc);
+      await submitCostCalculatorForm({
+        name: contact.name,
+        email: contact.email,
+        projectType: projectTypes[calc.projectType]?.name ?? calc.projectType,
+        budget: estimated,
+        timeline: calc.timeline,
+        projectDescription:
+          `Project: ${projectTypes[calc.projectType]?.name}\n` +
+          `Pages: ${calc.pages}\n` +
+          `Features: ${calc.features.length ? calc.features.map((id) => featuresList.find((f) => f.id === id)?.name).join(", ") : "None"}\n` +
+          `Timeline: ${calc.timeline}`,
       });
-
       setSubmitted(true);
-      setTimeout(() => {
-        setShowForm(false);
-        setSubmitted(false);
-        setFormData({ name: "", email: "" });
-      }, 3000);
-    } catch (error) {
-      console.error("Form error details:", error);
-      const errorMessage = error?.details?.error || error?.message || "Failed to submit. Please try again later.";
-      toast.error("Failed to submit quote request", {
-        description: errorMessage,
-      });
+    } catch (err) {
+      const msg = err?.details?.error || err?.message || "Failed to submit. Please try again.";
+      toast.error("Something went wrong", { description: msg });
     } finally {
       setLoading(false);
     }
   };
 
-  const estimatedCost = calculateCost();
+  /* scroll to top on step change */
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
 
   return (
     <>
       <Helmet>
-        <title>
-          Project Cost Calculator | H! Dezign — Get Instant Quote
-        </title>
-        <meta
-          name="description"
-          content="Use H! Dezign's cost calculator to estimate your web design, app development, or branding project cost. Get an accurate quote based on your requirements."
-        />
+        <title>Project Cost Calculator | H! Dezign — Get Instant Quote</title>
+        <meta name="description" content="Use H! Dezign's cost calculator to estimate your web design, app development, or branding project cost. Get an accurate quote based on your requirements." />
         <link rel="canonical" href="https://hidezign.com/cost-calculator" />
         <meta property="og:title" content="Project Cost Calculator | H! Dezign" />
-        <meta
-          property="og:description"
-          content="Calculate the estimated cost of your web design or app project instantly."
-        />
+        <meta property="og:description" content="Calculate the estimated cost of your web design or app project instantly." />
         <meta property="og:url" content="https://hidezign.com/cost-calculator" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://hidezign.com",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Cost Calculator",
-                item: "https://hidezign.com/cost-calculator",
-              },
-            ],
-          })}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "How accurate is this cost calculator?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "This is an estimate based on typical project requirements. Final pricing may vary based on specific needs, custom features, and timeline.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What's included in the project cost?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Design, development, testing, deployment, and ongoing support during the project duration.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can I get a custom quote?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Absolutely. Enter your details below to get an exact quote customized to your project.",
-                },
-              },
-            ],
-          })}
-        </script>
       </Helmet>
 
-      {loading && <Loader />}
+      <div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-center px-4 py-16">
+        <div className="w-full max-w-lg">
 
-      <div className="min-h-screen py-16 bg-[#F5F5F5]">
-        <div className="max-w-4xl mx-auto px-4">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-bold text-[#0F172A] mb-4">
-              Project Cost Calculator
-            </h1>
-            <p className="text-lg text-[#0F172A]/60">
-              Get an instant estimate for your web design, app, or branding
-              project
-            </p>
-          </div>
-
-          {/* Calculator Form */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Left: Calculator Options */}
-            <div className="space-y-8">
-              {/* Project Type */}
-              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
-                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
-                  1. What do you need?
-                </h3>
-                <div className="space-y-3">
-                  {Object.entries(projectTypes).map(([key, value]) => (
-                    <label
-                      key={key}
-                      className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                        calculator.projectType === key
-                          ? "border-[#0F38DB] bg-[#0F38DB]/5"
-                          : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="projectType"
-                        value={key}
-                        checked={calculator.projectType === key}
-                        onChange={(e) =>
-                          setCalculator({
-                            ...calculator,
-                            projectType: e.target.value,
-                          })
-                        }
-                        className="w-4 h-4 accent-[#0F38DB]"
-                      />
-                      <div>
-                        <p className="font-medium text-[#0F172A]">{value.name}</p>
-                        <p className="text-sm text-[#0F172A]/50">
-                          Base: ₹{value.basePrice.toLocaleString("en-IN")}
-                        </p>
-                      </div>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Pages */}
-              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
-                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
-                  2. How many pages?
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {Object.keys(pagesPricing).map((num) => (
-                    <button
-                      key={num}
-                      onClick={() =>
-                        setCalculator({ ...calculator, pages: num })
-                      }
-                      className={`p-3 rounded-lg border-2 transition font-semibold ${
-                        calculator.pages === num
-                          ? "border-[#0F38DB] bg-[#0F38DB] text-white"
-                          : "border-[#0F172A]/10 bg-white text-[#0F172A] hover:border-[#0F38DB]/50"
-                      }`}
-                    >
-                      {num} Pages
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features */}
-              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
-                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
-                  3. Add features (optional)
-                </h3>
-                <div className="space-y-3">
-                  {featuresList.map((feature) => (
-                    <label
-                      key={feature.id}
-                      className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                        calculator.features.includes(feature.id)
-                          ? "border-[#0F38DB] bg-[#0F38DB]/5"
-                          : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={calculator.features.includes(feature.id)}
-                        onChange={() => toggleFeature(feature.id)}
-                        className="w-4 h-4 accent-[#0F38DB]"
-                      />
-                      <div className="flex-1">
-                        <p className="font-medium text-[#0F172A]">
-                          {feature.name}
-                        </p>
-                        <p className="text-sm text-[#0F172A]/50">
-                          +₹{feature.price.toLocaleString("en-IN")}
-                        </p>
-                      </div>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Timeline */}
-              <div className="p-6 rounded-lg border border-[#0F172A]/10 bg-white">
-                <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
-                  4. What's your timeline?
-                </h3>
-                <div className="space-y-3">
-                  <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                    calculator.timeline === "1-month" ? "border-[#0F38DB] bg-[#0F38DB]/5" : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
-                  }`}>
-                    <input
-                      type="radio"
-                      name="timeline"
-                      value="1-month"
-                      checked={calculator.timeline === "1-month"}
-                      onChange={(e) =>
-                        setCalculator({
-                          ...calculator,
-                          timeline: e.target.value,
-                        })
-                      }
-                      className="w-4 h-4 accent-[#0F38DB]"
-                    />
-                    <div>
-                      <p className="font-medium text-[#0F172A]">Rush (1 month)</p>
-                      <p className="text-sm text-[#0F172A]/50">+30% cost</p>
-                    </div>
-                  </label>
-                  <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                    calculator.timeline === "2-3-months" ? "border-[#0F38DB] bg-[#0F38DB]/5" : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
-                  }`}>
-                    <input
-                      type="radio"
-                      name="timeline"
-                      value="2-3-months"
-                      checked={calculator.timeline === "2-3-months"}
-                      onChange={(e) =>
-                        setCalculator({
-                          ...calculator,
-                          timeline: e.target.value,
-                        })
-                      }
-                      className="w-4 h-4 accent-[#0F38DB]"
-                    />
-                    <p className="font-medium text-[#0F172A]">Standard (2-3 months) — Recommended</p>
-                  </label>
-                  <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                    calculator.timeline === "4-6-months" ? "border-[#0F38DB] bg-[#0F38DB]/5" : "border-[#0F172A]/10 hover:border-[#0F38DB]/40"
-                  }`}>
-                    <input
-                      type="radio"
-                      name="timeline"
-                      value="4-6-months"
-                      checked={calculator.timeline === "4-6-months"}
-                      onChange={(e) =>
-                        setCalculator({
-                          ...calculator,
-                          timeline: e.target.value,
-                        })
-                      }
-                      className="w-4 h-4 accent-[#0F38DB]"
-                    />
-                    <div>
-                      <p className="font-medium text-[#0F172A]">Flexible (4-6 months)</p>
-                      <p className="text-sm text-[#0F172A]/50">-10% discount</p>
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Cost Display */}
-            <div className="flex flex-col">
-              {/* Cost Box */}
-              <div className="sticky top-20 p-8 rounded-xl border-2 border-[#0F38DB] bg-[#0F38DB] text-white">
-                <h3 className="text-lg font-semibold mb-2 text-white/80">Estimated Cost</h3>
-                <div className="text-5xl font-bold mb-4 text-white">
-                  ₹{estimatedCost.toLocaleString("en-IN")}
-                </div>
-                <p className="text-sm text-white/60 mb-6">
-                  *Final quote may vary based on specific requirements
+          {!submitted && (
+            <>
+              <div className="text-center mb-8">
+                <p className="text-xs font-semibold tracking-widest text-[#0F38DB] uppercase mb-2">
+                  Free Estimate
                 </p>
-
-                <div className="space-y-4 mb-6 text-sm">
-                  <div className="flex justify-between text-white/80">
-                    <span>{projectTypes[calculator.projectType].name}</span>
-                    <span>
-                      ₹{projectTypes[calculator.projectType].basePrice.toLocaleString(
-                        "en-IN"
-                      )}
-                    </span>
-                  </div>
-                  {calculator.pages !== "3" && (
-                    <div className="flex justify-between text-white/80">
-                      <span>{calculator.pages} Pages</span>
-                      <span>
-                        +₹
-                        {(pagesPricing[calculator.pages] || 0).toLocaleString(
-                          "en-IN"
-                        )}
-                      </span>
-                    </div>
-                  )}
-                  {calculator.features.length > 0 && (
-                    <div className="flex justify-between text-white/80">
-                      <span>{calculator.features.length} Features</span>
-                      <span>
-                        +₹
-                        {calculator.features
-                          .reduce((sum, featureId) => {
-                            const feature = featuresList.find(
-                              (f) => f.id === featureId
-                            );
-                            return sum + (feature ? feature.price : 0);
-                          }, 0)
-                          .toLocaleString("en-IN")}
-                      </span>
-                    </div>
-                  )}
-                  {timelinePricing[calculator.timeline] !== 0 && (
-                    <div className="flex justify-between text-white/80">
-                      <span>Timeline Adjustment</span>
-                      <span>
-                        {timelinePricing[calculator.timeline] > 0 ? "+" : ""}₹
-                        {timelinePricing[calculator.timeline].toLocaleString(
-                          "en-IN"
-                        )}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {!showForm ? (
-                  <button
-                    onClick={() => setShowForm(true)}
-                    className="w-full bg-white text-[#0F38DB] font-semibold py-3 rounded-lg hover:bg-[#F5F5F5] transition-all duration-200"
-                  >
-                    Get Exact Quote
-                  </button>
-                ) : null}
+                <h1 className="text-3xl md:text-4xl font-bold text-[#111111]">
+                  How much will your project cost?
+                </h1>
               </div>
+              <ProgressBar currentStep={step} totalSteps={TOTAL_STEPS} />
+            </>
+          )}
 
-              {/* Quote Form */}
-              {showForm && !submitted && (
-                <div className="mt-6 p-6 rounded-lg border border-[#0F172A]/10 bg-white">
-                  <h3 className="text-lg font-semibold text-[#0F172A] mb-4">
-                    Get Your Exact Quote
-                  </h3>
-                  <form onSubmit={handleGetQuote} className="space-y-4">
-                    <InputField
-                      label="Your Name *"
-                      value={formData.name}
-                      onChange={(e) => handleFormChange(e, "name")}
-                      error={formErrors.name}
-                      placeholder="John Doe"
-                      classes="w-full"
+          <GlassTile className="p-8">
+
+            {/* ── SUBMITTED ── */}
+            {submitted && (
+              <div className="animate-fadeIn text-center py-6">
+                <div className="text-5xl mb-4">🎉</div>
+                <h2 className="text-2xl font-bold text-[#111111] mb-2">You're all set!</h2>
+                <p className="text-[#888888] text-sm leading-relaxed">
+                  We've received your project details. An exact quote will land in{" "}
+                  <strong className="text-[#111111]">{contact.email}</strong> within 24 hours.
+                </p>
+              </div>
+            )}
+
+            {/* ── STEP 1: Project Type ── */}
+            {!submitted && step === 1 && (
+              <div className="animate-fadeIn">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
+                  What do you need built?
+                </h2>
+                <p className="text-[#888888] text-sm mb-8">
+                  Pick the option that best fits your project.
+                </p>
+                <div className="grid grid-cols-1 gap-3">
+                  {Object.entries(projectTypes).map(([key, val]) => (
+                    <TileBtn
+                      key={key}
+                      label={val.name}
+                      selected={calc.projectType === key}
+                      onClick={() => {
+                        setCalc((p) => ({ ...p, projectType: key }));
+                        setTimeout(next, 250);
+                      }}
                     />
-                    <InputField
-                      label="Email Address *"
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── STEP 2: Pages ── */}
+            {!submitted && step === 2 && (
+              <div className="animate-fadeIn">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
+                  How many pages?
+                </h2>
+                <p className="text-[#888888] text-sm mb-8">
+                  Roughly how many distinct pages will you need?
+                </p>
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                  {[
+                    { val: "3",  label: "Up to 3",  sub: "Landing / brochure" },
+                    { val: "5",  label: "4 – 5",    sub: "Small site" },
+                    { val: "8",  label: "6 – 8",    sub: "Medium site" },
+                    { val: "12", label: "9 – 12+",  sub: "Large site" },
+                  ].map(({ val, label, sub }) => (
+                    <TileBtn
+                      key={val}
+                      label={label}
+                      sub={sub}
+                      selected={calc.pages === val}
+                      onClick={() => {
+                        setCalc((p) => ({ ...p, pages: val }));
+                        setTimeout(next, 250);
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── STEP 3: Features ── */}
+            {!submitted && step === 3 && (
+              <div className="animate-fadeIn">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
+                  Any add-ons you need?
+                </h2>
+                <p className="text-[#888888] text-sm mb-8">
+                  Pick everything relevant — skip if none apply.
+                </p>
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                  {featuresList.map((f) => (
+                    <TileBtn
+                      key={f.id}
+                      label={f.name}
+                      selected={calc.features.includes(f.id)}
+                      onClick={() => toggleFeature(f.id)}
+                    />
+                  ))}
+                </div>
+                <ContinueBtn onClick={next} />
+              </div>
+            )}
+
+            {/* ── STEP 4: Timeline ── */}
+            {!submitted && step === 4 && (
+              <div className="animate-fadeIn">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
+                  What's your timeline?
+                </h2>
+                <p className="text-[#888888] text-sm mb-8">
+                  When do you need this live?
+                </p>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    { val: "rush",     label: "Rush",     sub: "Need it live within 1 month" },
+                    { val: "standard", label: "Standard", sub: "2 – 3 months — most popular" },
+                    { val: "flexible", label: "Flexible", sub: "4 – 6 months, no rush" },
+                  ].map(({ val, label, sub }) => (
+                    <TileBtn
+                      key={val}
+                      label={label}
+                      sub={sub}
+                      selected={calc.timeline === val}
+                      onClick={() => {
+                        setCalc((p) => ({ ...p, timeline: val }));
+                        setTimeout(next, 250);
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── STEP 5: Contact ── */}
+            {!submitted && step === 5 && (
+              <div className="animate-fadeIn">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
+                  Almost there!
+                </h2>
+                <p className="text-[#888888] text-sm mb-8">
+                  Tell us where to send your custom quote.
+                </p>
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      value={contact.name}
+                      onChange={(e) => handleContactChange("name", e.target.value)}
+                      className={inputCls}
+                    />
+                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                  </div>
+                  <div>
+                    <input
                       type="email"
-                      value={formData.email}
-                      onChange={(e) => handleFormChange(e, "email")}
-                      error={formErrors.email}
-                      placeholder="john@example.com"
-                      classes="w-full"
+                      placeholder="Your email address"
+                      value={contact.email}
+                      onChange={(e) => handleContactChange("email", e.target.value)}
+                      className={inputCls}
                     />
-                    <Button
-                      title="Send Quote"
-                      onClick={handleGetQuote}
-                      className="w-full bg-[#0F38DB] text-white py-2 rounded-lg font-semibold hover:bg-[#0F38DB]/90 transition"
-                    />
-                  </form>
+                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                  </div>
                 </div>
-              )}
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="w-full py-3 px-6 rounded-xl bg-[#0F38DB] text-white font-semibold shadow-[0_4px_20px_rgba(15,56,219,0.3)] hover:bg-[#0c2eb8] hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Sending…
+                    </>
+                  ) : "Get My Quote →"}
+                </button>
+                <p className="text-center text-xs text-[#aaaaaa] mt-3">
+                  No spam. No pressure. Exact quote in 24 hours.
+                </p>
+              </div>
+            )}
 
-              {submitted && (
-                <div className="mt-6 p-6 rounded-lg border border-[#0F38DB]/20 bg-[#0F38DB]/5">
-                  <div className="text-3xl mb-2 text-[#0F38DB]">✓</div>
-                  <h3 className="font-semibold text-[#0F172A] mb-1">
-                    Quote Sent!
-                  </h3>
-                  <p className="text-sm text-[#0F172A]/60">
-                    Check your email for the detailed quote.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
+            {/* ── Back button ── */}
+            {!submitted && step > 1 && (
+              <button
+                onClick={back}
+                className="mt-5 text-xs text-[#888888] hover:text-[#111111] transition-colors duration-200 flex items-center gap-1"
+              >
+                ← Back
+              </button>
+            )}
+
+          </GlassTile>
         </div>
       </div>
     </>
