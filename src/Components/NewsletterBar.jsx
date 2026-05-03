@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Mail, X } from "lucide-react";
+import { X } from "lucide-react";
 import { emailValidator } from "../utils/inputValidator";
 import { toast } from "sonner";
 import { submitNewsletterForm } from "../Api/user.api";
@@ -12,14 +12,10 @@ const NewsletterBar = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Show bar after 3 seconds
     const timer = setTimeout(() => {
       const dismissed = localStorage.getItem("newsletterDismissed");
-      if (!dismissed) {
-        setShowBar(true);
-      }
+      if (!dismissed) setShowBar(true);
     }, 3000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -31,42 +27,21 @@ const NewsletterBar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
-    if (!email.trim()) {
-      setError("Email is required");
-      return;
-    }
-
+    if (!email.trim()) { setError("Email is required"); return; }
     const emailError = emailValidator(email);
-    if (emailError) {
-      setError(emailError);
-      return;
-    }
-
+    if (emailError) { setError(emailError); return; }
     try {
       setLoading(true);
-      const payload = {
-        email: email,
-      };
-
-      await submitNewsletterForm(payload);
-
+      await submitNewsletterForm({ email });
       toast.success("Subscribed to H! Weekly!", {
         description: "Check your email for the latest design insights.",
       });
-
       setSubmitted(true);
       setEmail("");
-
-      setTimeout(() => {
-        handleClose();
-      }, 3000);
-    } catch (error) {
-      console.error("Newsletter subscription error:", error);
-      const errorMessage = error?.details?.error || error?.message || "Please try again later.";
-      toast.error("Subscription failed", {
-        description: errorMessage,
-      });
+      setTimeout(() => handleClose(), 3000);
+    } catch (err) {
+      const msg = err?.details?.error || err?.message || "Please try again later.";
+      toast.error("Subscription failed", { description: msg });
     } finally {
       setLoading(false);
     }
@@ -75,60 +50,49 @@ const NewsletterBar = () => {
   if (!showBar) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0F172A] text-white shadow-lg border-t border-[#0F38DB]/20">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        {/* Content */}
-        {!submitted ? (
-          <div className="flex-1 flex items-center gap-4">
-            <Mail className="w-5 h-5 flex-shrink-0 hidden sm:block text-[#0F38DB]" />
-            <div className="flex-1">
-              <h3 className="font-semibold text-sm text-white">H! Weekly</h3>
-              <p className="text-xs text-[#F5F5F5]/70">
-                Design insights, growth hacks, and industry trends. Every Friday.
-              </p>
-            </div>
-            <form onSubmit={handleSubmit} className="flex gap-2 flex-1 sm:flex-none">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError("");
-                }}
-                className="px-3 py-2 rounded bg-white/10 border border-white/20 text-white text-sm placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#0F38DB]"
-                disabled={loading}
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-[#0F38DB] text-white px-4 py-2 rounded font-semibold text-sm hover:bg-[#0F38DB]/90 transition disabled:opacity-50"
-              >
-                {loading ? "..." : "Join"}
-              </button>
-            </form>
-          </div>
-        ) : (
-          <div className="flex-1 text-center">
-            <p className="font-semibold text-sm text-white">✓ Thanks for subscribing!</p>
-          </div>
-        )}
-
-        {/* Close Button */}
+    <div className="fixed inset-x-0 top-4 z-[60] px-4 pointer-events-none">
+      <div className="mx-auto max-w-5xl rounded-2xl border border-sp-bg1/10 bg-[#F0F0F0]/95 shadow-[0_20px_60px_rgba(14,14,14,0.12)] backdrop-blur-sm pointer-events-auto relative">
+        <div className="flex flex-col gap-4 p-4 md:flex-row md:items-center md:justify-between md:gap-6 md:p-5 pr-10">
+          {!submitted ? (
+            <>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-semibold text-sp-bg1">H! Weekly</p>
+                <p className="text-xs leading-5 text-sp-bg1/60">
+                  Design insights, growth hacks, and industry trends. Every Friday.
+                </p>
+                {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+              </div>
+              <form onSubmit={handleSubmit} className="flex gap-2 shrink-0">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setError(""); }}
+                  disabled={loading}
+                  className="px-3 py-2 rounded-xl border border-sp-bg1/10 bg-white/70 text-sp-bg1 text-sm placeholder-sp-bg1/30 focus:outline-none focus:border-sp-primary-s1 focus:shadow-[0_0_0_3px_rgba(15,56,219,0.1)] transition-all"
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="rounded-full bg-sp-primary-s1 px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-sp-bg1 disabled:opacity-50"
+                >
+                  {loading ? "..." : "Join"}
+                </button>
+              </form>
+            </>
+          ) : (
+            <p className="text-sm font-semibold text-sp-bg1 flex-1 text-center">
+              Thanks for subscribing!
+            </p>
+          )}
+        </div>
         <button
           onClick={handleClose}
-          className="flex-shrink-0 p-1 hover:bg-white/10 rounded transition"
+          className="absolute top-3 right-3 p-1 rounded-full hover:bg-sp-bg1/5 transition"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 text-sp-bg1/50" />
         </button>
       </div>
-
-      {/* Error Message */}
-      {error && (
-        <div className="text-center py-2 bg-[#0F38DB]/10 text-sm border-t border-[#0F38DB]/20 text-white">
-          {error}
-        </div>
-      )}
     </div>
   );
 };
