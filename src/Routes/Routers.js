@@ -11,6 +11,7 @@ export const Routers = {
     BLOG: "/blog",
     FREE_AUDIT: "/free-website-audit",
     COST_CALCULATOR: "/cost-calculator",
+    LEAD_FUNNEL: "/get-started",
     /// ----------- User panel ------------- ////
     UNIVERSAL: "*",
     REGISTER: "/register",

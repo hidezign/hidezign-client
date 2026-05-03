@@ -11,6 +11,7 @@ const SHEET_NAMES = {
   FREE_AUDIT: "Free Audit",
   COST_CALCULATOR: "cost calculator",
   NEWSLETTER: "newsletter",
+  LEAD_FUNNEL: "Lead Funnel",
 };
 
 // Service label mapper
@@ -180,6 +181,34 @@ export async function submitCostCalculatorForm(payload) {
     console.error("Cost calculator form submission error:", error);
     throw error;
   }
+}
+
+// ─── Lead Funnel Submission ──────────────────────
+export async function submitLeadFunnelForm(payload) {
+  const budgetValue = payload.budget || "Not specified";
+  const leadTag =
+    budgetValue.includes("₹1,00,000") ||
+    budgetValue.includes("₹3,00,000") ||
+    budgetValue.includes("₹5,00,000") ||
+    budgetValue.includes("₹10,00,000")
+      ? "High"
+      : budgetValue.includes("₹50,000") || budgetValue.includes("₹25,000")
+      ? "Medium"
+      : "Low";
+
+  const fields = {
+    Name: payload.name,
+    Email: payload.email,
+    "WhatsApp Number": payload.phone,
+    "Business Context": payload.context,
+    "Services Needed": (payload.requirements || []).join(", "),
+    "Project Goal": payload.goal,
+    "Budget Range": budgetValue,
+    "Lead Tag": leadTag,
+    "Lead Source": "Lead Funnel",
+  };
+
+  return sendToGoogleSheets(SHEET_NAMES.LEAD_FUNNEL, fields);
 }
 
 // ─── Newsletter Subscription ──────────────────────

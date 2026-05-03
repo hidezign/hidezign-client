@@ -25,6 +25,7 @@ import Services from "../Pages/Services/Services";
 import BlogIndex from "../Pages/Blog/index";
 import FreeWebsiteAudit from "../Pages/FreeWebsiteAudit";
 import CostCalculator from "../Pages/CostCalculator";
+import LeadFunnel from "../Pages/LeadFunnel/LeadFunnel";
 
 const RouterPages = () => {
     // const dispatch = useDispatch();
@@ -116,6 +117,10 @@ const RouterPages = () => {
             <Route
                 path={Routers.COST_CALCULATOR}
                 element={<WrapperComponent children={<CostCalculator />} />}
+            />
+            <Route
+                path={Routers.LEAD_FUNNEL}
+                element={<WrapperComponent children={<LeadFunnel />} />}
             />
             {/* <Route path={Routers.LOGIN} element={<Login />} />
       <Route path={Routers.REGISTER} element={<Register />} />
